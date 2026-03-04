@@ -1,445 +1,289 @@
 <Document>
-  <ColorBox Color="#3a3a3a" OutlineColor="#5a5a5a" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#353535" OutlineColor="#555555" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Misfits: Nuclear Wasteland Server Rules
+        Misfits: Nuclear Wasteland – Server Rules
       </Box>
       <Box Orientation="Vertical" Margin="10">
-        Misfits Fallout is a roleplay server. The main goal of this server is not only to provide engaging gameplay, but also to create stories that players can share even with friends outside of standard Space Station 14.
+        Misfits: Nuclear Wasteland is a Medium Roleplay Fallout server. The goal is not only engaging gameplay, but the creation of memorable stories shaped by player choice.
 
-        Note: your own skills and actions will determine the path of your story. The Wasteland is a harsh place. Do not expect help from the gods except in the most extreme cases.
+        The Wasteland is harsh and consequences matter. Your survival depends on your actions, your alliances, and your judgment. Administrative intervention is rare and reserved for rule enforcement, not story rescue.
       </Box>
     </Box>
   </ColorBox>
 
-  <ColorBox Color="#2a2a3a" OutlineColor="#4a4a5a" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#2f2f3a" OutlineColor="#4f4f5a" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Rule 0: Don't be a jerk.
+        Rule 0: Conduct
       </Box>
       <Box Orientation="Vertical" Margin="10">
-        Not everyone likes this rule, but it is necessary. This rule covers players who show excessive toxicity and play exclusively for personal gain. Those who play only for themselves and try to "win" at any cost, suppressing others and ignoring the rules.
+        This is a collaborative environment. Toxicity, ego play, and behavior designed to ruin others’ enjoyment are not tolerated.
+
         <Box Orientation="Vertical" Margin="10">
-          Do not be a toxic player. Our server is a space for collaborative creativity, not an arena for personal victories at any cost. Avoid actions that suppress other players or damage the game's atmosphere.
+          Play to create story, not to “win” at any cost.
 
-          Respect the work of admins and developers. Remember that they are volunteers with their own lives outside the project. Be patient and constructive when communicating.
+          Respect administrators and developers. They are volunteers.
 
-          Cooperate when resolving issues. Do not disconnect during an admin ticket without a valid reason. If you encounter technical problems, report them within 15 minutes.
+          Cooperate during admin interactions. Do not disconnect during an active ticket without valid reason.
 
-          Administration reserves the right to make decisions in situations not covered by the rules if a player's behavior causes a negative reaction in the community.
+          Report technical issues promptly.
 
-          Remember that the goal of the server is to create an engaging gameplay experience for all participants. Act in the spirit of mutual respect and common sense.
+          Administration may intervene in situations not explicitly covered by the rules if behavior damages the community or the round.
         </Box>
-        Violating these principles may lead to restricted access to the server. All punishments are determined at the administration's discretion with the situation's context in mind.
+
+        Punishments are issued at staff discretion based on severity, context, and history.
       </Box>
     </Box>
   </ColorBox>
 
-  <ColorBox Color="#2a3a2a" OutlineColor="#4a5a4a" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#2f3a2f" OutlineColor="#4f5a4f" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
         Rule 1: Griefing
       </Box>
       <Box Orientation="Vertical" Margin="10">
-        Griefing, or intentionally ruining the gameplay experience for others, is strictly prohibited. This includes actions done solely to harm or inconvenience other players without any gain or reason other than to spoil the game.
+        Griefing is any action taken primarily to disrupt gameplay or degrade the experience of others without meaningful in-character reasoning.
 
-        A defining feature of griefing is the lack of personal benefit for the offender. This rule also covers events that cause significant damage to gameplay even if there was no intent to ruin the game for others. The simplest example is planting mines in players' homes.
+        This includes:
+        <Box Orientation="Vertical" Margin="10">
+          Deliberate destruction with no RP justification.
 
-        Any actions that harm gameplay and spoil other players' experience, not covered by other rules, will be punished under this rule.
+          Trap placement intended only to frustrate.
+
+          Causing large-scale disruption without narrative basis.
+        </Box>
+
+        Lack of intent does not always excuse large-scale damage. If your actions severely impact the round without reasonable RP logic, they may be treated as griefing.
       </Box>
     </Box>
   </ColorBox>
 
-  <ColorBox Color="#3a2a2a" OutlineColor="#5a4a4a" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#3a2f2f" OutlineColor="#5a4f4f" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Rule 2: Fair play
+        Rule 2: Fair Play
       </Box>
 
       <Box Orientation="Vertical" Margin="10">
-        2.1. Metagaming and use of meta information
+        2.1 Metagaming
 
-        Metagaming, meaning using or spreading in-game information through out-of-character communication or OOC chats, is strictly prohibited and punishable by a ban. This includes:
+        Using out-of-character knowledge to influence in-character actions is prohibited.
+
         <Box Orientation="Vertical" Margin="10">
-          Getting information from OOC chats, observing as a ghost, messages in Discord, or streams.
+          Information from Discord, streams, OOC chat, or ghosting may not be used IC.
 
-          Cooperative play (COOP) is metagaming and is punished especially harshly.
+          Coordinated external communication affecting the round is forbidden.
 
-          Streaming is not prohibited, but it is recommended to warn the administration about the intention to stream. Training co-op is allowed with prior notice to the administration.
-
-          Information obtained from any external sources or chats outside the game cannot be used by your character without violating this rule.
+          Streaming is allowed, but responsibility for information leaks lies with the streamer.
         </Box>
+
+        Metagaming violations may result in removal.
       </Box>
 
       <Box Orientation="Vertical" Margin="10">
-        2.2. Multiaccounting
+        2.2 Multiaccounting
 
-        Using multiple SS14 accounts to gain an advantage is prohibited. This includes:
         <Box Orientation="Vertical" Margin="10">
-          Using more than one account in the same round (multiboxing).
+          Using multiple accounts in the same round is forbidden.
 
-          Ban evasion by creating a new account. Any attempt to enter the game with another account while the main one is banned is considered ban evasion.
+          Ban evasion is strictly prohibited.
 
-          Creating a new account to hide previous violations. Notify the administration if you created a new account or changed your current login.
+          Creating alternate accounts to avoid punishment history is not allowed.
         </Box>
-        Violating this rule is punishable by a permanent ban.
+
+        Violations may result in permanent bans.
       </Box>
 
       <Box Orientation="Vertical" Margin="10">
-        2.3. Unfair play
+        2.3 Exploits
 
-        Using software or game flaws to gain an advantage in gameplay is prohibited. This includes:
         <Box Orientation="Vertical" Margin="10">
-          Using bugs, cheats, scripts, clickers, and other third-party software is prohibited.
+          No cheats, scripts, macros, or third-party tools.
 
-          Intentionally creating significant load on the server by any means is prohibited.
+          No intentional abuse of bugs.
+
+          No deliberate server strain.
         </Box>
-        If you find a bug, report it immediately in the appropriate Discord server channels.
+
+        Report discovered bugs through official channels.
       </Box>
     </Box>
   </ColorBox>
 
-  <ColorBox Color="#2a3a3a" OutlineColor="#4a5a5a" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#2f3a3a" OutlineColor="#4f5a5a" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Rule 3: Play roles and characters appropriate to the setting
-      </Box>
-      <Box Orientation="Vertical" Margin="10">
-        Your character must fully fit the role and the Fallout universe setting.
+        Rule 3: Roleplay Standards
       </Box>
 
       <Box Orientation="Vertical" Margin="10">
-        3.1 Character behavior
+        Characters must fit the Fallout setting in tone, behavior, and naming.
+
+        3.1 Character Identity
         <Box Orientation="Vertical" Margin="10">
-          Your character must behave appropriately for the setting. The game takes place in a post-apocalyptic future, and character behavior must reflect that. Your goal is to create a realistic and believable character that fits the Fallout theme.
+          No meme names or obvious real-world references.
 
-          When choosing a character name, stick to the Fallout theme. Avoid obvious references to real events or blatantly silly naming schemes.
+          No reuse of deceased or permanently imprisoned characters without approval.
 
-          Take your character creation seriously. Direct names of real-life figures, famous real or fictional characters, and silly names or names inappropriate for the character's species are forbidden. Administration may ask you to change a name if it does not follow the rules.
-
-          Copying character names for a character you or someone else played before their death or permanent imprisonment is forbidden without permission from the character's owner and/or the administration.
-        </Box>
-      </Box>
-
-      <Box Orientation="Vertical" Margin="10">
-        3.2 Interaction with chat channels
-        <Box Orientation="Vertical" Margin="10">
-          Do not abuse chat channels. This includes, but is not limited to: emotes, OOC, LOOC, Ahelp, or prayers. Abuse will lead to severe measures.
-
-          Do not break the fourth wall, do not use real-life memes or internet slang, and do not try to impose rules or resolve OOC problems in IC chat (use ahelp).
-
-          Using IC chats to discuss OOC topics (politics, memes, etc.) is prohibited. Emote chat is not intended for direct communication or for depicting political, erotic, or offensive actions.
-
-          Insults toward other players in OOC chats are prohibited, both direct and indirect. Using OOC chats to discuss political, extremist, erotic, and other sensitive topics is also prohibited.
-        </Box>
-      </Box>
-
-      <Box Orientation="Vertical" Margin="10">
-        3.3 Disrupting the game atmosphere
-        <Box Orientation="Vertical" Margin="10">
-          Do not draw attention to game mechanics, conventions, or admin actions that ruin the atmosphere or immersion.
-
-          <ColorBox Color="#3a3a3a" OutlineColor="#5a5a5a" OutlineThickness="2" Margin="5">
-            <Box Orientation="Vertical">
-              <Box Orientation="Horizontal" HorizontalAlignment="Center">
-                Examples
-              </Box>
-              <Box Orientation="Vertical" Margin="10">
-                If someone accidentally typed in IC chat with the wrong keyboard layout, do not draw attention to it. Just write the correct message.
-
-                If an admin accidentally hugged you or performed an action in the IC world, do not discuss it as admin actions.
-              </Box>
-            </Box>
-          </ColorBox>
-          Avoid shouting about "gods" or "admins" if something strange happens. Play it out as an anomaly or a strange event.
-
-          In game, treat admins as normal players without special privileges or excessive flattery.
+          Administration may require name changes for immersion reasons.
         </Box>
 
+        3.2 Communication
         <Box Orientation="Vertical" Margin="10">
-          3.3.1 LRP behavior
-          <Box Orientation="Vertical" Margin="10">
-            Avoid expressions and actions that do not fit the Fallout setting. Examples: "going SSD". If you need to leave the game, use an RP reason, such as "tired, going to sleep".
+          Do not break immersion with mechanical terms or real-world memes.
 
-            Do not climb over counters without necessity. If there is no bartender, call one or use a vending machine.
+          Keep OOC topics out of IC channels.
 
-            There are no rollbacks. If you accidentally typed something wrong, come up with an RP reason or apologize and write what you meant without emphasizing the mistake.
-
-            If someone messed up chat or layout, do not draw attention to it. It is an awkward situation best left alone.
-
-            Paper and other in-game media must not be used to create drawings with political, erotic, or offensive content.
-          </Box>
+          OOC channels must remain respectful and free of political or extremist discussion.
         </Box>
 
+        3.3 Atmosphere
         <Box Orientation="Vertical" Margin="10">
-          3.3.2 Communication culture and atmosphere
-          <Box Orientation="Vertical" Margin="10">
-            Communicate in any language without breaking the atmosphere of the game. Avoid flooding, spam, and smileys in IC chat.
+          Avoid referencing game systems or “admins” in character.
 
-            Maintain proper grammar and clarity of speech. Characters should speak according to their level of education. Avoid abbreviations like "pls" or "thx" and awkward LRP abbreviations if not justified by the role.
+          Provide in-character explanations for absence when possible.
 
-            Write fully and stylistically appropriately. Try to create messages that are pleasant to read, following language norms.
-
-            Avoid excessive and unjustified insults. Expressions directed at the character are allowed (for example, "disgusting zombie"), but not at the player or their mental abilities. Repeated baseless insults may be considered meta-hate.
-
-            Remember that your speech affects the atmosphere of the game. Try to maintain immersion and respect other participants' experience.
-          </Box>
+          Do not create offensive or explicit material using in-game media.
         </Box>
-      </Box>
 
-      <Box Orientation="Vertical" Margin="10">
-        3.4 Character appearance and description
+        3.4 Knowledge Limits
         <Box Orientation="Vertical" Margin="10">
-          Character appearance must fit the lore; exceptions are only possible with administration approval.
+          Your character is not all-knowing.
 
-          Character description should describe appearance; describing ongoing actions is allowed ("breathes heavily", "with a limp").
+          Do not reference unresearched advanced technology.
 
-          The description should be objective, without imposing subjective judgments ("beautiful eyes" -> "blue eyes").
-
-          The description should not list clothing; describing accessories is allowed.
-
-          Avoid excessive detail and heavy literary devices. This is examining a character, not studying them with a magnifying glass.
-        </Box>
-      </Box>
-
-      <Box Orientation="Vertical" Margin="10">
-        3.5 Game mechanics and RP
-        <Box Orientation="Vertical" Margin="10">
-          Do not specify a particular technology that needs research. That technology has not been researched within the round.
-
-          Try not to use game-mechanical terms such as "research points".
-
-          Your character is not all-knowing: their knowledge and skills have limits. Play the role you joined for, and do not teach others how to play their roles unless asked.
-        </Box>
-      </Box>
-
-      <Box Orientation="Vertical" Margin="10">
-        3.6 Slotting
-        <Box Orientation="Vertical" Margin="10">
-          Slotting - persistent ignoring of the surrounding world - is unacceptable. The world exists even without players: there will always be someone maintaining settlements and keeping order.
-
-          Violating this rule will be treated as LRP.
-          <ColorBox Color="#3a3a3a" OutlineColor="#5a5a5a" OutlineThickness="2" Margin="5">
-            <Box Orientation="Vertical">
-              <Box Orientation="Horizontal" HorizontalAlignment="Center">
-                Examples
-              </Box>
-              <Box Orientation="Vertical" Margin="10">
-                Discussing planned raids over the general radio channel.
-
-                Openly carrying contraband on NCR territory even if there are no players who can stop you.
-              </Box>
-            </Box>
-          </ColorBox>
+          Stay within the expertise of your chosen role.
         </Box>
       </Box>
     </Box>
   </ColorBox>
 
-  <ColorBox Color="#3a2a3a" OutlineColor="#5a4a5a" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#3a2f3a" OutlineColor="#5a4f5a" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Rule 4: Erotic roleplay (ERP) is not allowed
+        Rule 4: Erotic Roleplay
       </Box>
       <Box Orientation="Vertical" Margin="10">
-        Erotic roleplay (ERP) is strictly prohibited. This includes any erotic stories written by your character in books, on paper, or other in-game media.
+        Explicit ERP is prohibited in all forms, including written in-game material.
 
-        Use common sense: if an admin tells you to stop something that is "on the edge", you must stop immediately. Even if you are the only participant and nobody can see you, it is still a violation.
+        Light romantic interaction such as flirting, hugging, or kissing is allowed if non-explicit and consensual.
 
-        Punishment for violating this rule may not be immediate, but the fact of the violation will be discovered later. In most cases, violating this rule leads to a permanent ban.
+        If instructed by staff to stop behavior near the boundary, you must comply immediately.
 
-        However, sexual themes are allowed to a limited extent, including light sexual comments and light intimacy, such as kissing and hugging.
-      </Box>
-      <ColorBox Color="#3a3a3a" OutlineColor="#5a5a5a" OutlineThickness="2" Margin="10">
-        <Box Orientation="Vertical">
-          <Box Orientation="Horizontal" HorizontalAlignment="Center">
-            Examples of acceptable comments
-          </Box>
-            <Box Orientation="Vertical" Margin="10">
-              "You look especially attractive today."
-
-              "You're a tempting devil."
-            </Box>
-          </Box>
-      </ColorBox>
-      <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Be careful and respect the boundaries of what is allowed.
+        Violations may result in permanent removal.
       </Box>
     </Box>
   </ColorBox>
 
-  <ColorBox Color="#2a3a3a" OutlineColor="#4a5a5a" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#2f3a3a" OutlineColor="#4f5a5a" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Rule 5: SSD characters are protected from harmful hostile actions
+        Rule 5: SSD Protection
       </Box>
-      <Box Orientation="Vertical" Margin="5">
-        Player characters who have disconnected and are considered "SSD" (Space Sleep Disorder) cannot be harmed, including direct physical attacks, kidnapping, or any other actions that directly harm the character. However, SSD characters can be robbed or have items stolen, as long as no harm is done to the SSD character.
+      <Box Orientation="Vertical" Margin="10">
+        Characters who disconnect (SSD) may not be directly harmed.
 
-        Abusing this rule and disconnecting mid-fight is a punishable offense; characters who go SSD in the middle of a fight or escalation are not exempt from harm.
+        They may be looted, but not killed or kidnapped.
 
-        Faction members are not considered protected when they are SSD inside their faction base during a raid.
+        Disconnecting during active combat or escalation removes this protection.
+
+        SSD characters inside faction bases during active raids are not protected.
       </Box>
     </Box>
   </ColorBox>
 
-  <ColorBox Color="#412227" OutlineColor="#61323a" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#40282a" OutlineColor="#603c3f" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Rule 6: Armed conflicts and escalation
+        Rule 6: Armed Conflict
       </Box>
 
       <Box Orientation="Vertical" Margin="10">
-        6.1 Armed conflicts
+        6.1 Escalation
+
+        Dialogue must precede lethal force in most situations.
+
         <Box Orientation="Vertical" Margin="10">
-          Talk first - then shoot! In almost any situation you should try to start dialogue first, and only then begin a firefight.
+          Escalation must be face-to-face.
 
-          Exceptions: hunting fauna, chasing from an active RP situation, faction wars, direct threat to a character's life, event zones, and high-danger zones (for example, dungeons and open PVP zones).
+          A clear demand must be given.
 
-          During a robbery, do not take the victim's entire inventory. Leave at least one weapon (for example, a knife) and some food/medical items.
+          A reasonable opportunity to respond must exist.
+        </Box>
 
-          All Wasteland residents except raiders must have strong reasons to initiate a robbery.
+        Exceptions include active firefights, immediate threats, wildlife, faction wars, and designated high-risk zones.
+      </Box>
 
-          If the victim did not offer armed resistance during a robbery, you are obliged to leave them alive.
+      <Box Orientation="Vertical" Margin="10">
+        6.2 Robbery
 
-          If the victim tried to fight back, their life and property remain in the raider's hands.
+        <Box Orientation="Vertical" Margin="10">
+          Do not strip victims of all survival means.
 
-          Raiding faction bases by Wasteland residents is unacceptable under any circumstances. Faction members may only loot captured enemy bases during war.
+          Non-resisting victims must be left alive.
 
-          Enslavement is an alternative to permanent imprisonment. For this reason it is allowed only as a punitive or voluntary measure, if it is allowed within the faction in principle.
+          Resistance shifts responsibility for outcome.
         </Box>
       </Box>
 
       <Box Orientation="Vertical" Margin="10">
-        6.2 Escalation rules
+        6.3 Faction Warfare
+
         <Box Orientation="Vertical" Margin="10">
-          Escalation is required for all participants in a conflict.
+          Factions begin neutral.
 
-          Escalation must be established face to face; escalation over radio is invalid.
+          Only recognized leaders may formally declare war.
 
-          Escalation must last at least four seconds or until a response is received from the other side before attacking the enemy.
+          War begins five minutes after a face-to-face declaration.
 
-          Good/valid escalation includes a demand that can be met or accepted by the person being escalated against, for example: "Give me your bag!" or "Leave here and you will live!".
-
-          Fleeing from escalation counts as a response and makes any attack against you by the escalating side valid.
-
-          Do not use escalation as a tool for free validhunting and justification for killing others at your discretion.
-
-          Escalate and engage in conflict within reasonable limits and moderately.
+          Killing diplomats or surrendered individuals is forbidden.
         </Box>
       </Box>
 
       <Box Orientation="Vertical" Margin="10">
-        6.3 Behavior under crossfire
-        <Box Orientation="Vertical" Margin="10">
-          If you are caught in crossfire, you are NOT allowed to return fire unless you first escalate against the attackers.
+        6.4 Early Raids
 
-          As a participant in a conflict, minimize casualties and injuries among bystanders whenever possible.
+        Faction bases may not be raided within the first 30 minutes of the round.
+      </Box>
+    </Box>
+  </ColorBox>
 
-          Act realistically; avoid combat zones without a strong reason.
-
-          As a participant in a conflict, minimize casualties and injuries among bystanders whenever possible.
-        </Box>
+  <ColorBox Color="#3a3033" OutlineColor="#5a4a50" OutlineThickness="2" Margin="5">
+    <Box Orientation="Vertical">
+      <Box Orientation="Horizontal" HorizontalAlignment="Center">
+        Rule 7: New Life Rule
       </Box>
 
       <Box Orientation="Vertical" Margin="10">
-        6.4 Early raids on faction bases
+        7.1 Within a Round
         <Box Orientation="Vertical" Margin="10">
-          Do not raid an enemy faction base earlier than 30 minutes after the start of the round.
+          You may not rejoin on the same character to bypass death or punishment.
 
-          You may still attack members of that faction outside their base, but you are forbidden to enter their territory and start an attack until 30 minutes have passed.
-
-          This protection applies to all groups: Town, NCR, Brotherhood of Steel, Raiders, Rangers, Legion, etc.
+          Revived characters forget the circumstances of their death and the final moments preceding it.
         </Box>
-      </Box>
 
-      <Box Orientation="Vertical" Margin="10">
-        6.5.1 Faction wars
+        7.2 Between Rounds
         <Box Orientation="Vertical" Margin="10">
-          All factions on the map are neutral toward each other at the start of the round.
+          Do not use knowledge from previous rounds for advantage.
 
-          The highest-ranking role currently on the map is considered the faction head and representative in the region. Only representatives from each faction may start escalations or wars/negotiations.
-
-          The reason for war (casus belli) must be substantial and clear; it can be a response to covert actions/attacks, capture of a point of interest, taking hostages, or conflicts of interest in expanding across the Wasteland.
-
-          A war is considered started only five minutes after faction representatives face-to-face announce their intention to begin hostilities. This provides a final chance for negotiations with an existing ultimatum before the war begins.
-        </Box>
-      </Box>
-
-      <Box Orientation="Vertical" Margin="10">
-        6.5.2 Faction wars
-        <Box Orientation="Vertical" Margin="10">
-          After capturing an enemy faction base, holding it, and with obvious lack of organized resistance, or by agreement of two faction representatives on each side, the war is considered ended.
-
-          Hostile actions against individual faction members in the Wasteland for reasons unrelated to faction membership are not considered the start of a war, but they may justify an ultimatum from one faction to another. Attempting to "trick" and destroy or significantly weaken a faction before the war begins is a violation of this rule.
-
-          Killing diplomats before, during, or immediately after negotiations is not allowed.
-
-          Killing players who have clearly surrendered and do not want to resist, in a situation without crossfire, is forbidden. This also applies to faction characters who arrive after the conflict begins and know nothing about its start.
-          <ColorBox Color="#3a3a3a" OutlineColor="#5a5a5a" OutlineThickness="2">
-            <Box Orientation="Vertical">
-              <Box Orientation="Horizontal" HorizontalAlignment="Center">
-                Exceptions to escalation rules
-              </Box>
-              <Box Orientation="Vertical" Margin="10">
-                Rescuing a faction mate wearing the appropriate uniform from the enemy.
-
-                Only faction members, or characters recruited with armbands, may participate in war. Only the highest-ranking member may recruit.
-
-                An enemy faction is besieging your headquarters/camp. This does NOT mean the enemy faction is at your gates. There must be an active conflict for you to intervene with weapons ready.
-              </Box>
-            </Box>
-          </ColorBox>
+          Characters do not remember contradictory past events.
         </Box>
       </Box>
     </Box>
   </ColorBox>
 
-  <ColorBox Color="#38282d" OutlineColor="#573e46" OutlineThickness="2" Margin="5">
+  <ColorBox Color="#353535" OutlineColor="#555555" OutlineThickness="2" Margin="5">
     <Box Orientation="Vertical">
       <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Rule 7: New Life Rules (NLR)
-      </Box>
-
-      <Box Orientation="Vertical" Margin="10">
-        7.1. Within a round
-        <Box Orientation="Vertical" Margin="10">
-          Rejoining on the same character after their death or permanent imprisonment to bypass death or punishment is forbidden.
-
-          After revival, a character forgets the cause of death, circumstances, and the last 5 minutes before death. Ghosts do not retain memories of a past life. Switching from a ghost role to a normal role also does not retain any data or memories of the past life.
-
-          Attempts to bypass the rule through notes, indirect memories, or other tricks are punishable.
-        </Box>
-      </Box>
-
-      <Box Orientation="Vertical" Margin="10">
-        7.2. Between rounds
-        <Box Orientation="Vertical" Margin="10">
-          Characters may remember information about other characters only if it does not give clear advantages.
-
-          For example, an officer cannot grant access to a random vagrant because of IRL relationships.
-
-          Characters do not remember events that break the logic of the current round: death in another round, membership in another faction, etc.
-
-          When mentioning past events, avoid using other players' names, since in this round they may play other roles or may not want to be mentioned.
-        </Box>
-      </Box>
-    </Box>
-  </ColorBox>
-
-  <ColorBox Color="#3a3a3a" OutlineColor="#5a5a5a" OutlineThickness="2" Margin="5">
-    <Box Orientation="Vertical">
-      <Box Orientation="Horizontal" HorizontalAlignment="Center">
-        Additional points
+        Administrative Authority
       </Box>
       <Box Orientation="Vertical" Margin="10">
-        The project lead, assistant lead, and senior moderator have the right to make decisions for any situation not mentioned in the rules.
+        Project leadership and senior moderation retain final authority in rule interpretation.
 
-        All punishments for rule violations are set at their discretion.
+        The server maintains a 16+ expectation.
 
-        The Misfits: Nuclear Wasteland server has a 16+ age limit. Nobody will check passports, of course, but violating this point may be considered grounds for a permanent ban.
-
-        At the moment, the rules are incomplete and significant changes are possible in the future.
+        Rules may evolve as the project develops.
       </Box>
     </Box>
   </ColorBox>

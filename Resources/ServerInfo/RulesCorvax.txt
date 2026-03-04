@@ -2,138 +2,168 @@
 Misfits: Nuclear Wasteland main goal of this server is not only to provide players with engaging gameplay, but also to create stories that they can share even with friends outside of standard Space Station 14.
 Please note: your own skills and actions will determine the path of your story. The Wasteland is a harsh place. Do not expect help from administrators except in the most urgent cases.
 
-[color=#a4885c][b]Rule 0: Don't be a jerk.[/b][/color]
-Not everyone likes this rule, but it is necessary. This rule concerns players who display excessive toxicity and play solely for their own benefit. Those who play exclusively for themselves and try to "win" at any cost by suppressing others and ignoring rules.
-Do not be a toxic player. Our server is a space for collaborative creativity, not an arena for personal victories at any cost. Avoid actions that suppress other players or disrupt the game atmosphere.
-Respect the work of administrators and developers. Remember that they are volunteers with their own lives outside the project. Be patient and constructive in communication.
-Cooperate when solving problems. Do not disconnect during an admin ticket without good reason. If technical problems occur, report them within 15 minutes.
-Administration reserves the right to make decisions in situations not covered by the rules if player behavior causes negative community reaction.
-Remember that the goal of the server is to create an engaging gaming experience for all participants. Act in a spirit of mutual respect and common sense.
-Violation of these principles may result in restricted access to the server. All punishments are determined at the discretion of administration taking into account the context of the situation.
+WORK IN PROGRESS
 
 [color=#a4885c][b]Rule 1: Griefing[/b][/color]
-Griefing, or intentionally disrupting gameplay for other players, is strictly forbidden. This includes actions taken solely to harm or inconvenience other players without any benefit or reason except the desire to disrupt the game.
-The distinguishing characteristic of griefing is the absence of personal benefit to the violator. This rule also applies to events that cause significant damage to gameplay, even if it was not intended to disrupt the game for others. The simplest example is placing mines in player homes.
-Any actions that harm gameplay and spoil the experience for other players will be punished according to this rule.
+Griefing is strictly prohibited.
+
+Griefing is defined as intentionally disrupting gameplay or damaging the experience of others without meaningful in-character justification.
+
+Examples include:
+• Placing traps or mines in player homes without proper RP context
+• Destroying property without reason
+• Causing chaos purely to inconvenience others
+
+If your actions significantly harm gameplay without proper escalation or believable roleplay reasoning, they may be treated as griefing.
 
 [color=#a4885c][b]Rule 2: Fair Play[/b][/color]
-[b]2.1. Metagaming and use of meta-information[/b]
-Metagaming, which is the use or dissemination of game information through third-party communication means or OOC chats, is strictly forbidden and punishable by ban. This includes:
-* Obtaining information from OOC chats, observing in guest mode, messages in Discord or streams.
-* Cooperative play (COOP) is metagaming and is punished especially harshly.
-* Streaming is not forbidden, but it is recommended to warn administration of your intention to stream. Educational coop is allowed with prior notice to administration.
-* Information obtained from any external sources or out-of-game chats cannot be used by your character without violating this rule.
 
-[b]2.2. Multi-accounting[/b]
-Use of multiple SS14 accounts for profit is forbidden. This includes:
-* Using more than one account simultaneously in a round (multiboxing).
-* Circumventing a ban by creating a new account. Any attempt to log in from a different account while banned on the main account is considered ban evasion.
-* Creating a new account to hide previous violations. Notify administration if you create a new account or change your login.
+[b]2.1. Metagaming[/b]
+Metagaming is the use of out-of-character information in character.
 
-Violation of this rule is punishable by permanent ban.
+This includes:
+• Using information from OOC chat, Discord, streams, or ghosting
+• Watching streams to gain tactical knowledge
+• Sharing round information through external communication
 
-[b]2.4. Unfair Play[/b]
-Use of software and game exploits to gain advantage in gameplay is forbidden. This includes:
-* Use of bugs, cheats, scripts, clickers and other third-party software is forbidden.
-* Creating significant server load in any way is forbidden.
+If your character could not reasonably know something in roleplay, do not act on it.
 
-If you find a bug, immediately report it to the appropriate channels on the server Discord.
+Streaming is allowed, but you are responsible for preventing information abuse.
 
-[color=#a4885c][b]Rule 3: Play a role and character appropriate to the game setting[/b][/color]
-Your character should fully correspond to the role and setting of the Fallout universe.
-[b]3.1. Character Behavior[/b]
-Your character should behave appropriately to the game setting. The game takes place in a post-apocalyptic future, and character behavior should reflect this. Your goal is to create a realistic and believable character that fits the Fallout theme.
-When choosing a name for your character, adhere to the Fallout theme. Avoid obvious references to real events or obviously stupid naming schemes.
-Approach character creation seriously. Direct names of characters from real life, known real or fictional characters, as well as ridiculous names or those not befitting the character's race are forbidden. Administration may ask you to change your name if it does not comply with the rules.
-Copying the names of characters you or someone played before their death or permanent imprisonment is forbidden without permission from the character owner and/or administration.
-[b]3.2. Interaction with chat channels[/b]
-Do not abuse chat channels. This includes but is not limited to: emotes, OOC, LOOC, Ahelp or prayers. Abuse of them will result in severe measures.
-Do not break the fourth wall, do not use real-world memes or internet slang, do not try to impose rules or solve OOC problems in IC chat (use ahelp).
-Using IC chats to discuss OOC topics (politics, memes, etc.) is forbidden. The emote chat is not intended for direct communication or for depicting political, erotic or derogatory actions.
-Insults directed at other players in OOC chats, whether direct or veiled, are forbidden. It is also forbidden to use OOC chats to discuss political, extremist, erotic and other controversial topics.
-[b]3.3. Breaking game atmosphere[/b]
-Do not emphasize game mechanics, conventions or admin actions that spoil game atmosphere or immersion. Examples:
+Severe metagaming may result in a ban.
 
-* If someone accidentally typed in IC chat in the wrong keyboard layout, do not emphasize this. It is better to write the correct message.
-* If an admin accidentally hugged you or performed an action in the IC world, do not discuss it as an admin action.
-* Avoid shouting about "gods" or "admins" if something strange happens. It is better to roleplay it as an anomaly or strange event.
-* In-game treat administrators like ordinary players without special privileges or excessive flattery.
+[b]2.2. Multi-Accounting[/b]
+• Using multiple accounts in the same round is forbidden.
+• Ban evasion by creating new accounts is strictly prohibited.
+• Creating new accounts to avoid punishment history is forbidden.
 
-[b]3.3.1. RP Roleplay[/b]
-Avoid expressions and actions that do not correspond to the Fallout setting. Examples: "I'm going AFK". If you need to leave the game, use an RP reason, such as "tired, going to sleep".
-Do not climb over counters without necessity. If there is no bartender, call them or use the soda machine.
-There are no rollbacks in-game. If you accidentally typed something wrong, come up with an RP reason or apologize and write what you meant without emphasizing the error.
-If someone made a chat or keyboard layout error, do not emphasize it. This is an awkward situation that is better to ignore.
-Paper and other in-game materials should not be used to create drawings with political, erotic or derogatory content.
-[b]3.4. Character appearance and description[/b]
-Character appearance should correspond to the lore, exceptions are possible only with administration approval.
-Character description should describe appearance, description of permanent actions is allowed ("breathing heavily", "limping").
-Description should be objective, without imposing subjective judgments ("beautiful eyes" -> "blue eyes").
-Clothing description should not be in the character description, description of accessories is allowed.
-Avoid excessive description of minor details and use of artistic means. This is a character inspection, not examination under a magnifying glass.
-[b]3.5. Game mechanics and RP[/b]
-Do not specify a particular technology that requires research. This technology has not been researched within this round.
-Try not to use game mechanic terms such as "research points".
-Your character is not an all-knowing expert: their knowledge and skills have limitations. Play the role you chose and do not teach others how to play their role unless asked.
-[b]3.6. Slot play[/b]
-Slot play - persistent disregard of the surrounding world - is not acceptable. The surrounding world exists even in the absence of players: there will always be someone who maintains the viability of cities and maintains order.
-Violation of this rule will be considered as RP violation. Examples:
-* Discussion of planned raids on the general radio channel.
-* Open carrying of contraband on NCR territory, even if there are no players who can stop you.
+Violation of this rule may result in permanent removal.
 
+[b]2.3. Exploits and Unfair Advantages[/b]
+• Do not use cheats, scripts, macros, clickers, or third-party tools.
+• Do not abuse bugs for advantage.
+• Do not intentionally create excessive server load.
 
-[color=#a4885c][b]Rule 4: Erotic Roleplay (ERP) is not allowed[/b][/color]
-Erotic roleplay (ERP) is strictly forbidden. This includes any erotic stories written by your character in books, on paper and other game information media.
-Use common sense: if an administrator orders you to stop anything that is "on the edge", you must stop immediately. Even if you are the only ERP participant and no one sees you, it is still a violation.
-Punishment for violating this rule may not come immediately, but the fact of violation will definitely be discovered later. In most cases, violation of this rule results in permanent ban.
-However, sexual topics are allowed to a limited extent, including mild sexual comments and light intimacy, such as kissing and hugging. Examples of acceptable comments:
-* "You look especially sexy today."
-* "You are a seductive devil."
+If you discover a bug, report it immediately.
 
-Be careful and respect the boundaries of what is acceptable.
+[color=#a4885c][b]Rule 3: Roleplay Standards (Medium RP)[/b][/color]
+This server operates under Medium Roleplay standards. Effort toward immersion is required, but perfection is not expected.
 
-[color=#a4885c][b]Rule 5: AFK characters are protected from harmful hostile actions[/b][/color]
-Characters of players who have logged out and are considered "AFK" (Away From Keyboard) cannot be subjected to harm, including direct physical attacks, kidnapping and any other actions related to direct harm to this character. However, AFK characters can be robbed and items stolen from them, provided that no harm is caused to the AFK character.
-Abuse of this rule and disconnecting in the middle of combat is a punishable violation; characters that become AFK in the middle of combat or escalation are not protected from harm.
-Faction members are not considered protected when AFK inside their faction base during a raid.
+[b]3.1. Character Creation[/b]
+• Names must fit the Fallout setting. No meme names or obvious real-world references.
+• Do not copy previously used characters without permission.
+• Administration may require name changes if they break immersion.
+
+[b]3.2. In-Character and OOC Conduct[/b]
+• Do not break immersion by referencing game mechanics, administrators, or real-world memes in IC chat.
+• Do not argue OOC issues in IC chat. Use admin help instead.
+• Do not insult other players in OOC channels.
+• Keep real-world political or extremist discussions out of the server.
+
+[b]3.3. Maintaining Atmosphere[/b]
+• Avoid directly referencing mechanics such as "admins" or system terminology in character.
+• If you must go AFK, provide a simple in-character explanation when possible.
+• Minor chat errors should not be exaggerated or mocked.
+• Do not use in-game items to create offensive or explicit material.
+
+[b]3.4. Character Knowledge and Limits[/b]
+Your character is not all-knowing.
+
+• Do not act as an expert outside your chosen role.
+• Do not teach others how to play their role unless asked.
+• Do not reference advanced technology that has not been introduced during the round.
+
+[color=#a4885c][b]Rule 4: Erotic Roleplay (ERP)[/b][/color]
+Explicit sexual roleplay is not allowed.
+
+This includes:
+• Explicit sexual descriptions
+• Written erotic content in-game
+• Graphic sexual actions
+
+Light romantic interaction such as flirting, kissing, or hugging is permitted as long as it remains non-explicit and consensual.
+
+If an administrator instructs you to stop, you must stop immediately.
+
+Violations may result in severe punishment.
+
+[color=#a4885c][b]Rule 5: AFK Protection[/b][/color]
+Players who are fully logged out or clearly AFK are protected from direct harm.
+
+You may not:
+• Kill
+• Kidnap
+• Torture
+
+AFK characters may be robbed provided no physical harm is caused.
+
+If a player disconnects during active combat or escalation, they are not protected.
+
+Faction members inside their base during an active raid are not protected.
+
+Abuse of AFK status to avoid consequences is punishable.
 
 [color=#a4885c][b]Rule 6: Armed Conflict and Escalation[/b][/color]
-[b]6.1. Armed Conflict[/b]
-Talk first - shoot later! In almost any situation you should first try to start a dialogue, and only then start shooting.
-Exceptions: hunting fauna, pursuit from an active RP situation, faction warfare, direct threat to a character's life, event zones and high-risk zones (for example, dungeons and open PVP zones).
-When robbing, do not take everything from victims' inventories. Leave at least one weapon (for example, a knife) and some food/medicine.
-If the victim did not offer armed resistance during robbery, you are obliged to leave them alive.
-If the victim tried to fight back - their life and property remain in the hands of the raider.
-[b]6.2. Escalation Rules[/b]
-Escalation is necessary for all conflict participants.
-Escalation must be established face to face; radio escalation is invalid.
-Escalation must last at least four seconds or until receiving a response from the other side before attacking the enemy.
-Good/valid escalation includes a demand that can be fulfilled or agreed to by the person being escalated against, for example: "Give me your bag!" or "Get out of here and stay alive!".
-Fleeing from escalation is considered a response to escalation and will make any attack against you by the escalating party valid.
-Do not use escalation as a means for free valid hunting and justification for killing others at your discretion.
-Escalate and enter into conflict within reasonable limits and in moderation.
-[b]6.3. Behavior under crossfire[/b]
-If you find yourself under crossfire, you are NOT allowed to return fire unless you first conduct escalation against the attackers.
-Act realistically, avoid combat zones without good reason.
-As a conflict participant, minimize casualties and injuries among bystanders where possible.
-[b]6.4. Early raid on faction base[/b]
-Do not raid an enemy faction's base earlier than 30 minutes after the start of the round.
-You can still attack members of this faction outside their base, but you are forbidden to enter their territory and begin an attack until 30 minutes have passed.
-This protection applies to all groups: City, NCR, Brotherhood of Steel, Raiders, Rangers, Legion, etc.
-[b]Exceptions to escalation rules[/b]
-* Rescuing a faction member wearing appropriate uniform from an enemy.
-* An enemy faction is besieging your Headquarters/Camp. This does NOT mean that the enemy faction is at your gates. There must be active conflict for you to intervene with weapons ready.
 
+[b]6.1. Escalation Requirement[/b]
+In most situations, you must escalate before initiating lethal force.
+
+Escalation must:
+• Be delivered face-to-face
+• Include a clear, actionable demand
+• Allow a reasonable opportunity to respond
+
+Valid examples:
+• "Drop your weapon."
+• "Leave now and you will not be harmed."
+
+Exceptions include:
+• Active firefights
+• Immediate life-threatening situations
+• Faction warfare
+• High-risk or event zones
+• Hunting wildlife
+
+Fleeing from escalation counts as a response.
+
+Do not use escalation as a pretext for free killing.
+
+[b]6.2. Robbery Standards[/b]
+• Do not completely strip victims of all survival means when possible.
+• If a victim does not resist, you must leave them alive.
+• If they resist with force, the outcome is determined by the conflict.
+
+[b]6.3. Crossfire Conduct[/b]
+If caught in crossfire, you must escalate before directly engaging unless you are clearly being targeted.
+
+Avoid unnecessary entry into active combat zones.
+
+[b]6.4. Early Raid Restriction[/b]
+Do not raid faction bases within the first 30 minutes of a round.
+
+Faction members may be engaged outside their base during this period.
 
 [color=#a4885c][b]Rule 7: New Life Rule (NLR)[/b][/color]
-[b]7.1. Within a round[/b]
-Re-appearing on the same character after their death or being sent to permanent imprisonment to circumvent death or punishment is forbidden.
-After resurrection, the character forgets the cause of death, the circumstances and the last 5 minutes before death. Ghosts do not retain memories of past life. Transitioning from ghost role to normal role also does not retain any data or memories of past life.
-Attempts to circumvent the rule through notes, indirect memories and other tricks are punished.
-[b]7.2. Between rounds[/b]
-Characters can remember information about other characters only if it does not provide obvious advantages. For example, an officer cannot grant access to a homeless person due to out-of-game relationships. Characters do not remember events that violate the logic of the current round: death in another round, belonging to another faction, etc. When mentioning past events, avoid names of other players, as they may play other roles in this round or not want to be mentioned.
 
-[color=#a4885c][b]Additional Points:[/b][/color]
-* [b]@Mother[/b] and [b]@Project Lead[/b] have the right to make their own decisions in any situation not mentioned in the rules. All punishments for violations are determined at their discretion.
-* Misfits: Nuclear Wasteland server has a 16+ age restriction, of course no one will check your passport, however violation of this point may be considered grounds for permanent ban.
-* At the moment the rules are incomplete and may undergo significant changes in the future.
+[b]7.1. Within a Round[/b]
+If your character dies and is revived:
+
+• You forget the cause of death.
+• You forget the events leading up to it.
+• You may not seek revenge based on that death.
+
+You may not return on the same character to bypass death or punishment.
+
+[b]7.2. Between Rounds[/b]
+You may remember other characters, but:
+
+• Do not use past round knowledge for mechanical advantage.
+• Do not reference events that contradict the current round.
+• Avoid referencing player identities directly.
+
+Each round is its own story.
+
+[color=#a4885c][b]Additional Points[/b][/color]
+• Head Administration has final authority in all rule interpretations.
+• The server maintains a 16+ expectation.
+• These rules may be updated as needed.

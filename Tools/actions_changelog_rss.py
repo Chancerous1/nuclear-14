@@ -48,7 +48,7 @@ FEED_URL         = "https://central.spacestation14.io/changelog.xml"
 
 # Path to the changelog file. Defaults to the repository's Nuclear14 changelog
 # but can be overridden with the CHANGELOG_FILE environment variable.
-CHANGELOG_FILE = os.environ.get("CHANGELOG_FILE", "Resources/Changelog/Nuclear14.yml")
+CHANGELOG_FILE = os.environ.get("CHANGELOG_FILE", "Resources/Changelog/Changelog.yml")
 
 TYPES_TO_EMOJI = {
     "Fix":    "🐛",

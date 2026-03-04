@@ -1,22 +1,92 @@
-If you’re new to roleplaying or are unfamiliar with IC and OOC please read on. If not, skip to the next section.
+[color=#a4885c][b]Understanding IC and OOC[/b][/color]
 
-SS14 is at its core a roleplaying game - You play a role on the station through your character which you can customise from the lobby prior to joining the game. You can select the roles or jobs your character plays via the customisation menu too. Therefore when you’re in a round playing your character, you are IC or In Character. When you’re in character you forget any knowledge of previous rounds or essentially of the outside world and you play as if you’re a member of the ships crew.
+If you are new to roleplay or unfamiliar with IC and OOC concepts, please read this section carefully.
 
-Therefore, OOC or Out of Character is any conversations you have outside of the game world e.g. in the OOC chat, on discord or with your friends. You shouldn’t discuss the current round or anything that’s IC (in character) in out of character OOC chats. Likewise anything you see or read in OOC cannot be used by your character in game such as if someone on discord names a traitor or tells you they’re dying in a certain location and for you to go help them. This is known as metagaming and will get you banned if discovered.
+SS14 is a roleplaying game at its foundation. Each round, you take on the role of a character you created in the lobby. You select their name, background, and job preferences before joining the round.
 
-If you suspect a player in game is metagaming (e.g. you’re a traitor and they just walk up to you and kill you without you doing anything to antagonise them) then report them via ahelp or discord.
+When you are actively playing your character in a round, you are [b]IC (In Character)[/b].
+This means:
 
-To summarise, when you’re in game, don’t discuss the round anywhere else until the round is over and don’t share information about the round in OOC such as if you’re dying, where you are or if you find a traitor.
+• You act as your character would act within the game world.
+• You do not remember previous rounds.
+• You do not know anything from outside the current round unless it is revealed in character.
+• You behave as if you are truly a member of the station crew.
 
+[b]OOC (Out of Character)[/b] refers to anything outside the game world.
+This includes:
 
-Traitors, antagonists, RDM and “self antag”
+• OOC chat
+• Discord discussions
+• Conversations with friends
+• Streams or external communication
 
-If in your character customisation settings you selected the chance to become an antagonist (antag) or other traitor role, it is not guaranteed that you will be one. When a traitor gamemode round starts there is a random roll of all the players who selected the chance to become a traitor and only some get selected. They will be notified they are a traitor in chat and will have a set of objectives they can view by pressing C.
+Information learned OOC must never influence your IC actions.
 
-Being an antagonist is not an excuse to go on a murder spree and your job is to complete your objectives which on occasion will include escaping alive or dying a glorious death. How you complete your objectives is up to you so murder is valid but try to have fun (ideally not at everyones expense but that’s up to you).
+Examples of prohibited behavior:
+• Someone on Discord reveals who the traitor is and you act on it in game.
+• A friend tells you their location while dying and you rush to save them.
+• You read OOC chat about an event and prepare for it IC before it happens.
 
-If you suspect an antagonist such as a traitor or cultist etc report them to security as fast as possible and if necessary do what you can to protect yourself. Remember traitors are people too so ideally they should be arrested and prosecuted under space law and not just murdered (but do what you need to do to survive).
+This is called [b]metagaming[/b] and is a serious violation that may result in a ban.
 
-RDM or random deathmatch is the act of killing someone for no reason or attempting to. If you are being attacked it is likely the other person could be an antag but if you’re unsure, ask the admins for help (ahelp) to check this when convenient.
+If you believe someone is using outside information in character, report it through admin help (ahelp) or the appropriate report channels.
 
-Self antag or self antagonising is when you are NOT an antagonist which is determined at round start on traitor modes, and you go out of your way to break the law, damage the station or commit murder. Breaking the law is not inherently self antagging, but murdering, attacking, attempting to break into high security areas etc are examples of self antagging and will get you banned. Unless you are an official antagonist then you are a normal member of the crew who’s only objective is to complete their shift in their designated role.
+[b]Summary:[/b]
+While a round is active, keep round-related discussion inside the round. Do not share or act on external information until the round has ended.
+
+[color=#a4885c][b]Antagonists, RDM, and Self-Antagging[/b][/color]
+
+[b]Antagonist Selection[/b]
+
+If you enable antagonist roles in your character preferences, you are only opting into the chance to receive one. Selection is random and not guaranteed.
+
+If chosen, you will:
+• Receive a notification in chat.
+• Be given objectives accessible through your character interface.
+
+Being selected as an antagonist does not remove roleplay expectations.
+
+[b]Playing an Antagonist[/b]
+
+Your goal is to complete your assigned objectives. These objectives may involve sabotage, theft, escape, or sometimes death.
+
+However:
+
+• You are not automatically permitted to kill indiscriminately.
+• Actions should still fit the setting and roleplay expectations.
+• Chaos for its own sake is discouraged.
+
+Violence can be valid, but it should serve a purpose and contribute to the round’s story rather than simply ending it.
+
+[b]Responding to Antagonists[/b]
+
+If you suspect someone is an antagonist:
+
+• Inform Security through proper IC channels.
+• Protect yourself if necessary.
+• Remember that arrest and due process are preferable when possible.
+
+Survival is important, but escalation should still make sense in context.
+
+[b]RDM (Random Deathmatch)[/b]
+
+RDM is attacking or killing someone without roleplay justification or proper escalation.
+
+Examples include:
+• Killing someone without interaction or motive.
+• Attacking someone purely for amusement.
+
+If you are attacked and unsure whether it was valid, you may contact staff through ahelp when appropriate.
+
+[b]Self-Antagging[/b]
+
+Self-antagging occurs when a player who is not an assigned antagonist deliberately behaves like one.
+
+Examples include:
+• Attempted murder without antagonist status.
+• Sabotaging critical systems without reason.
+• Breaking into high-security areas without roleplay justification.
+
+Minor lawbreaking does not automatically qualify as self-antagging. However, major criminal actions without antagonist status will be treated seriously.
+
+If you are not selected as an antagonist, you are expected to perform your job and participate in the round as a normal crew member.
