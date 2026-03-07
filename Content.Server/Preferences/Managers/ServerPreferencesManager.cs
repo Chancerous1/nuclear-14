@@ -21,6 +21,8 @@ namespace Content.Server.Preferences.Managers
     /// </summary>
     public sealed class ServerPreferencesManager : IServerPreferencesManager, IPostInjectInit
     {
+        private const string LockedSpecies = "SuperMutant";
+
         [Dependency] private readonly IServerNetManager _netManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IServerDbManager _db = default!;
@@ -105,6 +107,15 @@ namespace Content.Server.Preferences.Managers
             var session = _playerManager.GetSessionById(userId);
 
             profile.EnsureValid(session, _dependencies);
+
+            if (profile is HumanoidCharacterProfile incomingHumanoid
+                && curPrefs.Characters.TryGetValue(slot, out var existingProfile)
+                && existingProfile is HumanoidCharacterProfile existingHumanoid
+                && existingHumanoid.Species == LockedSpecies
+                && incomingHumanoid.Species != existingHumanoid.Species)
+            {
+                profile = incomingHumanoid.WithSpecies(existingHumanoid.Species);
+            }
 
             var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
             {

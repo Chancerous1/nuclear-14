@@ -52,6 +52,8 @@ namespace Content.Client.Lobby.UI
     [GenerateTypedNameReferences]
     public sealed partial class HumanoidProfileEditor : BoxContainer
     {
+        private const string LockedSpecies = "SuperMutant";
+
         private readonly IConfigurationManager _cfgManager;
         private readonly IEntityManager _entManager;
         private readonly IFileDialogManager _dialogManager;
@@ -70,7 +72,7 @@ namespace Content.Client.Lobby.UI
         private BoxContainer _ccustomspecienamecontainerEdit => CCustomSpecieName;
         private LineEdit _customspecienameEdit => CCustomSpecieNameEdit;
         private TextEdit? _flavorTextEdit;
-        
+
         private TTSTab? _ttsTab; // Corvax-TTS
 
         /// If we're attempting to save
@@ -552,7 +554,7 @@ namespace Content.Client.Lobby.UI
             #endregion Markings
 
             RefreshFlavorText();
-            
+
             RefreshVoiceTab(); // Corvax-TTS
 
             #region Dummy
@@ -608,7 +610,7 @@ namespace Content.Client.Lobby.UI
                 _flavorTextEdit = null;
             }
         }
-        
+
         // Corvax-TTS-Start
         #region Voice
 
@@ -625,7 +627,7 @@ namespace Content.Client.Lobby.UI
             CTabContainer.AddTab(_ttsTab, Loc.GetString("humanoid-profile-editor-voice-tab"));
 
             CTabContainer.SetTabVisible(CTabContainer.ChildCount - 1, true);
-            _cfgManager.OnValueChanged(CorvaxVars.TTSEnabled, 
+            _cfgManager.OnValueChanged(CorvaxVars.TTSEnabled,
                 enabled => CTabContainer.SetTabVisible(CTabContainer.ChildCount - 1, enabled));
 
             _ttsTab.OnVoiceSelected += voiceId =>
@@ -651,7 +653,7 @@ namespace Content.Client.Lobby.UI
 
         #endregion
         // Corvax-TTS-End
-        
+
         private void OnCosmeticPronounsValueChanged(bool newValue)
         {
             _customizePronouns = newValue;
@@ -693,8 +695,15 @@ namespace Content.Client.Lobby.UI
             }
 
             // If our species isn't available, reset it to default
-            if (Profile != null && !speciesIds.Contains(Profile.Species))
+            if (Profile != null && !speciesIds.Contains(Profile.Species) && !IsSpeciesLockedForProfile())
                 SetSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies);
+
+            SpeciesButton.Disabled = IsSpeciesLockedForProfile();
+        }
+
+        private bool IsSpeciesLockedForProfile()
+        {
+            return Profile?.Species == LockedSpecies;
         }
 
         public void RefreshAntags()
@@ -1417,6 +1426,9 @@ namespace Content.Client.Lobby.UI
 
         private void SetSpecies(string newSpecies)
         {
+            if (IsSpeciesLockedForProfile() && Profile?.Species != newSpecies)
+                return;
+
             Profile = Profile?.WithSpecies(newSpecies);
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
             Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
@@ -1486,7 +1498,7 @@ namespace Content.Client.Lobby.UI
             IsDirty = true;
         }
         // Corvax-Fallout-Barks-end
-        
+
         // Corvax-TTS-Start
         private void SetVoice(string newVoice)
         {
@@ -2810,7 +2822,7 @@ namespace Content.Client.Lobby.UI
             foreach (var pref in Profile.LoadoutPreferences.Where(l => l.Selected))
             {
                 var loadoutProto = _prototypeManager.Index<LoadoutPrototype>(pref.LoadoutName);
-                
+
                 if (loadoutProto.Level != SponsorLevel.None)
                 {
                     if (!_sponsorMan.TryGetSponsor(user.Value, out var level))
