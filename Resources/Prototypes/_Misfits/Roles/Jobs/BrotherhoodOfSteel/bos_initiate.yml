@@ -1,6 +1,8 @@
 - type: job
   id: BoSWashingtonInitiate
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 10
   overrideConsoleVisibility: true
   canBeAntag: false

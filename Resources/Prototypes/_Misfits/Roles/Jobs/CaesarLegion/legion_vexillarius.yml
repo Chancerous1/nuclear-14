@@ -1,6 +1,8 @@
 - type: job
   id: CaesarLegionVexillarius
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 40
   name: job-name-caesar-legion-vexillarius
   description: job-description-caesar-legion-vexillarius

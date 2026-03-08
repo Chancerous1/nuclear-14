@@ -66,6 +66,7 @@
           # CaravanLeader: [ 1, 1 ]
           # CaravanTrader: [ 1, 1 ]
           # CaravanGuard: [ 2, 2 ]
+          BoSWestElderCommander: [ 1, 1 ] # Misfits Change
           BoSWashingtonCommander: [ 1, 1 ] # Misfits Change
           # BoSWashingtonPaladin: [ 1, 0 ]
           # BoSWashingtonScribe: [ 2, 0 ]

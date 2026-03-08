@@ -1,6 +1,8 @@
 - type: job
   id: NCRSoldier
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 20
   overrideConsoleVisibility: false
   canBeAntag: false

@@ -1,6 +1,8 @@
 - type: job
   id: NCRPisoner
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 1
   showBorder: true
   overrideConsoleVisibility: true

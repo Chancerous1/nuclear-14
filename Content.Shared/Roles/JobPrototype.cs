@@ -158,6 +158,27 @@ namespace Content.Shared.Roles
         [DataField]
         public bool HideWithoutWhitelist; // #Misfits Change
 
+        /// <summary>
+        ///     If true, this job is completely hidden from the lobby UI
+        ///     unless the player has an explicit job whitelist entry for it.
+        /// </summary>
+        [DataField]
+        public bool HideWithoutJobWhitelist; // #Misfits Change
+
+        /// <summary>
+        ///     If true, this job is hidden from the lobby UI until its
+        ///     playtime-based requirements are met or bypassed by job whitelist.
+        /// </summary>
+        [DataField]
+        public bool HideIfPlaytimeRequirementsNotMet; // #Misfits Change
+
+        /// <summary>
+        ///     If true, an explicit job whitelist entry bypasses playtime-based
+        ///     requirements for this job.
+        /// </summary>
+        [DataField]
+        public bool JobWhitelistBypassesRoleTimers; // #Misfits Change
+
         [DataField]
         public bool SpawnLoadout = true;
 

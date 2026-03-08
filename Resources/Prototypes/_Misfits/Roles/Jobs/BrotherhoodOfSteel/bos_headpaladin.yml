@@ -1,6 +1,9 @@
 - type: job
   id: BoSMidPaladinCommander
   setPreference: true
+  hideWithoutJobWhitelist: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 110
   showBorder: true
   overrideConsoleVisibility: false

@@ -1,6 +1,8 @@
 - type: job
   id: CaesarLegionDean
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 90
   name: job-name-caesar-legion-dean
   description: job-description-caesar-legion-dean

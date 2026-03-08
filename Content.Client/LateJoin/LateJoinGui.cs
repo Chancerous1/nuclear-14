@@ -188,9 +188,29 @@ namespace Content.Client.LateJoin
                             continue;
 
                         var job = _prototypeManager.Index<JobPrototype>(jobId);
+                        var jobWhitelisted = _jobRequirements.IsJobWhitelisted(job.ID);
 
                         // #Misfits Change - hide whitelist-gated jobs from non-whitelisted players
-                        if (job.HideWithoutWhitelist && !_jobRequirements.IsWhitelisted() && !(job.Whitelisted && _jobRequirements.IsJobWhitelisted(job.ID)))
+                        if (job.HideWithoutWhitelist && !_jobRequirements.IsWhitelisted() && !(job.Whitelisted && jobWhitelisted))
+                            continue;
+
+                        if (job.HideWithoutJobWhitelist && !jobWhitelisted)
+                            continue;
+
+                        if (job.HideIfPlaytimeRequirementsNotMet && !_characterRequirements.CheckPlaytimeRequirementsVisible(
+                                job.Requirements ?? new(),
+                                job,
+                                (HumanoidCharacterProfile) (_prefs.Preferences?.SelectedCharacter
+                                                            ?? HumanoidCharacterProfile.DefaultWithSpecies()),
+                                _jobRequirements.GetRawPlayTimeTrackers(),
+                                _jobRequirements.IsWhitelisted(),
+                                job,
+                                _entityManager,
+                                _prototypeManager,
+                                _configManager,
+                                _sponsorManager,
+                                out _,
+                                jobWhitelisted: jobWhitelisted))
                             continue;
 
                         jobsAvailable.Add(job);
@@ -311,7 +331,8 @@ namespace Content.Client.LateJoin
                                 _prototypeManager,
                                 _configManager,
                                 _sponsorManager, // Forge-Change
-                                out var reasons))
+                            out var reasons,
+                            jobWhitelisted: _jobRequirements.IsJobWhitelisted(prototype.ID)))
                         {
                             jobButton.Disabled = true;
 

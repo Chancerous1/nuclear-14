@@ -1,6 +1,8 @@
 - type: job
   id: NCRMPinvestigator
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   overrideConsoleVisibility: true
   canBeAntag: false
   name: job-name-ncr-mp-investigator #Misfits Change

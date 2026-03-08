@@ -1,6 +1,8 @@
 - type: job
   id: CaesarLegionVenator
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 50
   showBorder: true
   name: job-name-caesar-legion-venator

@@ -1,6 +1,9 @@
 - type: job
   id: CaesarLegionVeteranDecanus
   setPreference: true
+  hideWithoutJobWhitelist: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 100
   showBorder: true
   name: job-name-caesar-legion-veteran-decanus

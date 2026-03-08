@@ -1,6 +1,8 @@
 - type: job
   id: NCRMedic
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 90
   overrideConsoleVisibility: true
   canBeAntag: false

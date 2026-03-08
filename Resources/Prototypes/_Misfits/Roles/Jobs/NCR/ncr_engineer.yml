@@ -1,6 +1,8 @@
 - type: job
   id: NCREngineer
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 80
   overrideConsoleVisibility: false
   canBeAntag: false

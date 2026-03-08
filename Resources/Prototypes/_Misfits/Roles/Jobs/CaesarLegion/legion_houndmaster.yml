@@ -1,6 +1,8 @@
 - type: job
   id: CaesarLegionHoundmaster
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 30
   name: job-name-caesar-legion-houndmaster
   description: job-description-caesar-legion-houndmaster

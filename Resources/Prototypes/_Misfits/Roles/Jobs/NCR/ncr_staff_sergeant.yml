@@ -1,6 +1,8 @@
 - type: job
   id: NCRStaffSergeant
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 60
   overrideConsoleVisibility: false
   canBeAntag: false

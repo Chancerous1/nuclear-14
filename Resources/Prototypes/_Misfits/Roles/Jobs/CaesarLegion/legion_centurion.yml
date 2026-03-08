@@ -1,6 +1,9 @@
 - type: job
   id: CaesarLegionCenturion
   setPreference: true
+  hideWithoutJobWhitelist: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 110
   name: job-name-caesar-legion-centurion
   description: job-description-caesar-legion-centurion

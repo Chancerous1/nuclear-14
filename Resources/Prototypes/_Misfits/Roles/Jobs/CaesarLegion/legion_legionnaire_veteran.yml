@@ -1,6 +1,8 @@
 - type: job
   id: CaesarLegionLegionnaireVeteran
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 80
   showBorder: true
   name: job-name-caesar-legion-legionnaire-veteran

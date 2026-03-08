@@ -1,6 +1,9 @@
 - type: job
   id: BoSWestElderCommander
-  setPreference: true
+  setPreference: false
+  hideWithoutJobWhitelist: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 120
   name: job-name-bos-west-elder-comm
   description: job-description-bos-west-elder-comm

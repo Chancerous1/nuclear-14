@@ -1,6 +1,8 @@
 - type: job
   id: BoSWashingtonPaladin
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 50
   showBorder: true
   overrideConsoleVisibility: true

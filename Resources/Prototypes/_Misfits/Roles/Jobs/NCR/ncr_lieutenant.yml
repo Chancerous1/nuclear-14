@@ -1,6 +1,9 @@
 - type: job
   id: NCRLT
   setPreference: true
+  hideWithoutJobWhitelist: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   overrideConsoleVisibility: false
   canBeAntag: true
   name: job-name-ncr-lt

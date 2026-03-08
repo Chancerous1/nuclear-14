@@ -1,6 +1,8 @@
 - type: job
   id: BoSMidSquire # It was renamed to Initiate, but don't change the ID!
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 20
   showBorder: true
   overrideConsoleVisibility: true

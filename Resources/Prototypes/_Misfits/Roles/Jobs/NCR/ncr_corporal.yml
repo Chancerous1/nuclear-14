@@ -1,6 +1,8 @@
 - type: job
   id: NCRWS
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 40
   showBorder: true
   overrideConsoleVisibility: false

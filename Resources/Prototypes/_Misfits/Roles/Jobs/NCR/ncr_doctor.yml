@@ -1,6 +1,8 @@
 - type: job
   id: NCRDoctor
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 100
   showBorder: true
   overrideConsoleVisibility: true

@@ -1,6 +1,9 @@
 - type: job
   id: BoSWestScribe
   setPreference: true
+  hideWithoutJobWhitelist: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 90
   name: job-name-bos-west-scribe
   description: job-description-bos-west-scribe

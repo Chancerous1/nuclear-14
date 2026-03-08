@@ -1,6 +1,8 @@
 - type: job
   id: NCRSGT
   setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 50
   overrideConsoleVisibility: false
   canBeAntag: false
