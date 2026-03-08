@@ -284,6 +284,7 @@ namespace Content.Client.Lobby.UI
             {
                 SpeciesButton.SelectId(args.Id);
                 SetSpecies(_species[args.Id].ID);
+                RandomizeName(); // #Misfits Change: auto-randomize name on species change
                 UpdateHairPickers();
                 OnSkinColorOnValueChanged();
                 UpdateCustomSpecieNameEdit();

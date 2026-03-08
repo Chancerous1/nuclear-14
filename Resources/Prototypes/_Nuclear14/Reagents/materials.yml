@@ -2,6 +2,7 @@
   id: Circuitry
   stackEntity: N14MaterialCircuitry1
   name: materials-circuitry # N14TODO: Localise
+  unit: materials-unit-piece
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: circuits_3 }
   color: "#8A9A5B"
   price: 0.1
@@ -84,6 +85,7 @@
   id: N14Gunpowder
   stackEntity: N14Gunpowder1
   name: materials-gunpowder
+  unit: materials-unit-piece
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
   color: "#3E201D"
   price: 0.075
@@ -170,6 +172,7 @@
   id: Charcoal
   stackEntity: Charcoal
   name: materials-charcoal
+  unit: materials-unit-piece
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: powder_lead }
   color: "#1D3B3E"
   price: 0.005
@@ -178,6 +181,7 @@
   id: Fertilizer
   stackEntity: FertilizerOre1
   name: materials-fertilizer
+  unit: materials-unit-piece
   icon: { sprite: /Textures/_Nuclear14/Objects/Misc/Sacks/daesack2.rsi, state: icon }
   color: "#1D3B3E"
   price: 0.05
@@ -232,6 +236,7 @@
   id: N14Timber
   stackEntity: N14FloraLogTimber
   name: materials-timber
+  unit: materials-unit-piece
   icon: { sprite: _Nuclear14/Structures/Decoration/flora.rsi, state: tree_timber }
   color: "#1D3B3E"
   price: 0.003

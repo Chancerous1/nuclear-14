@@ -7,84 +7,86 @@
   - HostileRobot
   - Feral
 
-- type: npcFaction
-  id: BrotherhoodMidwest
-  friendly:
-  - BrotherhoodMidwestSecureArea
-  hostile:
-  - WastelandInsect
-  - WastelandAnimal
-  - Raider
-  - HostileRobot
-  - Feral
-
-- type: npcFaction
-  id: BrotherhoodMidwestSecureArea
-  friendly:
-  - BrotherhoodMidwest
-  hostile:
-  - Wastelander
-  - BrotherhoodWashington
-  - BrotherhoodWashingtonSecureArea
-  - CaravanCompany
-  - CaravanCompanySecureArea
-  - NCR
-  - NCRSecureArea
-  - Rangers
-  - Townsfolk
-  - TownsfolkSecureArea
-  - Tribal
-  - TribalSecureArea
-  - Vault
-  - VaultSecureArea
-  - Zetan
-  - WastelandAnimal
-  - WastelandInsect
-  - Raider
-  - CaesarLegion #Corvax-Legion
-  - HostileRobot
-  - Feral
-  - BrotherhoodWest #Corvax-West
-
-- type: npcFaction
-  id: BrotherhoodWashington
-  friendly:
-  - BrotherhoodWashingtonSecureArea
-  hostile:
-  - WastelandInsect
-  - WastelandAnimal
-  - Raider
-  - HostileRobot
-  - Feral
-  - HostileRobot
-
-- type: npcFaction
-  id: BrotherhoodWashingtonSecureArea
-  friendly:
-  - BrotherhoodWashington
-  hostile:
-  - Wastelander
-  - BrotherhoodMidwest
-  - BrotherhoodMidwestSecureArea
-  - CaravanCompany
-  - CaravanCompanySecureArea
-  - NCR
-  - NCRSecureArea
-  - Rangers
-  - Townsfolk
-  - TownsfolkSecureArea
-  - Tribal
-  - TribalSecureArea
-  - Vault
-  - VaultSecureArea
-  - Zetan
-  - WastelandAnimal
-  - WastelandInsect
-  - Raider
-  - HostileRobot
-  - Feral
-  - CaesarLegion #Corvax-Legion
-  - BrotherhoodWest #Corvax-West
+# #Misfits Change - BoS Midwest/Washington AI factions commented out.
+# Consolidated to _Misfits/Roles/ai_factions.yml
+#- type: npcFaction
+#  id: BrotherhoodMidwest
+#  friendly:
+#  - BrotherhoodMidwestSecureArea
+#  hostile:
+#  - WastelandInsect
+#  - WastelandAnimal
+#  - Raider
+#  - HostileRobot
+#  - Feral
+#
+#- type: npcFaction
+#  id: BrotherhoodMidwestSecureArea
+#  friendly:
+#  - BrotherhoodMidwest
+#  hostile:
+#  - Wastelander
+#  - BrotherhoodWashington
+#  - BrotherhoodWashingtonSecureArea
+#  - CaravanCompany
+#  - CaravanCompanySecureArea
+#  - NCR
+#  - NCRSecureArea
+#  - Rangers
+#  - Townsfolk
+#  - TownsfolkSecureArea
+#  - Tribal
+#  - TribalSecureArea
+#  - Vault
+#  - VaultSecureArea
+#  - Zetan
+#  - WastelandAnimal
+#  - WastelandInsect
+#  - Raider
+#  - CaesarLegion #Corvax-Legion
+#  - HostileRobot
+#  - Feral
+#  - BrotherhoodWest #Corvax-West
+#
+#- type: npcFaction
+#  id: BrotherhoodWashington
+#  friendly:
+#  - BrotherhoodWashingtonSecureArea
+#  hostile:
+#  - WastelandInsect
+#  - WastelandAnimal
+#  - Raider
+#  - HostileRobot
+#  - Feral
+#  - HostileRobot
+#
+#- type: npcFaction
+#  id: BrotherhoodWashingtonSecureArea
+#  friendly:
+#  - BrotherhoodWashington
+#  hostile:
+#  - Wastelander
+#  - BrotherhoodMidwest
+#  - BrotherhoodMidwestSecureArea
+#  - CaravanCompany
+#  - CaravanCompanySecureArea
+#  - NCR
+#  - NCRSecureArea
+#  - Rangers
+#  - Townsfolk
+#  - TownsfolkSecureArea
+#  - Tribal
+#  - TribalSecureArea
+#  - Vault
+#  - VaultSecureArea
+#  - Zetan
+#  - WastelandAnimal
+#  - WastelandInsect
+#  - Raider
+#  - HostileRobot
+#  - Feral
+#  - CaesarLegion #Corvax-Legion
+#  - BrotherhoodWest #Corvax-West
 
 - type: npcFaction
   id: CaravanCompany

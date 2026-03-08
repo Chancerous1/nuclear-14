@@ -157,117 +157,121 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: doctor
 
-#MARK: Brotherhood Midwest
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDBrotherhoodHolotag
-  name: holotag
-  description: An ID holotag worn by the Brotherhood of Steel.
-  suffix: Midwest Scribe
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: PresetIdCard
-    job: BoSMidScribe
-  - type: ClothingAddFaction
-    faction: BrotherhoodMidwest
+# #Misfits Change - BoS Midwest holotags commented out.
+# Consolidated to _Misfits/Entities/Objects/Misc/bos_identification.yml
+##MARK: Brotherhood Midwest
+#- type: entity
+#  parent: N14IDPassportBlank
+#  id: N14IDBrotherhoodHolotag
+#  name: holotag
+#  description: An ID holotag worn by the Brotherhood of Steel.
+#  suffix: Midwest Scribe
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: PresetIdCard
+#    job: BoSMidScribe
+#  - type: ClothingAddFaction
+#    faction: BrotherhoodMidwest
+#
+#- type: entity
+#  parent: N14IDBrotherhoodHolotag
+#  id: N14IDBrotherhoodHolotagSquire
+#  name: holotag
+#  description: An ID holotag worn by the Brotherhood of Steel.
+#  suffix: Midwest Squire
+#  components:
+#  - type: PresetIdCard
+#    job: BoSMidSquire
+#
+#- type: entity
+#  parent: N14IDBrotherhoodHolotag
+#  id: N14IDBrotherhoodHolotagKnight
+#  name: holotag
+#  description: An ID holotag worn by the Brotherhood of Steel.
+#  suffix: Midwest Knight
+#  components:
+#  - type: PresetIdCard
+#    job: BoSMidKnight
+#
+#- type: entity
+#  parent: N14IDBrotherhoodHolotag
+#  id: N14IDBrotherhoodHolotagPaladin
+#  name: holotag
+#  description: An ID holotag worn by the Paladins of the Brotherhood of Steel.
+#  suffix: Midwest Paladin
+#  components:
+#  - type: PresetIdCard
+#    job: BoSMidPaladin
+#
+#- type: entity
+#  parent: N14IDBrotherhoodHolotag
+#  id: N14IDBrotherhoodHolotagCommander
+#  name: holotag
+#  description: An ID holotag worn by the Paladin Commander of the Brotherhood of Steel.
+#  suffix: Midwest Commander
+#  components:
+#  - type: PresetIdCard
+#    job: BoSMidPaladinCommander
 
-- type: entity
-  parent: N14IDBrotherhoodHolotag
-  id: N14IDBrotherhoodHolotagSquire
-  name: holotag
-  description: An ID holotag worn by the Brotherhood of Steel.
-  suffix: Midwest Squire
-  components:
-  - type: PresetIdCard
-    job: BoSMidSquire
-
-- type: entity
-  parent: N14IDBrotherhoodHolotag
-  id: N14IDBrotherhoodHolotagKnight
-  name: holotag
-  description: An ID holotag worn by the Brotherhood of Steel.
-  suffix: Midwest Knight
-  components:
-  - type: PresetIdCard
-    job: BoSMidKnight
-
-- type: entity
-  parent: N14IDBrotherhoodHolotag
-  id: N14IDBrotherhoodHolotagPaladin
-  name: holotag
-  description: An ID holotag worn by the Paladins of the Brotherhood of Steel.
-  suffix: Midwest Paladin
-  components:
-  - type: PresetIdCard
-    job: BoSMidPaladin
-
-- type: entity
-  parent: N14IDBrotherhoodHolotag
-  id: N14IDBrotherhoodHolotagCommander
-  name: holotag
-  description: An ID holotag worn by the Paladin Commander of the Brotherhood of Steel.
-  suffix: Midwest Commander
-  components:
-  - type: PresetIdCard
-    job: BoSMidPaladinCommander
-
-#MARK: Brotherhood Washington
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDBrotherhoodWashingtonHolotagInitiate
-  name: holotag
-  description: An ID holotag worn by an Initiate in the Washington Brotherhood of Steel.
-  suffix: Washington Initiate
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: PresetIdCard
-    job: BoSWashingtonInitiate
-  - type: ClothingAddFaction
-    faction: BrotherhoodWashington
-
-- type: entity
-  parent: N14IDBrotherhoodWashingtonHolotagInitiate
-  id: N14IDBrotherhoodWashingtonHolotagScribe
-  name: holotag
-  description: An ID holotag worn by a Scribe in the Washington Brotherhood of Steel.
-  suffix: Washington Scribe
-  components:
-  - type: PresetIdCard
-    job: BoSWashingtonScribe
-
-- type: entity
-  parent: N14IDBrotherhoodWashingtonHolotagInitiate
-  id: N14IDBrotherhoodWashingtonHolotagKnight
-  name: holotag
-  description: An ID holotag worn by a Knight in the Washington Brotherhood of Steel.
-  suffix: Washington Knight
-  components:
-  - type: PresetIdCard
-    job: BoSWashingtonKnight
-
-- type: entity
-  parent: N14IDBrotherhoodWashingtonHolotagInitiate
-  id: N14IDBrotherhoodWashingtonHolotagPaladin
-  name: holotag
-  description: An ID holotag worn by a Paladin in the Washington Brotherhood of Steel.
-  suffix: Washington Paladin
-  components:
-  - type: PresetIdCard
-    job: BoSWashingtonPaladin
-
-- type: entity
-  parent: N14IDBrotherhoodWashingtonHolotagInitiate
-  id: N14IDBrotherhoodWashingtonHolotagCommander
-  name: holotag
-  description: An ID holotag worn by the Commander of the Washington Brotherhood of Steel.
-  suffix: Washington Commander
-  components:
-  - type: PresetIdCard
-    job: BoSWashingtonCommander
+# #Misfits Change - BoS Washington holotags commented out.
+# Consolidated to _Misfits/Entities/Objects/Misc/bos_identification.yml
+##MARK: Brotherhood Washington
+#- type: entity
+#  parent: N14IDPassportBlank
+#  id: N14IDBrotherhoodWashingtonHolotagInitiate
+#  name: holotag
+#  description: An ID holotag worn by an Initiate in the Washington Brotherhood of Steel.
+#  suffix: Washington Initiate
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: PresetIdCard
+#    job: BoSWashingtonInitiate
+#  - type: ClothingAddFaction
+#    faction: BrotherhoodWashington
+#
+#- type: entity
+#  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+#  id: N14IDBrotherhoodWashingtonHolotagScribe
+#  name: holotag
+#  description: An ID holotag worn by a Scribe in the Washington Brotherhood of Steel.
+#  suffix: Washington Scribe
+#  components:
+#  - type: PresetIdCard
+#    job: BoSWashingtonScribe
+#
+#- type: entity
+#  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+#  id: N14IDBrotherhoodWashingtonHolotagKnight
+#  name: holotag
+#  description: An ID holotag worn by a Knight in the Washington Brotherhood of Steel.
+#  suffix: Washington Knight
+#  components:
+#  - type: PresetIdCard
+#    job: BoSWashingtonKnight
+#
+#- type: entity
+#  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+#  id: N14IDBrotherhoodWashingtonHolotagPaladin
+#  name: holotag
+#  description: An ID holotag worn by a Paladin in the Washington Brotherhood of Steel.
+#  suffix: Washington Paladin
+#  components:
+#  - type: PresetIdCard
+#    job: BoSWashingtonPaladin
+#
+#- type: entity
+#  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+#  id: N14IDBrotherhoodWashingtonHolotagCommander
+#  name: holotag
+#  description: An ID holotag worn by the Commander of the Washington Brotherhood of Steel.
+#  suffix: Washington Commander
+#  components:
+#  - type: PresetIdCard
+#    job: BoSWashingtonCommander
 
 #MARK: Enclave
 - type: entity
@@ -318,13 +322,13 @@
   id: N14IDNCRDogtag
   name: dogtag
   description: An ID dogtag worn by members of the NCR.
-  suffix: Soldier, Cadet
+  suffix: Recruit #Misfits Change - was Soldier, Cadet
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: ncrdogtag
   - type: PresetIdCard
-    job: NCRSoldier
+    job: NCRCadet #Misfits Change - was NCRSoldier
   - type: ClothingAddFaction
     faction: NCR
 
@@ -341,18 +345,20 @@
   - type: PresetIdCard
     job: NCRMedic
 
-- type: entity
-  parent: N14IDNCRDogtag
-  id: N14IDNCRDogtagWS
-  name: dogtag
-  description: An ID dogtag worn by decently ranking members of the NCR.
-  suffix: WS
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: ncrdogtag
-  - type: PresetIdCard
-    job: NCRWS
+#Misfits Change - Start - commented out removed NCR job dogtag
+#- type: entity
+#  parent: N14IDNCRDogtag
+#  id: N14IDNCRDogtagWS
+#  name: dogtag
+#  description: An ID dogtag worn by decently ranking members of the NCR.
+#  suffix: WS
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: ncrdogtag
+#  - type: PresetIdCard
+#    job: NCRWS
+#Misfits Change - End
 
 - type: entity
   parent: N14IDNCRDogtag
@@ -416,7 +422,7 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: ranger
   - type: PresetIdCard
-    job: NCRRanger
+    job: Ranger #Misfits Change - was NCRRanger
 
 - type: entity
   parent: N14IDBadgeNCRDesertRangerRecruit
@@ -428,7 +434,7 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: ranger_elite
   - type: PresetIdCard
-    job: NCRRangerVeteran
+    job: RangerVeteran #Misfits Change - was NCRRangerVeteran
 
 - type: entity
   parent: N14IDBadgeNCRDesertRangerRecruit
@@ -440,7 +446,7 @@
     sprite: _Nuclear14/Objects/Misc/identification.rsi
     state: ranger_chief
   - type: PresetIdCard
-    job: NCRRangerVeteran
+    job: RangerVeteran #Misfits Change - was NCRRangerVeteran
 
 #MARK: NCR Rangers
 - type: entity

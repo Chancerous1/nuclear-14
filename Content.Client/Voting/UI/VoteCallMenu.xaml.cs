@@ -31,7 +31,9 @@ namespace Content.Client.Voting.UI
             {
                 ("ui-vote-type-restart", StandardVoteType.Restart, null),
                 ("ui-vote-type-gamemode", StandardVoteType.Preset, null),
-                ("ui-vote-type-map", StandardVoteType.Map, null)
+                ("ui-vote-type-map", StandardVoteType.Map, null),
+                // #Misfits Change: Extend vote option
+                ("ui-vote-type-extend", StandardVoteType.Extend, null),
             };
 
         public VoteCallMenu()

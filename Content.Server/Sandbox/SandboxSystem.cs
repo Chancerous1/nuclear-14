@@ -182,10 +182,10 @@ namespace Content.Server.Sandbox
 
         private void SandboxSuicideReceived(MsgSandboxSuicide message, EntitySessionEventArgs args)
         {
-            if (!IsSandboxEnabled)
+            var player = _playerManager.GetSessionByChannel(args.SenderSession.Channel);
+            if (!IsSandboxEnabled && !_conGroupController.CanCommand(player, "suicide"))
                 return;
 
-            var player = _playerManager.GetSessionByChannel(args.SenderSession.Channel);
             _host.ExecuteCommand(player, "suicide");
         }
 

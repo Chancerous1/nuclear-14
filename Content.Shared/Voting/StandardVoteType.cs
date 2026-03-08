@@ -18,6 +18,12 @@
         /// <summary>
         /// Vote to change the map for the next round.
         /// </summary>
-        Map
+        Map,
+
+        // #Misfits Change: Vote to extend the current round (recall shuttle / reset auto-call timer).
+        /// <summary>
+        /// Vote to extend the round by recalling the emergency shuttle and resetting the auto-call timer.
+        /// </summary>
+        Extend
     }
 }

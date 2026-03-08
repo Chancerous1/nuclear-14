@@ -240,9 +240,12 @@ binds:
 - function: OpenGuidebook
   type: State
   key: NumpadNum0
-- function: OpenAHelp
+- function: OpenMentorHelp
   type: State
   key: F1
+- function: OpenAHelp
+  type: State
+  key: F2
 - function: OpenInventoryMenu
   type: State
   key: I

@@ -47,8 +47,8 @@
 
 - type: weather
   id: Default
-  duration: 1200
-  chance: 15
+  duration: 3600 # Misfits: increased from 1200 to keep calm periods much longer
+  chance: 50 # Misfits: increased from 15 to heavily favour no-weather
   message: weather-default
 
 # - type: weather
@@ -96,7 +96,7 @@
       volume: -6
   temperature: 300
   duration: 250
-  chance: 2
+  chance: 1 # Misfits: reduced from 2
   message: weather-rain
 
 - type: soundCollection

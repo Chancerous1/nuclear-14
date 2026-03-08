@@ -43,6 +43,8 @@ ui-options-event-music = Event Music
 ui-options-announcer-disable-multiple-sounds = Disable Overlapping Announcer Sounds
 ui-options-announcer-disable-multiple-sounds-tooltip = Some announcements will not sound right, this setting isn't recommended
 ui-options-admin-sounds = Play Admin Sounds
+ui-options-tts-enabled = Enable TTS
+ui-options-tts-enabled-tooltip = Enable Text-To-Speech voice acting for characters
 ui-options-volume-label = Volume
 ui-options-volume-percent = { TOSTRING($volume, "P0") }
 
@@ -179,6 +181,10 @@ ui-options-function-target-left-arm = Target left arm
 ui-options-function-target-right-arm = Target right arm
 ui-options-function-target-left-leg = Target left leg
 ui-options-function-target-right-leg = Target right leg
+ui-options-function-target-left-hand = Target left hand
+ui-options-function-target-right-hand = Target right hand
+ui-options-function-target-left-foot = Target left foot
+ui-options-function-target-right-foot = Target right foot
 
 ui-options-function-focus-chat-input-window = Focus chat
 ui-options-function-focus-local-chat-window = Focus chat (IC)

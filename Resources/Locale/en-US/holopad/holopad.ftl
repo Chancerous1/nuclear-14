@@ -150,4 +150,6 @@ holopad-station-bridge = Station - Bridge
 holopad-station-cargo-bay = Station - Cargo Bay
 
 # CentComm
-holopad-centcomm-evac = CentComm - Evacuation Shuttle
+# Misfits Change - wasteland theme: shuttle → train
+#holopad-centcomm-evac = CentComm - Evacuation Shuttle
+holopad-centcomm-evac = Overseer's Command - Evacuation Train

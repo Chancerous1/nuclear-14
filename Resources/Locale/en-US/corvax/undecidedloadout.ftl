@@ -30,7 +30,7 @@ undecided-loadout-category-ventor-triaria-description =
     1 assault shotgun, 2 boxes of ammunition (12 gauge), 1 ceremonial sword,
     2 dirty stimpaks, 2 K-rations, 1 bottle of water, 1 mustard.
 
-undecided-loadout-category-dean-gladiator-name = Dean-Gladiator Kit
+undecided-loadout-category-dean-gladiator-name = Decanus-Gladiator Kit
 undecided-loadout-category-dean-gladiator-description =
     A box with everything needed for combat.
     Contains: 1 rope belt, 1 Legion shield,
@@ -38,7 +38,7 @@ undecided-loadout-category-dean-gladiator-description =
     1 combat medical kit, 2 dirty stimpaks,
     2 K-rations, 1 bottle of water, 1 mustard.
 
-undecided-loadout-category-dean-sagitaria-name = Dean-Sagittarius Kit
+undecided-loadout-category-dean-sagitaria-name = Decanus-Sagittarius Kit
 undecided-loadout-category-dean-sagitaria-description =
     A box with everything needed for ranged combat.
     Contains: 1 rope belt, 1 automatic rifle,
@@ -46,7 +46,7 @@ undecided-loadout-category-dean-sagitaria-description =
     (.308 Winchester), 1 first aid kit, 2 dirty stimpaks,
     2 K-rations, 1 bottle of water, 1 mustard.
 
-undecided-loadout-category-dean-berserker-name = Dean-Berserker Kit
+undecided-loadout-category-dean-berserker-name = Decanus-Berserker Kit
 undecided-loadout-category-dean-berserker-description =
     A box with everything needed to charge into battle.
     Contains: 1 rope belt, 1 sledgehammer,

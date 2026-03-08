@@ -2,7 +2,7 @@
 # Four variants: Mr. Handy, Protectron, Mr. Gutsy, Assaultron.
 # roundStart: true so whitelisted players see them in the character editor species dropdown
 # and via the Robot Type variant picker panel.
-# Access is gated via the RobotSpawn job whitelist (jobwhitelistadd RobotSpawn).
+# Access is gated per-job (e.g. jobwhitelistadd <player> SyntheticMrHandy).
 
 - type: species
   id: RobotMrHandy
@@ -11,14 +11,17 @@
   order: 10 # #Misfits Change: robots last
   whitelistRequired: true # #Misfits Change
   restrictedCustomization: true # #Misfits Change
-  jobWhitelistUnlock: RobotSpawn # #Misfits Change
+  jobWhitelistUnlock: SyntheticMrHandy # #Misfits Change
   restrictedJobs: # #Misfits Change
-  - RobotSpawn
+  - SyntheticMrHandy
   sprites: RobotSprites
   markingLimits: RobotMarkingLimits
   prototype: N14PlayerSyntheticMrHandy
   dollPrototype: N14PlayerSyntheticMrHandy
   skinColoration: Hues
+  maleFirstNames: RobotMrHandyFirst # #Misfits Change
+  femaleFirstNames: RobotMrHandyFirst # #Misfits Change
+  naming: First # #Misfits Change
 
 - type: species
   id: RobotProtectron
@@ -27,14 +30,17 @@
   order: 11 # #Misfits Change: robots last
   whitelistRequired: true # #Misfits Change
   restrictedCustomization: true # #Misfits Change
-  jobWhitelistUnlock: RobotSpawn # #Misfits Change
+  jobWhitelistUnlock: SyntheticProtectron # #Misfits Change
   restrictedJobs: # #Misfits Change
-  - RobotSpawn
+  - SyntheticProtectron
   sprites: RobotSprites
   markingLimits: RobotMarkingLimits
   prototype: N14PlayerSyntheticProtectron
   dollPrototype: N14PlayerSyntheticProtectron
   skinColoration: Hues
+  maleFirstNames: RobotProtectronFirst # #Misfits Change
+  femaleFirstNames: RobotProtectronFirst # #Misfits Change
+  naming: First # #Misfits Change
 
 - type: species
   id: RobotMrGutsy
@@ -43,14 +49,17 @@
   order: 12 # #Misfits Change: robots last
   whitelistRequired: true # #Misfits Change
   restrictedCustomization: true # #Misfits Change
-  jobWhitelistUnlock: RobotSpawn # #Misfits Change
+  jobWhitelistUnlock: SyntheticMrGutsy # #Misfits Change
   restrictedJobs: # #Misfits Change
-  - RobotSpawn
+  - SyntheticMrGutsy
   sprites: RobotSprites
   markingLimits: RobotMarkingLimits
   prototype: N14PlayerSyntheticMrGutsy
   dollPrototype: N14PlayerSyntheticMrGutsy
   skinColoration: Hues
+  maleFirstNames: RobotMrGutsyFirst # #Misfits Change
+  femaleFirstNames: RobotMrGutsyFirst # #Misfits Change
+  naming: First # #Misfits Change
 
 - type: species
   id: RobotAssaultron
@@ -59,14 +68,17 @@
   order: 13 # #Misfits Change: robots last
   whitelistRequired: true # #Misfits Change
   restrictedCustomization: true # #Misfits Change
-  jobWhitelistUnlock: RobotSpawn # #Misfits Change
+  jobWhitelistUnlock: SyntheticAssaultron # #Misfits Change
   restrictedJobs: # #Misfits Change
-  - RobotSpawn
+  - SyntheticAssaultron
   sprites: RobotSprites
   markingLimits: RobotMarkingLimits
   prototype: N14PlayerSyntheticAssaultron
   dollPrototype: N14PlayerSyntheticAssaultron
   skinColoration: Hues
+  maleFirstNames: RobotAssaultronFirst # #Misfits Change
+  femaleFirstNames: RobotAssaultronFirst # #Misfits Change
+  naming: First # #Misfits Change
 
 # Shared marking limits — robots have no body markings but need a valid points block.
 - type: markingPoints
@@ -77,9 +89,8 @@
       points: 0
       required: false
 
-# Shared sprite set — not actually rendered (robot entities use their own Sprite component).
-# Minimal valid entry using layers that don’t sex-morph.
+# Shared sprite set — robot entities use their own Sprite component, so no humanoid layers needed.
+# Empty sprites dict prevents any humanoid-layer overlays on the robot preview.
 - type: speciesBaseSprites
   id: RobotSprites
-  sprites:
-    Eyes: MobHumanoidEyes
+  sprites: {}

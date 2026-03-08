@@ -10,7 +10,8 @@
         Blunt: 6
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 4 # max 30 per tile
     intensitySlope: 1
     totalIntensity: 3 # 60 total damage to distribute over tiles
@@ -24,7 +25,8 @@
   components:
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 8 # max 30 per tile
     intensitySlope: 6
     totalIntensity: 15 # 60 total damage to distribute over tiles
@@ -41,7 +43,8 @@
     fireStacks: 10
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 8 # max 30 per tile
     intensitySlope: 6
     totalIntensity: 15 # 60 total damage to distribute over tiles
@@ -106,7 +109,8 @@
         Blunt: 8
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 24 # max 30 per tile
     intensitySlope: 6
     totalIntensity: 60 # 60 total damage to distribute over tiles

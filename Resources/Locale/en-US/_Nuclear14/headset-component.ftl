@@ -9,8 +9,10 @@ chat-radio-vault-science = Vault Science
 chat-radio-vault-security = Vault Security
 chat-radio-vault-common = Vault
 chat-radio-caravan = CC
-chat-radio-bosmidwest = BoS
-chat-radio-boswashington = WBoS
+# #Misfits Change - Old BoS radio names commented out, consolidated channel added
+#chat-radio-bosmidwest = BoS
+#chat-radio-boswashington = WBoS
+chat-radio-bos = BoS
 chat-radio-enclave = Enclave
 chat-radio-ncr = NCR
 chat-radio-pbs = Broadcast

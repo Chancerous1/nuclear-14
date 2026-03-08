@@ -73,7 +73,8 @@
           collection: MetalBreak
       - !type:ExplodeBehavior
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 100
     intensitySlope: 2
     totalIntensity: 200
@@ -319,7 +320,8 @@
     softness: 0.5
     color: "#B4FCF0"
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     totalIntensity: 20000 # ~15 tile radius.
     intensitySlope: 5
     maxIntensity: 50
@@ -437,7 +439,8 @@
       gasType: CarbonDioxide
       moleRatio: 0.5
     - type: Explosive
-      explosionType: Default
+      #Misfits Change - use the structural-capable N14 explosion profile.
+      explosionType: N14DefaultStructural
       tileBreakScale: 0
     - type: Destructible
       thresholds:

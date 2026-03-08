@@ -6,5 +6,18 @@
             "fileMatch": [ "**/meta.json" ],
             "url": "https://raw.githubusercontent.com/Simple-Station/Einstein-Engines/master/.github/rsi-schema.json"
         }
-    ]
+    ],
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /h/nuclear-14-PR/nuclear-14 && node -e \"\nconst fs = require\\('fs'\\);\nconst path = 'Resources/ServerInfo/_Misfits/ServerRules/DefaultRuleset\\.xml';\nlet c = fs\\.readFileSync\\(path, 'utf8'\\);\nconst count = \\(c\\.match\\(/\\[ \\\\t\\]\\*<!--\\[\\\\s\\\\S\\]\\*\\?-->\\[ \\\\t\\]\\*/g\\) \\|\\| \\[\\]\\)\\.length;\nc = c\\.replace\\(/\\[ \\\\t\\]\\*<!--\\[\\\\s\\\\S\\]\\*\\?-->\\[ \\\\t\\]\\*/g, ''\\)\\.replace\\(/\\\\n\\{3,\\}/g, '\\\\n\\\\n'\\);\nfs\\.writeFileSync\\(path, c, 'utf8'\\);\nconsole\\.log\\('Done:', count, 'comments removed'\\);\n\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "py": true,
+        "dotnet build": true,
+        "dotnet run": true,
+        "/^powershell -Command \"foreach \\(\\$f in @\\('Resources\\\\Prototypes\\\\_Nuclear14\\\\Roles\\\\Jobs\\\\NCR\\\\ncr_cadet\\.yml','Resources\\\\Prototypes\\\\_Nuclear14\\\\Roles\\\\Jobs\\\\NCR\\\\ncr_sgt\\.yml','Resources\\\\Prototypes\\\\_Nuclear14\\\\Roles\\\\Jobs\\\\NCR\\\\ncr_lt\\.yml','Resources\\\\Prototypes\\\\_Nuclear14\\\\Roles\\\\Jobs\\\\NCR\\\\ncr_medic\\.yml','Resources\\\\Prototypes\\\\_Nuclear14\\\\Roles\\\\Jobs\\\\NCR\\\\ncr_engineer\\.yml'\\)\\) \\{ \\$lines = Get-Content \\$f; \\$header = '#Misfits Change - commented out, moved to _Misfits'; \\$commented = @\\(\\$header\\) \\+ \\(\\$lines \\| ForEach-Object \\{ '#' \\+ \\$_ \\}\\); Set-Content \\$f -Value \\$commented -NoNewline:\\$false; Write-Host \\('Commented: ' \\+ \\$f\\) \\}\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
 }

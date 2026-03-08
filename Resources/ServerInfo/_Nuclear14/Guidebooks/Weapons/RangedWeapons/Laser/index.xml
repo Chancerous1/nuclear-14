@@ -1,3 +1,45 @@
-﻿<Document>
-# Placeholder
+<Document>
+# Energy Weapons
+
+Energy Weapons use laser technology to deal precise, high-penetration damage. They are quieter than conventional firearms and do not use traditional ammunition — instead relying on [color=#a4885c]energy cells[/color] and [color=#a4885c]microfusion cells[/color].
+
+Energy weapons are typically rare and expensive, often in the hands of the Brotherhood of Steel, the Enclave, or well-equipped traders.
+
+## Laser Pistols
+
+Compact laser sidearms, useful for both self-defense and long-range precision work.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponLaserPistol"/>
+<GuideEntityEmbed Entity="N14WeaponLaserRevolver"/>
+<GuideEntityEmbed Entity="N14WeaponLaserPistolRecharger"/>
+</Box>
+
+## Laser Rifles
+
+Laser rifles deal reliable damage at range and are standard issue for the Brotherhood of Steel.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponLaserRifle"/>
+<GuideEntityEmbed Entity="N14WeaponLaserRifleAuto"/>
+<GuideEntityEmbed Entity="N14WeaponLaserRiflePrototypeAER14"/>
+<GuideEntityEmbed Entity="N14WeaponLaserRifleWattz3000"/>
+</Box>
+
+## Gatling Laser
+
+The Gatling Laser is an extremely high-rate-of-fire energy weapon, capable of laying down a devastating stream of laser fire.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponLaserGatling"/>
+</Box>
+
+## Improvised Energy Weapons
+
+Makeshift and crude laser weapons can be constructed from salvaged parts, though they are less reliable than pre-war models.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponLaserRifleCrude"/>
+<GuideEntityEmbed Entity="N14WeaponLaserRifleMakeshift"/>
+</Box>
 </Document>

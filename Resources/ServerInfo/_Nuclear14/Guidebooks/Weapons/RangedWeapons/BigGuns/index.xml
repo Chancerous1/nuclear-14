@@ -1,3 +1,43 @@
-﻿<Document>
-# Placeholder
+<Document>
+# Big Guns
+
+Big Guns are heavy weapons that deal devastating damage. They are difficult to carry and expensive on ammunition, but nothing compares to their raw stopping power.
+
+## Miniguns
+
+Miniguns deliver an overwhelming volume of fire and are most effective when suppressing groups of enemies. They consume ammunition extremely quickly.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponMinigun"/>
+<GuideEntityEmbed Entity="N14WeaponMinigunAvenger"/>
+</Box>
+
+## Launchers
+
+Grenade and missile launchers are area-denial weapons that can destroy fortified positions and bunker through armor.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponLauncherGrenade"/>
+<GuideEntityEmbed Entity="N14WeaponLauncherMissile"/>
+<GuideEntityEmbed Entity="N14WeaponRifleGrenade"/>
+</Box>
+
+## Light Machine Guns
+
+LMGs provide sustained automatic fire. They are effective at long range and excel at suppressing enemies.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponLMG"/>
+<GuideEntityEmbed Entity="N14WeaponLMGAutoRifle"/>
+</Box>
+
+## Flamers
+
+The flamer projects a stream of burning fuel, dealing fire damage over a wide area. Extremely effective against unarmored targets and creatures.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponFlamer"/>
+</Box>
+
+> [color=red]Warning:[/color] Big Guns are typically restricted to military-grade factions. Carrying them openly may attract unwanted attention.
 </Document>

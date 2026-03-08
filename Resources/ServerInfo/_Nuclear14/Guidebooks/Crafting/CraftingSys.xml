@@ -53,6 +53,79 @@ Step-by-step guide to creating an item:
 
 5. Done!: If everything is done correctly, you will receive a new item. It will now be in your inventory or appear next to the workbench.
 
+## Available Blueprints
+
+Blueprints are found by exploring the Wasteland, looting enemies, or trading with faction vendors. Click any blueprint entry to see its full crafting requirements.
+
+### Brotherhood of Steel
+
+Power armor restoration and Brotherhood gear blueprints. Typically found in BoS patrols and bunkers.
+
+<Box>
+<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT45Blueprint" Caption="T-45 Power Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT60TeslaBlueprint" Caption="T-60 Tesla Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterMBoSInitiateArmorBlueprint" Caption="BoS Initiate Armor"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14ClothingOuterMidwestArmorBlueprint" Caption="Midwest Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterMidwestArmorMK2Blueprint" Caption="Midwest Armor MK2"/>
+</Box>
+
+### NCR
+
+New California Republic military armor and power armor restoration blueprints. Found in NCR camps and quartermaster caches.
+
+<Box>
+<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT45NCRBlueprint" Caption="T-45 NCR Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT51NCRBlueprint" Caption="T-51 NCR Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT60NCRBlueprint" Caption="T-60 NCR Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorRaiderBlueprint" Caption="Raider Power Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorAdvanced1NCRBlueprint" Caption="Advanced NCR Armor"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14ClothingOuterNCRVestDesertBlueprint" Caption="NCR Desert Vest"/>
+<GuideEntityEmbed Entity="N14ClothingOuterNCRCombatArmorBlueprint" Caption="NCR Combat Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterNCRCombatArmorMK2Blueprint" Caption="NCR Combat Armor MK2"/>
+</Box>
+
+### Legion
+
+Caesar's Legion armor blueprints. Recovered from Legion outposts and veteran centurions.
+
+<Box>
+<GuideEntityEmbed Entity="N14ClothingOuterLegionnaireBaseArmorBlueprint" Caption="Legionnaire Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterLegionnaireVeteranArmorBlueprint" Caption="Veteran Legionnaire Armor"/>
+</Box>
+
+### Tribal
+
+Handcrafted tribal weapons and armor blueprints. Traded by tribal communities or found in Wasteland camps.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponRevolver45-70HandcannonBlueprint" Caption="Handcannon"/>
+<GuideEntityEmbed Entity="N14WeaponRevolver44TribalBlueprint" Caption="Tribal Handgun"/>
+<GuideEntityEmbed Entity="N14ModificationkitRevolver44TribalBlueprint" Caption="Revolver Upgrade Kit"/>
+<GuideEntityEmbed Entity="N14ModificationkitRevolver44TribalUpgradedBlueprint" Caption="Revolver Upgrade Extra Kit"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14WeaponSniper556TribalBlueprint" Caption="Tribal Rifle"/>
+<GuideEntityEmbed Entity="N14WeaponSniper556TribalUpgradedBlueprint" Caption="Tribal Assault Rifle"/>
+<GuideEntityEmbed Entity="N14ClothingOuterCombatTribalBlueprint" Caption="Tribal Combat Armor"/>
+</Box>
+
+### Miscellaneous
+
+Faction-neutral or independently produced blueprints available to any skilled crafter.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponLaserRevolverBlueprint" Caption="Laser Revolver"/>
+<GuideEntityEmbed Entity="N14WeaponLaserRifleMakeshiftBlueprint" Caption="Makeshift Laser Rifle"/>
+<GuideEntityEmbed Entity="N14WeaponRifle556PipeBlueprint" Caption="Pipe Rifle (.556)"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14ClothingOuterCombatArmorBlueprint" Caption="Combat Armor"/>
+<GuideEntityEmbed Entity="N14ClothingOuterCombatArmorMK2Blueprint" Caption="Combat Armor MK2"/>
+</Box>
 
 Good luck with your crafting. With the right blueprints, tools, and resources, you will be able to create items that will help you survive and thrive in this harsh world.
 </Document>

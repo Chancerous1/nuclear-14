@@ -1,4 +1,5 @@
 # TODO move this to tiles once tile smoothing is supported
+# Misfits Change - Added Physics and Fixtures so catwalk is physically solid (floor-level, non-blocking to mobs)
 - type: entity
   id: Catwalk
   name: catwalk
@@ -54,4 +55,15 @@
   - type: RCDDeconstructable
     cost: 2
     delay: 2
-    fx: EffectRCDDeconstruct2  
+    fx: EffectRCDDeconstruct2
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - Opaque
+        - BulletImpassable

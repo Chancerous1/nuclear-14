@@ -1,3 +1,61 @@
-﻿<Document>
-# Placeholder
+<Document>
+# New California Republic (NCR)
+
+Founded in the ruins of Shady Sands in California, the New California Republic is the largest democratic state in the post-war world. Built on the ideals of pre-war America — representative government, rule of law, free trade — it has grown into a sprawling bureaucratic power now stretched thin across the Mojave and beyond.
+
+The NCR arrived in this region seeking influence, trade agreements, and another flag planted for the Republic. Whether their presence is welcome depends entirely on who holds power locally.
+
+## Philosophy
+
+The NCR believes in democracy, organized law enforcement, and expansion by diplomacy first and force second. Critics point to the Republic's worst traits: corruption, political short-sightedness, and a habit of promising protection it cannot reliably deliver at the frontier. Supporters say it remains the best foundation for lasting civilization the post-war world has managed to build.
+
+## Ranks
+
+<ColorBox Color="#fbc02d">
+  <Box Margin="2">
+  [bold]NCR Officer[/bold]
+  </Box>
+</ColorBox>
+<Box>
+[italic]In the Fallout universe:[/italic] NCR Officers are commissioned members of the Republic's military, managing regional operations and fielding the Republic's political relationships as much as its combat power. Officers in lore — like Colonel Hsu or General Oliver of New Vegas — span the full spectrum from dedicated public servants to pure political appointments. Most are somewhere in between.
+
+[color=#a4885c]Your role:[/color] Direct military and diplomatic operations for the NCR presence in this region. Your decisions determine whether the Republic gains a foothold here or retreats in failure. Balance force, diplomacy, and Republic politics.
+</Box>
+
+<ColorBox Color="#fbc02d">
+  <Box Margin="2">
+  [bold]NCR Ranger[/bold]
+  </Box>
+</ColorBox>
+<Box>
+[italic]In the Fallout universe:[/italic] Rangers are the Republic's elite long-range operatives, descended from the Desert Ranger tradition that merged into the NCR after the Ranger Unification Treaty. They are feared across the Mojave for their skill, autonomy, and effectiveness. In lore, veteran Rangers operate independently for months at a time before reporting in. NCR Ranger armor and the iconic Ranger Sequoia revolver are among the most recognizable equipment in the wasteland.
+
+[color=#a4885c]Your role:[/color] Operate independently. Gather intelligence, conduct covert operations, and deal with threats regular soldiers cannot handle discreetly. You answer to the Officer but work on your own judgment.
+</Box>
+
+<ColorBox Color="#fbc02d">
+  <Box Margin="2">
+  [bold]NCR Trooper[/bold]
+  </Box>
+</ColorBox>
+<Box>
+[italic]In the Fallout universe:[/italic] Troopers are the backbone of NCR military presence — ordinary soldiers drawn from across the Republic by conscription and patriotism. In New Vegas, NCR Troopers are often undersupplied and posted far from home in hostile territory. They are not elite forces, but there are many of them, and numbers have historically been enough to make up for individual limitations.
+
+[color=#a4885c]Your role:[/color] Hold the line. Enforce NCR authority, protect personnel and assets, and carry out orders. The politics are above your grade — your job is to be where you're told and do it well.
+</Box>
+
+<ColorBox Color="#fbc02d">
+  <Box Margin="2">
+  [bold]NCR Medic[/bold]
+  </Box>
+</ColorBox>
+<Box>
+[italic]In the Fallout universe:[/italic] Field medics are among the most valued personnel in any NCR deployment. The Republic's military emphasizes keeping soldiers combat-capable, and its medical corps is more developed than most factions manage. NCR medics develop strong relationships with local populations — making them diplomatic assets as well as lifesavers.
+
+[color=#a4885c]Your role:[/color] Keep NCR personnel alive and, when authorized, extend aid to civilian allies. Your stimpaks and skill can earn trust that no amount of boots on the ground could buy.
+</Box>
+
+## Relations
+
+The NCR's primary objective is to bring this region under Republic jurisdiction — through diplomacy first, economic leverage second, and military pressure last. They will seek allies wherever they can find them, but the Republic's interests come first.
 </Document>

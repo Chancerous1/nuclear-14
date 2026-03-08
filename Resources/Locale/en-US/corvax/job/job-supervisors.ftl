@@ -1,7 +1,7 @@
 job-name-caesar-legion = obey Caesar.
 job-name-caesar-legion-supervisors = obey Caesar and the Centurion.
-job-name-caesar-legion-other = obey Caesar, the Centurion and the Dean.
-job-supervisors-caesar-legion-slave = obey Caesar, the Centurion, the Dean and any Legionnaire.
+job-name-caesar-legion-other = obey Caesar, the Centurion and the Decanus.
+job-supervisors-caesar-legion-slave = obey Caesar, the Centurion, the Decanus and any Legionnaire.
 
 # Western BoS
 job-supervisors-bos-west-elder = obey the High Elder, the supreme leader and keeper of great technologies.

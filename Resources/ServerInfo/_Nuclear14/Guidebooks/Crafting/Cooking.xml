@@ -1,6 +1,120 @@
 <Document>
 # Cooking
 
-Placeholder
+Cooking transforms raw ingredients into nourishing meals. A skilled cook keeps settlements fed and morale high. Most recipes require a heating element or cooking station, and raw ingredients such as meats, produce, and grains.
 
+## Cooking Equipment
+
+A cooking stove or kitchen grill is needed for most hot meals. Place ingredients in the cooking device and wait for the recipe to complete.
+
+<Box>
+<GuideEntityEmbed Entity="N14CookingStove" Caption="Cooking Stove"/>
+<GuideEntityEmbed Entity="N14KitchenGrill" Caption="Kitchen Grill"/>
+</Box>
+
+## Raw Meats
+
+Wasteland creatures provide a variety of raw meats. [color=#a4885c]Do not eat raw meat[/color] — cook it first to avoid illness and radiation sickness.
+
+<Box>
+<GuideEntityEmbed Entity="N14FoodMeatBrahmin"/>
+<GuideEntityEmbed Entity="N14FoodMeatBighorner"/>
+<GuideEntityEmbed Entity="N14FoodMeatRadstag"/>
+<GuideEntityEmbed Entity="N14FoodMeatRadhog"/>
+<GuideEntityEmbed Entity="N14FoodMeatPigrat"/>
+<GuideEntityEmbed Entity="N14FoodMeatYaoguai"/>
+<GuideEntityEmbed Entity="N14FoodMeatRadscorpion"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14FoodMeatRadchicken"/>
+<GuideEntityEmbed Entity="N14FoodMeatGecko"/>
+<GuideEntityEmbed Entity="N14FoodMeatGeckoFire"/>
+<GuideEntityEmbed Entity="N14FoodMeatGeckoGolden"/>
+<GuideEntityEmbed Entity="N14FoodMeatIguana"/>
+<GuideEntityEmbed Entity="N14FoodMeatMirelurkClaw"/>
+<GuideEntityEmbed Entity="N14FoodMeatSquirrel"/>
+</Box>
+
+## Fresh Produce
+
+Plants grown by farmers or gathered from the Wasteland. Can be eaten raw or used as cooking ingredients.
+
+<Box>
+<GuideEntityEmbed Entity="N14FoodCarrot"/>
+<GuideEntityEmbed Entity="N14FoodCabbage"/>
+<GuideEntityEmbed Entity="N14FoodCorn"/>
+<GuideEntityEmbed Entity="N14FoodOnion"/>
+<GuideEntityEmbed Entity="N14FoodPotato"/>
+<GuideEntityEmbed Entity="N14FoodTomato"/>
+<GuideEntityEmbed Entity="N14FoodApple"/>
+</Box>
+
+## Cooked Meals
+
+Full meals prepared at a cooking station. These provide substantial nutrition and often minor bonuses.
+
+<Box>
+<GuideEntityEmbed Entity="N14CookedFoodMealRibs"/>
+<GuideEntityEmbed Entity="N14CookedFoodMealCubancarp"/>
+<GuideEntityEmbed Entity="N14CookedFoodMealOmelette"/>
+<GuideEntityEmbed Entity="N14CookedFoodMealFriedegg"/>
+<GuideEntityEmbed Entity="N14CookedFoodMealEnchiladas"/>
+<GuideEntityEmbed Entity="N14CookedFoodMealNachos"/>
+<GuideEntityEmbed Entity="N14CookedFoodMealFries"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14CookedFoodMealQueso"/>
+<GuideEntityEmbed Entity="N14CookedFoodMealSashimi"/>
+<GuideEntityEmbed Entity="N14CookedFoodMealPotatoLoaded"/>
+<GuideEntityEmbed Entity="N14CookedFoodSaladFruit"/>
+<GuideEntityEmbed Entity="N14CookedFoodSaladHerb"/>
+<GuideEntityEmbed Entity="N14CookedFoodSaladColeslaw"/>
+</Box>
+
+## Soups &amp; Bowls
+
+<Box>
+<GuideEntityEmbed Entity="N14CookedFoodSoupPea"/>
+<GuideEntityEmbed Entity="N14CookedFoodRiceBoiled"/>
+<GuideEntityEmbed Entity="N14CookedFoodRiceGumbo"/>
+<GuideEntityEmbed Entity="N14CookedFoodRicePudding"/>
+<GuideEntityEmbed Entity="N14CookedFoodOatmeal"/>
+</Box>
+
+## Baked Goods
+
+Require a source of grain or flour (from razorgrain or wheat) and a heat source.
+
+<Box>
+<GuideEntityEmbed Entity="N14CookedFoodBreadPlain"/>
+<GuideEntityEmbed Entity="N14CookedFoodBreadCorn"/>
+<GuideEntityEmbed Entity="N14CookedFoodBreadBanana"/>
+<GuideEntityEmbed Entity="N14CookedFoodBreadMeat"/>
+<GuideEntityEmbed Entity="N14CookedFoodBreadRadroll"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14CookedFoodPieMutfruit"/>
+<GuideEntityEmbed Entity="N14CookedFoodPieBlackberry"/>
+<GuideEntityEmbed Entity="N14CookedFoodPieMeat"/>
+</Box>
+
+## Pre-War Packaged Food
+
+Pre-war food can still be found throughout the Wasteland. It lasts almost indefinitely and provides quick nutrition in a pinch.
+
+<Box>
+<GuideEntityEmbed Entity="N14FoodBlamcomaccheese"/>
+<GuideEntityEmbed Entity="N14FoodCram"/>
+<GuideEntityEmbed Entity="N14FoodDandyboyapples"/>
+<GuideEntityEmbed Entity="N14FoodFancyladssnackcakes"/>
+<GuideEntityEmbed Entity="N14FoodInstamash"/>
+<GuideEntityEmbed Entity="N14FoodPorkBeans"/>
+<GuideEntityEmbed Entity="N14FoodDinki-Di"/>
+</Box>
+
+## Cooking Recipes
+
+Below is a complete auto-generated list of all food recipes available in Nuclear 14.
+
+<GuideFoodGroupEmbed/>
 </Document>

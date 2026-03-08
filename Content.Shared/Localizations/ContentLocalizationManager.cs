@@ -37,8 +37,6 @@ namespace Content.Shared.Localizations
             RegisterCommonFunctions(fallbackCulture);
 
 
-            _loc.AddFunction(fallbackCulture, "MAKEPLURAL", FormatMakePlural);
-
             _loc.SetCulture(culture);
             _loc.SetFallbackCluture(fallbackCulture);
             // Corvax-Localization-End
@@ -48,6 +46,7 @@ namespace Content.Shared.Localizations
         private void RegisterCommonFunctions(CultureInfo culture)
         {
             _loc.AddFunction(culture, "MANY", FormatMany);
+            _loc.AddFunction(culture, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
             _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
             _loc.AddFunction(culture, "POWERJOULES", FormatPowerJoules);

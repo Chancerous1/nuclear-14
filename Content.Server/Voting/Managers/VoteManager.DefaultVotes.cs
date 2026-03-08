@@ -21,6 +21,8 @@ namespace Content.Server.Voting.Managers
             {StandardVoteType.Restart, CCVars.VoteRestartEnabled},
             {StandardVoteType.Preset, CCVars.VotePresetEnabled},
             {StandardVoteType.Map, CCVars.VoteMapEnabled},
+            // #Misfits Change: Extend vote type
+            {StandardVoteType.Extend, CCVars.VoteExtendEnabled},
         };
 
         public void CreateStandardVote(ICommonSession? initiator, StandardVoteType voteType)
@@ -40,6 +42,10 @@ namespace Content.Server.Voting.Managers
                     break;
                 case StandardVoteType.Map:
                     CreateMapVote(initiator);
+                    break;
+                // #Misfits Change: Extend vote
+                case StandardVoteType.Extend:
+                    CreateExtendVote(initiator);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(voteType), voteType, null);
@@ -114,19 +120,21 @@ namespace Content.Server.Voting.Managers
                 {
                     var votesYes = vote.VotesPerOption["yes"];
                     var votesNo = vote.VotesPerOption["no"];
-                    var total = votesYes + votesNo;
 
-                    var ratioRequired = _cfg.GetCVar(CCVars.VoteRestartRequiredRatio);
-                    if (total > 0 && votesYes / (float) total >= ratioRequired)
+                    // #Misfits Change: Require a majority of ALL currently connected players,
+                    // not just a ratio of those who explicitly voted yes/no.
+                    var totalConnected = _playerManager.Sessions.Count(s => s.Status != SessionStatus.Disconnected);
+                    var majorityNeeded = (totalConnected / 2) + 1;
+                    if (votesYes >= majorityNeeded)
                     {
                         // Check if an admin is online, and ignore the passed vote if the cvar is enabled
                         if (_cfg.GetCVar(CCVars.VoteRestartNotAllowedWhenAdminOnline) && _adminMgr.ActiveAdmins.Count() != 0)
                         {
-                            _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Restart vote attempted to pass, but an admin was online. {votesYes}/{votesNo}");
+                            _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Restart vote attempted to pass, but an admin was online. {votesYes}/{votesNo} (connected: {totalConnected})");
                         }
                         else // If the cvar is disabled or there's no admins on, proceed as normal
                         {
-                            _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Restart vote succeeded: {votesYes}/{votesNo}");
+                            _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Restart vote succeeded: {votesYes}/{totalConnected}");
                             _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-restart-succeeded"));
                             var roundEnd = _entityManager.EntitySysManager.GetEntitySystem<RoundEndSystem>();
                             roundEnd.EndRound();
@@ -134,9 +142,9 @@ namespace Content.Server.Voting.Managers
                     }
                     else
                     {
-                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Restart vote failed: {votesYes}/{votesNo}");
+                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Restart vote failed: {votesYes}/{totalConnected} (needed {majorityNeeded})");
                         _chatManager.DispatchServerAnnouncement(
-                            Loc.GetString("ui-vote-restart-failed", ("ratio", ratioRequired)));
+                            Loc.GetString("ui-vote-restart-failed-majority", ("yes", votesYes), ("needed", majorityNeeded), ("total", totalConnected)));
                     }
                 };
 
@@ -162,6 +170,67 @@ namespace Content.Server.Voting.Managers
             _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Restart vote failed: Current Ghost player percentage:{roundedGhostPercentage.ToString()}% does not meet {ghostPercentageRequirement.ToString()}%");
             _chatManager.DispatchServerAnnouncement(
                 Loc.GetString("ui-vote-restart-fail-not-enough-ghost-players", ("ghostPlayerRequirement", ghostPercentageRequirement)));
+        }
+
+        // #Misfits Change: Vote to extend the current round.
+        private void CreateExtendVote(ICommonSession? initiator)
+        {
+            var alone = _playerManager.PlayerCount == 1 && initiator != null;
+            var extensionMinutes = _cfg.GetCVar(CCVars.VoteExtendTime);
+            var options = new VoteOptions
+            {
+                Title = Loc.GetString("ui-vote-extend-title"),
+                Options =
+                {
+                    (Loc.GetString("ui-vote-extend-yes"), "yes"),
+                    (Loc.GetString("ui-vote-extend-no"), "no"),
+                    (Loc.GetString("ui-vote-extend-abstain"), "abstain")
+                },
+                Duration = alone
+                    ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
+                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerRestart)),
+                InitiatorTimeout = TimeSpan.FromMinutes(5)
+            };
+
+            if (alone)
+                options.InitiatorTimeout = TimeSpan.FromSeconds(10);
+
+            WirePresetVoteInitiator(options, initiator);
+
+            var vote = CreateVote(options);
+
+            vote.OnFinished += (_, _) =>
+            {
+                var votesYes = vote.VotesPerOption["yes"];
+                var totalConnected = _playerManager.Sessions.Count(s => s.Status != SessionStatus.Disconnected);
+                var majorityNeeded = (totalConnected / 2) + 1;
+
+                if (votesYes >= majorityNeeded)
+                {
+                    _adminLogger.Add(LogType.Vote, LogImpact.Medium,
+                        $"Extend vote passed: {votesYes}/{totalConnected} — extending round by {extensionMinutes} minutes.");
+                    _chatManager.DispatchServerAnnouncement(
+                        Loc.GetString("ui-vote-extend-succeeded", ("minutes", extensionMinutes)));
+                    var roundEnd = _entityManager.EntitySysManager.GetEntitySystem<RoundEndSystem>();
+                    roundEnd.ExtendRound();
+                }
+                else
+                {
+                    _adminLogger.Add(LogType.Vote, LogImpact.Medium,
+                        $"Extend vote failed: {votesYes}/{totalConnected} (needed {majorityNeeded}).");
+                    _chatManager.DispatchServerAnnouncement(
+                        Loc.GetString("ui-vote-extend-failed", ("yes", votesYes), ("needed", majorityNeeded), ("total", totalConnected)));
+                }
+            };
+
+            if (initiator != null)
+                vote.CastVote(initiator, 0);
+
+            foreach (var player in _playerManager.Sessions)
+            {
+                if (player != initiator)
+                    vote.CastVote(player, 2);
+            }
         }
 
         private void CreatePresetVote(ICommonSession? initiator)

@@ -48,6 +48,7 @@
     damage:
       types:
         Slash: 8                        # Forge-Change
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -275,6 +276,7 @@
       types:
         Slash: 3
         Piercing: 3
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -371,6 +373,7 @@
       types:
         Slash: 5
         Piercing: 5
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -501,6 +504,7 @@
         Slash: 15
         Piercing: 5
     range: 2
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 30

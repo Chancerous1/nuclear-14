@@ -22,6 +22,10 @@ public sealed class N14RuleSystem : GameRuleSystem<N14RuleComponent>
         {
             if (_mindSystem.TryGetMind(args.Player, out var mindId, out var mind))
             {
+                // Don't add more objectives if the player already has some (e.g. respawning)
+                if (mind.Objectives.Count > 0)
+                    return;
+
                 var objective = _objectives.GetRandomObjective(mindId, mind, "N14Objectives");
                 if (objective != null)
                 {

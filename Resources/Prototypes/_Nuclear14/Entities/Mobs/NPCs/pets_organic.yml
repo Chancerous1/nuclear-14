@@ -63,6 +63,7 @@
       types:
         Blunt: 4
         Slash: 8
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60

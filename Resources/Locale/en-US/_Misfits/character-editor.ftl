@@ -24,3 +24,9 @@ character-item-group-N14LoadoutUniform = Uniforms
 # Observer action loc keys (observer.yml uses raw display text in upstream Corvax)
 action-name-toggle-lighting = Toggle All Lighting
 action-desc-toggle-lighting = Toggle all light rendering to better observe dark areas.
+
+action-name-toggle-ghosts = Toggle Ghosts
+action-desc-toggle-ghosts = Toggle the visibility of other ghosts.
+
+action-name-toggle-light = Toggle Light
+action-desc-toggle-light = Turn the light on and off.

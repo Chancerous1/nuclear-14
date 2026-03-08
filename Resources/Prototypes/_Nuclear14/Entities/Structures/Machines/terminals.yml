@@ -319,7 +319,8 @@
         acts: ["Destruction"]
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 5
     intensitySlope: 3
     totalIntensity: 30 # about a ~1 tile radius

@@ -1,6 +1,6 @@
 - type: entity
-  name: swamper
-  id: N14MobSwamper
+  name: mirelurk
+  id: N14MobMirelurk
   parent: N14MobBaseHostileInsect
   description: A crab with a shell? That's something new.
   components:
@@ -8,8 +8,8 @@
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: swamper
-      sprite: Corvax/Mobs/Animals/swamper.rsi
+      state: mirelurk
+      sprite: Corvax/Mobs/Animals/mirelurk.rsi
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 4
@@ -31,9 +31,9 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: swamper
+        Base: mirelurk
       Critical:
-        Base: swamper
+        Base: mirelurk
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -55,23 +55,23 @@
       prob: 0.8
 
 - type: entity
-  name: rad swamper
-  id: N14MobRadSwamper
-  parent: N14MobSwamper
+  name: rad mirelurk
+  id: N14MobRadMirelurk
+  parent: N14MobMirelurk
   description: A crab with a shell, and it even glows? That's something new.
   components:
   - type: Sprite
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: radswamper
-      sprite: Corvax/Mobs/Animals/radswamper.rsi
+      state: radmirelurk
+      sprite: Corvax/Mobs/Animals/radmirelurk.rsi
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: radswamper
+        Base: radmirelurk
       Critical:
-        Base: radswamper
+        Base: radmirelurk
       Dead:
         Base: dead
   - type: PointLight

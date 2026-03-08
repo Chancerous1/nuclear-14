@@ -115,6 +115,12 @@
         /// </summary>
         Whitelist = 1 << 20,
 
+        // #Misfits Change - Mentor help permission
+        /// <summary>
+        /// Allows use of the mentor help system.
+        /// </summary>
+        Mentorhelp = 1 << 21,
+
         /// <summary>
         ///     Dangerous host permissions like scsi.
         /// </summary>

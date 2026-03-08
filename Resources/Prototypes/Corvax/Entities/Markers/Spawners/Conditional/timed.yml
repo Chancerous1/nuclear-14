@@ -1,18 +1,18 @@
 - type: entity
   parent: N14TimedSpawnerMolerat
-  id: N14TimedSpawnerSwamper
-  name: periodic swamper spawner
+  id: N14TimedSpawnerMirelurk
+  name: periodic mirelurk spawner
   components:
     - type: Sprite
       layers:
         - state: blue
-        - sprite: Corvax/Mobs/Animals/swamper.rsi
-          state: swamper
+        - sprite: Corvax/Mobs/Animals/mirelurk.rsi
+          state: mirelurk
         - state: timed
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobSwamper
+        - N14MobMirelurk
       chance: 0.75
       intervalSeconds: 2400
       minimumEntitiesSpawned: 1
@@ -20,19 +20,19 @@
 
 - type: entity
   parent: N14TimedSpawnerMolerat
-  id: N14TimedSpawnerRadSwamper
-  name: periodic rad swamper spawner
+  id: N14TimedSpawnerRadMirelurk
+  name: periodic rad mirelurk spawner
   components:
     - type: Sprite
       layers:
         - state: blue
-        - sprite: Corvax/Mobs/Animals/radswamper.rsi
-          state: radswamper
+        - sprite: Corvax/Mobs/Animals/radmirelurk.rsi
+          state: radmirelurk
         - state: timed
     - type: Timer
     - type: TimedSpawner
       prototypes:
-        - N14MobRadSwamper
+        - N14MobRadMirelurk
       chance: 0.75
       intervalSeconds: 2400
       minimumEntitiesSpawned: 1

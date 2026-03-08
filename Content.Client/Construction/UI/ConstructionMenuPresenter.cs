@@ -247,6 +247,12 @@ namespace Content.Client.Construction.UI
 
             foreach (var entry in guide.Entries)
             {
+                if (string.IsNullOrEmpty(entry.Localization)) // #Misfits Change - skip spacer entries with empty localization
+                {
+                    stepList.AddItem(string.Empty, Texture.Transparent, false);
+                    continue;
+                }
+
                 var text = entry.Arguments != null
                     ? Loc.GetString(entry.Localization, entry.Arguments) : Loc.GetString(entry.Localization);
 

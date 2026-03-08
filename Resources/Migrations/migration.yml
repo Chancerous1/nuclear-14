@@ -166,7 +166,7 @@ SpawnVehicleATV: null
 SpawnVehicleSecway: null
 SpawnVehicleJanicart: null
 VehicleJanicart: null
-VehicleJanicartDestroyed: null
+VehicleJanicartDestroyed: JanitorialTrolley
 
 # 2024-02-01
 YellowOxygenTank: OxygenTank
@@ -217,9 +217,6 @@ FoodChilly: FoodChillyPepper
 
 # 2024-03-16
 ClothingHeadHatHairflower: FoodPoppy
-
-# 2024-03-21
-RPED: null
 
 # 2024-03-30
 TraversalDistorterMachineCircuitboard: null

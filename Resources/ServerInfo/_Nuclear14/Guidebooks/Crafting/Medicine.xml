@@ -1,8 +1,133 @@
 <Document>
 # Medicines
 
-List of all available medicine. Fart joke.
+Medicine and chems are essential for surviving the Wasteland. Knowing what to use and when can mean the difference between life and death. Most medical supplies can be found in first aid kits, looted from enemies, or purchased from traveling doctors and merchants — but the craftable ones can mean the difference between life and death when you're far from civilization.
 
-<GuideReagentGroupEmbed Group="Chems"/>
+## Tools
 
+A mortar and pestle is required to process ingredients for many medical recipes. Craft one from two wooden planks.
+
+<GuideEntityEmbed Entity="N14MortarpestleGrinder" Caption="Mortar and Pestle"/>
+
+Ingredients:
+<Box>
+<GuideEntityEmbed Entity="MaterialWoodPlank1"/>
+<GuideEntityEmbed Entity="MaterialWoodPlank1"/>
+</Box>
+
+## Wound Care
+
+[color=#a4885c]Dirty gauze[/color] is a last-resort wound dressing. It stops bleeding but carries a risk of infection. Craft it from cloth strips.
+
+<GuideEntityEmbed Entity="N14DirtyGauze1" Caption="Dirty Gauze"/>
+
+Ingredients:
+<Box>
+<GuideEntityEmbed Entity="MaterialCloth1"/>
+<GuideEntityEmbed Entity="MaterialCloth1"/>
+</Box>
+
+[color=#a4885c]Clean gauze[/color] and [color=#a4885c]ointment[/color] are sterile supplies found in first aid kits and medical caches. Clean gauze treats cuts and punctures without infection risk. Ointment treats burns and cold damage.
+
+<Box>
+<GuideEntityEmbed Entity="N14CleanGauze1" Caption="Clean Gauze"/>
+<GuideEntityEmbed Entity="N14Ointment1" Caption="Ointment"/>
+</Box>
+
+## Healing Powder
+
+A tribal remedy that accelerates natural healing. Nauseating but effective. Craft it from broc flower and xander root — no workbench required, just crush them together.
+
+<GuideEntityEmbed Entity="N14HealingPowder" Caption="Healing Powder"/>
+
+Ingredients:
+<Box>
+<GuideEntityEmbed Entity="N14FloraProduceWildBrocFlower"/>
+<GuideEntityEmbed Entity="N14FloraProduceWildXander"/>
+</Box>
+
+## Healing Poultice
+
+A more advanced natural remedy combining multiple plant extracts. Heals common ailments slowly but surpasses healing powder for sustained recovery.
+
+<GuideEntityEmbed Entity="N14HealingPoultice" Caption="Healing Poultice"/>
+
+Ingredients:
+<Box>
+<GuideEntityEmbed Entity="N14FloraProduceWildBrocFlower"/>
+<GuideEntityEmbed Entity="N14FloraProduceWildXander"/>
+<GuideEntityEmbed Entity="N14FloraProduceWildCaveFungus"/>
+<GuideEntityEmbed Entity="N14FloraProduceWildAgave"/>
+</Box>
+
+## Stimpaks
+
+[color=#a4885c]Stimpaks[/color] are the backbone of Wasteland medicine — injectable serums that rapidly accelerate the body's healing. Craft a standard stimpak by combining broc flower and xander root with a syringe and a bloodpack.
+
+<GuideEntityEmbed Entity="N14Stimpak" Caption="Stimpak"/>
+
+Ingredients:
+<Box>
+<GuideEntityEmbed Entity="N14FloraProduceWildBrocFlower"/>
+<GuideEntityEmbed Entity="N14FloraProduceWildXander"/>
+<GuideEntityEmbed Entity="N14ChemicalSyringe"/>
+<GuideEntityEmbed Entity="Bloodpack"/>
+</Box>
+
+[color=#a4885c]Dirty stimpaks[/color] and [color=#a4885c]super stimpaks[/color] cannot be crafted. Dirty stimpaks are found in poor condition throughout the Wasteland; super stimpaks are manufactured goods sold by doctors and traders.
+
+## Jet Inhaler
+
+A Jet inhaler is a crafting component used to make a RadAway inhaler. On its own it only delivers the Jet chem. Craft the empty inhaler body from a sheet of plastic.
+
+<GuideEntityEmbed Entity="N14JetInhaler" Caption="Jet Inhaler"/>
+
+Ingredients:
+<Box>
+<GuideEntityEmbed Entity="SheetPlastic"/>
+</Box>
+
+## RadAway Inhaler
+
+Flushes radiation from the bloodstream. Assemble the inhaler body first (see Jet Inhaler above), then attach a glass phial loaded with RadAway reagent.
+
+<GuideEntityEmbed Entity="N14RadAwayInhaler" Caption="RadAway Inhaler"/>
+
+Assembly steps:
+<Box>
+<GuideEntityEmbed Entity="N14JetInhaler"/>
+<GuideEntityEmbed Entity="N14RadAwayPhial"/>
+</Box>
+
+[color=#a4885c]RadAway phials[/color] and [color=#a4885c]RadAway bloodbags[/color] are also found as standalone items throughout the Wasteland.
+
+## Antidotes and Other Remedies
+
+These items cannot be crafted and must be found or purchased — looted from enemies, bought from traveling doctors, or discovered in medical caches across the Wasteland.
+
+<Box>
+<GuideEntityEmbed Entity="N14Antidote" Caption="Antidote"/>
+<GuideEntityEmbed Entity="N14SmellingSalts" Caption="Smelling Salts"/>
+<GuideEntityEmbed Entity="N14Bitterdrink" Caption="Bitterdrink"/>
+<GuideEntityEmbed Entity="N14MourningPoultice" Caption="Mourning Poultice"/>
+</Box>
+
+## Pills, Canisters, and Chems
+
+Pills and canisters are pre-manufactured and cannot be crafted. They are found in medical caches, purchased from doctors, or looted from enemies.
+
+<Box>
+<GuideEntityEmbed Entity="N14RadXCanisterFilled" Caption="Rad-X"/>
+<GuideEntityEmbed Entity="N14BuffoutCanisterFilled" Caption="Buffout"/>
+<GuideEntityEmbed Entity="N14MentatsCanisterFilled" Caption="Mentats"/>
+<GuideEntityEmbed Entity="N14FixerCanisterFilled" Caption="Fixer"/>
+<GuideEntityEmbed Entity="N14CateyeCanisterFilled" Caption="Cateye"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14Jet" Caption="Jet"/>
+<GuideEntityEmbed Entity="N14BuffjetCanisterFilled" Caption="Buffjet"/>
+<GuideEntityEmbed Entity="N14BufftatsCanisterFilled" Caption="Bufftats"/>
+</Box>
+
+[color=#a4885c]Warning:[/color] Prolonged chem use leads to addiction. Fixer can treat most addictions, but availability is not guaranteed.
 </Document>

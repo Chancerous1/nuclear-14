@@ -77,4 +77,51 @@ Some chemicals have special effects on plants.
 <GuideReagentEmbed Reagent="Fertilizer"/>
 Compost is also a source of fertilizer and is obtained by the decomposition of animal manure, which takes about 5 minutes. Compost will also dissolve after 2 minutes.
 
+# Available Plants
+
+Below is a list of plants that can be grown in Nuclear 14. Seeds can be found while exploring the Wasteland, traded from merchants, or harvested from wild plants.
+
+## Food and Crop Plants
+
+Seeds can be found while exploring the Wasteland, traded from merchants, or harvested from wild plants. Click any seed entry below to see what it produces and how to grow it.
+
+<Box>
+<GuideEntityEmbed Entity="N14FloraWildAgaveClippingSeed" Caption="Wild Agave"/>
+<GuideEntityEmbed Entity="N14FloraWildBananaYuccaClippingSeed" Caption="Banana Yucca"/>
+<GuideEntityEmbed Entity="N14FloraWildBarrelCactusClippingSeed" Caption="Barrel Cactus"/>
+<GuideEntityEmbed Entity="N14FloraWildBlackberryClippingSeed" Caption="Blackberry"/>
+<GuideEntityEmbed Entity="N14FloraWildBrocFlowerClippingSeed" Caption="Broc Flower"/>
+<GuideEntityEmbed Entity="N14FloraWildBuffaloGourdClippingSeed" Caption="Buffalo Gourd"/>
+<GuideEntityEmbed Entity="N14FloraWildCabbageClippingSeed" Caption="Cabbage"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14FloraWildCarrotClippingSeed" Caption="Carrot"/>
+<GuideEntityEmbed Entity="N14FloraWildGlowpepperClippingSeed" Caption="Glowpepper"/>
+<GuideEntityEmbed Entity="N14FloraWildMaizeClippingSeed" Caption="Maize / Corn"/>
+<GuideEntityEmbed Entity="N14FloraWildHoneyMesquiteClippingSeed" Caption="Honey Mesquite"/>
+<GuideEntityEmbed Entity="N14FloraWildMutfruitClippingSeed" Caption="Mutfruit"/>
+<GuideEntityEmbed Entity="N14FloraWildNettleClippingSeed" Caption="Nettle"/>
+<GuideEntityEmbed Entity="N14FloraWildOnionClippingSeed" Caption="Onion"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="N14FloraWildPinyonClippingSeed" Caption="Pinyon"/>
+<GuideEntityEmbed Entity="N14FloraWildPricklyPearClippingSeed" Caption="Prickly Pear"/>
+<GuideEntityEmbed Entity="N14FloraWildRazorgrainClippingSeed" Caption="Razorgrain"/>
+<GuideEntityEmbed Entity="N14FloraWildStarlightBerryClippingSeed" Caption="Starlight Berries"/>
+<GuideEntityEmbed Entity="N14FloraWildTarberryClippingSeed" Caption="Tarberries"/>
+<GuideEntityEmbed Entity="N14FloraWildTatoClippingSeed" Caption="Tato"/>
+<GuideEntityEmbed Entity="N14FloraWildXanderRootClippingSeed" Caption="Xander Root"/>
+</Box>
+
+## Medicinal and Industrial Plants
+
+These plants have healing, toxic, or crafting-related uses. Handle with care.
+
+<Box>
+<GuideEntityEmbed Entity="N14FloraWildCoyoteTobaccoClippingSeed" Caption="Coyote Tobacco"/>
+<GuideEntityEmbed Entity="N14FloraDaturaClippingSeed" Caption="Datura"/>
+<GuideEntityEmbed Entity="N14FloraWildWhiteHorsenettleClippingSeed" Caption="White Horsenettle"/>
+</Box>
+
+
 </Document>

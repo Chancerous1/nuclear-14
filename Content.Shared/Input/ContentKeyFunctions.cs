@@ -35,6 +35,8 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction OpenBackpack = "OpenBackpack";
         public static readonly BoundKeyFunction OpenBelt = "OpenBelt";
         public static readonly BoundKeyFunction OpenAHelp = "OpenAHelp";
+        // #Misfits Change - Mentor help key function
+        public static readonly BoundKeyFunction OpenMentorHelp = "OpenMentorHelp";
         public static readonly BoundKeyFunction SwapHands = "SwapHands";
         public static readonly BoundKeyFunction MoveStoredItem = "MoveStoredItem";
         public static readonly BoundKeyFunction RotateStoredItem = "RotateStoredItem";

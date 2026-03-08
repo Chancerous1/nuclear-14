@@ -76,6 +76,12 @@
       toggleMouseRotator: false
     - type: Damageable
       damageContainer: Inorganic
+    - type: Explosive
+      #Misfits Change - use the structural-capable N14 explosion profile.
+      explosionType: N14DefaultStructural
+      maxIntensity: 4
+      intensitySlope: 1
+      totalIntensity: 10
     - type: Destructible
       thresholds:
         - trigger:
@@ -84,6 +90,7 @@
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
+            - !type:ExplodeBehavior
         - trigger:
             !type:DamageTrigger
             damage: 300
@@ -94,6 +101,7 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: MetalGlassBreak
+            - !type:ExplodeBehavior
             - !type:SpawnEntitiesBehavior
               spawn:
                 SheetSteel1:

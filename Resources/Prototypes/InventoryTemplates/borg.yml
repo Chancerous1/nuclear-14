@@ -42,3 +42,8 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0, 0.09375
+
+# #Misfits Change: player-controlled robots have no equipment slots
+- type: inventoryTemplate
+  id: borgRobot
+  slots: []

@@ -51,6 +51,7 @@
     damage:
       groups:
         Brute: 3
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -133,6 +134,7 @@
     damage:
       groups:
         Brute: 3
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -210,6 +212,7 @@
     damage:
       groups:
         Brute: 5
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -301,6 +304,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 4.75
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60

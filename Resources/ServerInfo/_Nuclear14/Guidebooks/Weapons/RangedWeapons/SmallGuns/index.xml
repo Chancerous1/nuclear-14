@@ -1,3 +1,64 @@
-﻿<Document>
-# Placeholder
+<Document>
+# Small Guns
+
+Small Guns are the most common weapons found in the Wasteland. They are reliable, easy to maintain, and ammunition is widely available — making them the go-to choice for most survivors.
+
+## Pistols
+
+Pistols are compact sidearms suitable for close to medium range. They are easy to conceal and quick to draw.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponPistol10mm"/>
+<GuideEntityEmbed Entity="N14WeaponPistol9mm"/>
+<GuideEntityEmbed Entity="N14WeaponPistol10mmPipe"/>
+</Box>
+
+## Revolvers
+
+Revolvers are robust, hard-hitting sidearms. They are slower to reload than pistols but deliver considerably more stopping power.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponRevolver44Magnun"/>
+<GuideEntityEmbed Entity="N14WeaponRevolver10mm"/>
+<GuideEntityEmbed Entity="N14WeaponRevolver45-70Hunter"/>
+</Box>
+
+## Rifles
+
+Rifles are versatile long-arms effective at medium to long range. Standard-issue for many factions.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponRifle556R91"/>
+<GuideEntityEmbed Entity="N14WeaponRifle762Chinese"/>
+<GuideEntityEmbed Entity="N14WeaponRifle556Carbine"/>
+</Box>
+
+## Shotguns
+
+Shotguns deal massive damage at close range. Ideal for clearing rooms and dealing with lightly armored threats.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponShotgunDoubleBarrel"/>
+<GuideEntityEmbed Entity="N14WeaponShotgun"/>
+<GuideEntityEmbed Entity="N14WeaponShotgunSawedOff"/>
+</Box>
+
+## Submachine Guns
+
+SMGs fire pistol-caliber rounds at high rates of fire. Effective against lightly armored targets in close quarters.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponSMG10mm"/>
+<GuideEntityEmbed Entity="N14WeaponSMG12mm"/>
+</Box>
+
+## Snipers
+
+Sniper rifles are precision long-range weapons. They excel at eliminating targets from a distance before they can close in.
+
+<Box>
+<GuideEntityEmbed Entity="N14WeaponSniperHunting"/>
+<GuideEntityEmbed Entity="N14WeaponSniper556VarmintRifle"/>
+<GuideEntityEmbed Entity="N14WeaponSniper308LeverRifle"/>
+</Box>
 </Document>

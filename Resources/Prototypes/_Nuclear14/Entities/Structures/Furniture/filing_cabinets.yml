@@ -41,7 +41,7 @@
       storagebase: !type:Container
 
 - type: entity
-  parent: [ N14filingCabinet, N14BaseSmallLockerTimedStorageFill ]
+  parent: [ N14filingCabinet, MisfitsFilingCabinetTimedStorageFill ] # #Misfits Change: was N14BaseSmallLockerTimedStorageFill; new fill avoids grid overflow on 4x9 grid
   id: N14FilingCabinetRefilling
   suffix: Refilling,Random
 

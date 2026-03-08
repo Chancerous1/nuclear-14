@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Examine;
 using Content.Shared.Stacks;
+using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -19,8 +20,10 @@ namespace Content.Shared.Construction.Steps
         public override void DoExamine(ExaminedEvent examinedEvent)
         {
             var material = IoCManager.Resolve<IPrototypeManager>().Index<StackPrototype>(MaterialPrototypeId);
+            var loc = IoCManager.Resolve<ILocalizationManager>();
+            var materialName = loc.GetEntityData(material.Spawn).Name;
 
-            examinedEvent.PushMarkup(Loc.GetString("construction-insert-material-entity", ("amount", Amount),("materialName", Loc.GetString($"ent-{material.Spawn}")))); // Corvax-Change
+            examinedEvent.PushMarkup(Loc.GetString("construction-insert-material-entity", ("amount", Amount),("materialName", materialName))); // Corvax-Change
         }
 
         public override bool EntityValid(EntityUid uid, IEntityManager entityManager, IComponentFactory compFactory)
@@ -41,11 +44,13 @@ namespace Content.Shared.Construction.Steps
         public override ConstructionGuideEntry GenerateGuideEntry()
         {
             var material = IoCManager.Resolve<IPrototypeManager>().Index<StackPrototype>(MaterialPrototypeId);
+            var loc = IoCManager.Resolve<ILocalizationManager>();
+            var materialName = loc.GetEntityData(material.Spawn).Name;
 
             return new ConstructionGuideEntry()
             {
                 Localization = "construction-presenter-material-step",
-                Arguments = new (string, object)[] { ("amount", Amount), ("material", Loc.GetString($"ent-{material.Spawn}")) }, // Corvax-Change
+                Arguments = new (string, object)[] { ("amount", Amount), ("material", materialName) }, // Corvax-Change
                 Icon = material.Icon,
             };
         }

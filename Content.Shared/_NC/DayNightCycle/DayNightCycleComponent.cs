@@ -1,3 +1,4 @@
+// #Misfits Change - Reworked to use IGameTiming-based deterministic cycle (no per-frame dirty spam)
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -10,32 +11,32 @@ namespace Content.Shared._NC14.DayNightCycle
         [DataField("cycleDuration")]
         public float CycleDurationMinutes { get; set; } = 60f; // Default cycle duration is 60 minutes
 
+        /// <summary>
+        /// Offset into the cycle (0–1) applied at startup so the world begins at
+        /// "early morning" rather than midnight.
+        /// </summary>
+        [DataField("startOffset")]
+        [AutoNetworkedField]
+        public float StartOffset { get; set; } = 0.2f; // Start at 20% (early morning)
+
         [DataField("timeEntries")]
         public List<TimeEntry> TimeEntries { get; set; } = new()
         {
-            new() { Time = 0.00f, ColorHex = "#000000" }, // Midnight
-            new() { Time = 0.04f, ColorHex = "#02020b" }, // Very early morning
-            new() { Time = 0.08f, ColorHex = "#312716" }, // Early dawn
-            new() { Time = 0.17f, ColorHex = "#4E3D23" }, // Dawn
-            new() { Time = 0.25f, ColorHex = "#58372D" }, // Sunrise
-            new() { Time = 0.33f, ColorHex = "#876A42" }, // Early morning
-            new() { Time = 0.42f, ColorHex = "#A08042" }, // Mid-morning
-            new() { Time = 0.50f, ColorHex = "#A88F73" }, // Noon
-            new() { Time = 0.58f, ColorHex = "#C1A78A" }, // Early afternoon
-            new() { Time = 0.67f, ColorHex = "#7D6244" }, // Late afternoon
-            new() { Time = 0.75f, ColorHex = "#8C6130" }, // Sunset
-            new() { Time = 0.83f, ColorHex = "#543521" }, // Dusk
-            new() { Time = 0.92f, ColorHex = "#02020b" }, // Early night
-            new() { Time = 1.00f, ColorHex = "#000000" }  // Back to Midnight
+            new() { Time = 0.00f, ColorHex = "#0D0D1E" }, // Midnight       – dark navy, never fully black
+            new() { Time = 0.04f, ColorHex = "#141428" }, // Very early night
+            new() { Time = 0.08f, ColorHex = "#4A3420" }, // Early dawn      – first warm hint
+            new() { Time = 0.17f, ColorHex = "#7A5C34" }, // Dawn            – amber glow
+            new() { Time = 0.25f, ColorHex = "#A87448" }, // Sunrise         – warm orange
+            new() { Time = 0.33f, ColorHex = "#D4A85C" }, // Early morning   – golden
+            new() { Time = 0.42f, ColorHex = "#E8C070" }, // Mid-morning     – bright gold
+            new() { Time = 0.50f, ColorHex = "#F8D880" }, // Noon            – peak brightness, warm white-gold
+            new() { Time = 0.58f, ColorHex = "#F0C870" }, // Early afternoon – slightly softer
+            new() { Time = 0.67f, ColorHex = "#CCA050" }, // Late afternoon  – deepening gold
+            new() { Time = 0.75f, ColorHex = "#B07840" }, // Sunset          – warm orange
+            new() { Time = 0.83f, ColorHex = "#7A4A2C" }, // Dusk            – deep amber-red
+            new() { Time = 0.92f, ColorHex = "#1E1630" }, // Early night     – blue-purple
+            new() { Time = 1.00f, ColorHex = "#0D0D1E" }  // Back to Midnight
         };
-
-        [ViewVariables(VVAccess.ReadWrite)]
-        [AutoNetworkedField]
-        public int CurrentTimeEntryIndex { get; set; }
-
-        [ViewVariables(VVAccess.ReadWrite)]
-        [AutoNetworkedField]
-        public float CurrentCycleTime { get; set; }
     }
 
     [DataDefinition, NetSerializable, Serializable]

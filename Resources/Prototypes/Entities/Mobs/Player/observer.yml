@@ -108,8 +108,8 @@
 
 - type: entity
   id: ActionToggleGhosts
-  name: Toggle Ghosts
-  description: Toggle the visibility of other ghosts.
+  name: action-name-toggle-ghosts #Misfits Change
+  description: action-desc-toggle-ghosts #Misfits Change
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction

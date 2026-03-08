@@ -111,7 +111,8 @@
       types:
         Heat: 10
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     totalIntensity: 90
 
 - type: entity
@@ -208,7 +209,8 @@
       types:
         Heat: 10
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     totalIntensity: 90
 
 - type: entity

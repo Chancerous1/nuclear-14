@@ -35,8 +35,8 @@
 
 - type: entity
   id: ActionToggleLight
-  name: Toggle Light
-  description: Turn the light on and off.
+  name: action-name-toggle-light #Misfits Change
+  description: action-desc-toggle-light #Misfits Change
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction

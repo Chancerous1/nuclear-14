@@ -1,6 +1,8 @@
 ui-vote-type-restart = Restart round
 ui-vote-type-gamemode = Next gamemode
 ui-vote-type-map = Next map
+# #Misfits Change: Extend vote option label
+ui-vote-type-extend = Extend round
 
 # Window title of the vote create menu
 ui-vote-create-title = Call Vote

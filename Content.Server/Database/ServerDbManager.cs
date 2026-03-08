@@ -189,6 +189,9 @@ namespace Content.Server.Database
             ImmutableTypedHwid? hwId);
         Task<PlayerRecord?> GetPlayerRecordByUserName(string userName, CancellationToken cancel = default);
         Task<PlayerRecord?> GetPlayerRecordByUserId(NetUserId userId, CancellationToken cancel = default);
+
+        // #Misfits Change - Search players by partial name for whitelist admin UI
+        Task<List<PlayerRecord>> SearchPlayersByName(string partialName, int limit = 20, CancellationToken cancel = default);
         #endregion
 
         #region Connection Logs
@@ -608,6 +611,13 @@ namespace Content.Server.Database
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetPlayerRecordByUserId(userId, cancel));
+        }
+
+        // #Misfits Change - Search players by partial name for whitelist admin UI
+        public Task<List<PlayerRecord>> SearchPlayersByName(string partialName, int limit = 20, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.SearchPlayersByName(partialName, limit, cancel));
         }
 
         public Task<int> AddConnectionLogAsync(

@@ -9,6 +9,15 @@
   supervisors: job-supervisors-followers
   accessGroups:
   - FollowersApocalypse
+  requirements: # Misfits Change: block non-human species
+  - !type:CharacterSpeciesRequirement
+    inverted: true
+    species:
+    - RobotMrHandy
+    - RobotMrGutsy
+    - RobotProtectron
+    - RobotAssaultron
+    - SuperMutant
   # Forge-Change-Start
   special:
   - !type:AddComponentSpecial

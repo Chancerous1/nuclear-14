@@ -646,6 +646,24 @@ namespace Content.Server.Database
 
         #endregion
 
+        // #Misfits Change - Search players by partial name for whitelist admin UI
+        #region Player Search
+
+        public async Task<List<PlayerRecord>> SearchPlayersByName(string partialName, int limit, CancellationToken cancel)
+        {
+            await using var db = await GetDb();
+
+            var records = await db.DbContext.Player
+                .Where(p => p.LastSeenUserName.Contains(partialName))
+                .OrderByDescending(p => p.LastSeenTime)
+                .Take(limit)
+                .ToListAsync(cancel);
+
+            return records.Select(r => MakePlayerRecord(r)!).ToList();
+        }
+
+        #endregion
+
         #region Connection Logs
         /*
          * CONNECTION LOG

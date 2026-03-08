@@ -18,8 +18,6 @@
     blackboard:
       NavSmash: !type:Bool
         true
-      MeleeRange: !type:Single
-        1.5
   - type: Sprite
     drawdepth: Mobs
   - type: Physics
@@ -45,8 +43,9 @@
     thresholds:
       0: Alive
       100: Dead
-    triggersAlerts: false #Misfits Change - robots have no HUD alerts
-    showOverlays: false
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: HumanDead
   - type: Stamina
     critThreshold: 20
   - type: MovementAlwaysTouching
@@ -93,10 +92,6 @@
           N14Scrap1:
             min: 1
             max: 3
-    - trigger:
-        !type:DamageTrigger
-        damage: 120
-      behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
 # TODO: Make them shout things at people using advertise.
@@ -109,10 +104,9 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-        collection: N14HandyAttack #Misfits Change
+        path: /Audio/Effects/metal_thud1.ogg
     angle: 0
     animation: WeaponArcPunch
-    range: 1.5
     damage:
       groups:
         Brute: 5
@@ -131,22 +125,10 @@
         true
       NavSmash: !type:Bool
         true
-      MeleeRange: !type:Single
-        1.5
-  - type: SpamEmitSound #Misfits Change
-    minInterval: 10
-    maxInterval: 20
-    sound:
-      collection: N14AssaultronIdle
-      params:
-        volume: -3
-        maxDistance: 7
   - type: MobThresholds
     thresholds:
       0: Alive
       200: Dead # Corvax-Change
-    triggersAlerts: false #Misfits Change - robots have no HUD alerts
-    showOverlays: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -161,10 +143,6 @@
           N14Scrap1:
             min: 1
             max: 3
-    - trigger:
-        !type:DamageTrigger
-        damage: 220
-      behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: MovementSpeedModifier
@@ -214,14 +192,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 1.5
     baseSprintSpeed : 3
-  - type: SpamEmitSound #Misfits Change
-    minInterval: 10
-    maxInterval: 20
-    sound:
-      collection: N14ProtectronIdle
-      params:
-        volume: -3
-        maxDistance: 7
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/protectron.rsi
     layers:
@@ -254,8 +224,6 @@
     blackboard:
       NavSmash: !type:Bool
         true
-      MeleeRange: !type:Single
-        1.5
 
 - type: entity
   parent: N14MobRobotProtectronHostile
@@ -342,8 +310,6 @@
     blackboard:
       NavSmash: !type:Bool
         true
-      MeleeRange: !type:Single
-        1.5
 
 - type: entity
   parent: N14MobRobotHostileMelee
@@ -358,21 +324,12 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-      collection: N14HandyAttack #Misfits Change
+      path: /Audio/Effects/metal_thud1.ogg
     angle: 0
     animation: WeaponArcPunch
-    range: 1.5
     damage:
       types:
         Pierce: 5
-  - type: SpamEmitSound #Misfits Change
-    minInterval: 10
-    maxInterval: 20
-    sound:
-      collection: N14HandyIdle
-      params:
-        volume: -3
-        maxDistance: 7
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandyclaw.rsi
     layers:
@@ -417,7 +374,6 @@
       path: /Audio/Weapons/chainsaw.ogg
     angle: 0
     animation: WeaponArcPunch
-    range: 1.5
     damage:
       types:
         Slash: 3
@@ -465,14 +421,6 @@
     # name: Mr Handy
     # description: |
       # Protect your area and remove any trespassers.
-  - type: SpamEmitSound #Misfits Change
-    minInterval: 10
-    maxInterval: 20
-    sound:
-      collection: N14HandyIdle
-      params:
-        volume: -3
-        maxDistance: 7
   - type: Gun #Mobs currently cannot bolt a gun, so we have to simulate them firing it
     minAngle: 9
     maxAngle: 18
@@ -502,8 +450,6 @@
     blackboard:
       NavSmash: !type:Bool
         true
-      MeleeRange: !type:Single
-        1.5
 
 - type: entity
   parent: N14MobRobotHostile
@@ -515,14 +461,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
     baseSprintSpeed : 4
-  - type: SpamEmitSound #Misfits Change
-    minInterval: 10
-    maxInterval: 20
-    sound:
-      collection: N14GutsyIdle
-      params:
-        volume: -3
-        maxDistance: 7
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/mrhandygutsy.rsi
     layers:
@@ -568,8 +506,6 @@
     blackboard:
       NavSmash: !type:Bool
         true
-      MeleeRange: !type:Single
-        1.5
 
 - type: entity
   parent: N14MobRobotHostile
@@ -581,14 +517,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 1.5
     baseSprintSpeed : 3
-  - type: SpamEmitSound #Misfits Change
-    minInterval: 10
-    maxInterval: 20
-    sound:
-      collection: N14ProtectronIdle
-      params:
-        volume: -3
-        maxDistance: 7
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/robobrain.rsi
     layers:
@@ -634,8 +562,6 @@
     blackboard:
       NavSmash: !type:Bool
         true
-      MeleeRange: !type:Single
-        1.5
 
 - type: entity
   parent: N14MobRobotHostile
@@ -684,8 +610,6 @@
     blackboard:
       NavSmash: !type:Bool
         true
-      MeleeRange: !type:Single
-        1.5
   - type: AmbientSound
     range: 6
     volume: -3

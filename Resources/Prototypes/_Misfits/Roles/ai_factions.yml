@@ -1,0 +1,80 @@
+# #Misfits Change - BoS Midwest/Washington AI factions.
+# Consolidated here from _Nuclear14/Roles/ai_factions.yml.
+
+- type: npcFaction
+  id: BrotherhoodMidwest
+  friendly:
+  - BrotherhoodMidwestSecureArea
+  hostile:
+  - WastelandInsect
+  - WastelandAnimal
+  - Raider
+  - HostileRobot
+  - Feral
+
+- type: npcFaction
+  id: BrotherhoodMidwestSecureArea
+  friendly:
+  - BrotherhoodMidwest
+  hostile:
+  - Wastelander
+  - BrotherhoodWashington
+  - BrotherhoodWashingtonSecureArea
+  - CaravanCompany
+  - CaravanCompanySecureArea
+  - NCR
+  - NCRSecureArea
+  - Rangers
+  - Townsfolk
+  - TownsfolkSecureArea
+  - Tribal
+  - TribalSecureArea
+  - Vault
+  - VaultSecureArea
+  - Zetan
+  - WastelandAnimal
+  - WastelandInsect
+  - Raider
+  - CaesarLegion
+  - HostileRobot
+  - Feral
+  - BrotherhoodWest
+
+- type: npcFaction
+  id: BrotherhoodWashington
+  friendly:
+  - BrotherhoodWashingtonSecureArea
+  hostile:
+  - WastelandInsect
+  - WastelandAnimal
+  - Raider
+  - HostileRobot
+  - Feral
+
+- type: npcFaction
+  id: BrotherhoodWashingtonSecureArea
+  friendly:
+  - BrotherhoodWashington
+  hostile:
+  - Wastelander
+  - BrotherhoodMidwest
+  - BrotherhoodMidwestSecureArea
+  - CaravanCompany
+  - CaravanCompanySecureArea
+  - NCR
+  - NCRSecureArea
+  - Rangers
+  - Townsfolk
+  - TownsfolkSecureArea
+  - Tribal
+  - TribalSecureArea
+  - Vault
+  - VaultSecureArea
+  - Zetan
+  - WastelandAnimal
+  - WastelandInsect
+  - Raider
+  - HostileRobot
+  - Feral
+  - CaesarLegion
+  - BrotherhoodWest

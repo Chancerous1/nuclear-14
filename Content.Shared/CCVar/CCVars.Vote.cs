@@ -46,6 +46,29 @@ public sealed partial class CCVars
     public static readonly CVarDef<float> VoteRestartRequiredRatio =
         CVarDef.Create("vote.restart_required_ratio", 0.75f, CVar.SERVERONLY);
 
+    // #Misfits Change: Minimum round duration (in minutes) before a player-initiated restart vote is allowed.
+    /// <summary>
+    ///     Minimum round duration in minutes that must pass before a player restart vote can be called.
+    ///     0 disables the restriction.
+    /// </summary>
+    public static readonly CVarDef<int> VoteRestartMinimumRoundTime =
+        CVarDef.Create("vote.restart_minimum_round_time", 60, CVar.SERVERONLY);
+
+    // #Misfits Change: Enable/disable the player-initiated round extension vote.
+    /// <summary>
+    ///     Whether players can call a vote to extend the round (recalls the shuttle and resets the auto-call timer).
+    /// </summary>
+    public static readonly CVarDef<bool> VoteExtendEnabled =
+        CVarDef.Create("vote.extend_enabled", true, CVar.SERVERONLY);
+
+    // #Misfits Change: How many minutes the round is extended by when the extend vote passes.
+    /// <summary>
+    ///     Minutes added to the round auto-call timer when a vote to extend passes.
+    ///     The shuttle is recalled and the timer is reset to this value from now.
+    /// </summary>
+    public static readonly CVarDef<int> VoteExtendTime =
+        CVarDef.Create("vote.extend_time", 30, CVar.SERVERONLY);
+
     /// <summary>
     /// Whether or not to prevent the restart vote from having any effect when there is an online admin
     /// </summary>

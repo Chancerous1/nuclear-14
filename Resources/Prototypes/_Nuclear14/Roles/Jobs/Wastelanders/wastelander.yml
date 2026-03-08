@@ -9,6 +9,15 @@
   startingGear: WastelanderGear
   icon: "JobIconWastelander" # Corvax-Change
   supervisors: job-supervisors-wastelander
+  requirements: # Misfits Change: block non-human species
+  - !type:CharacterSpeciesRequirement
+    inverted: true
+    species:
+    - RobotMrHandy
+    - RobotMrGutsy
+    - RobotProtectron
+    - RobotAssaultron
+    - SuperMutant
   special:
   - !type:AddComponentSpecial
     components:

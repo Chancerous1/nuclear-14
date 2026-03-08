@@ -50,16 +50,25 @@
     - Trash
     - Skewer
   - type: Food
-    trash: 
-    - FoodKebabSkewer
+    trash: [] # Misfits Change: removed self-referential FoodKebabSkewer trash to prevent infinite food loop
   - type: SolutionContainerManager
     solutions:
       food:
+        canReact: false # Misfits Change: prevent reagent reactions when food elements are merged
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
+  - type: FoodSequenceStartPoint # Misfits Change: allows food element entities (with key: Skewer) to be placed on the skewer and show sprites
+    key: Skewer
+    maxLayers: 4
+    startPosition: -0.27, -0.19
+    inverseLayers: true
+    offset: 0.2, 0.1
+    nameGeneration: food-sequence-skewer-gen
+    contentSeparator: ", "
+    allowHorizontalFlip: false
 
 - type: entity
   name: double rat kebab
@@ -104,6 +113,7 @@
     layers:
       - state: skewer
       - state: skewer-snake
+      - map: ["foodSequenceLayers"] # Misfits Change: added layer map so dynamically added food elements display their sprites
   - type: SolutionContainerManager
     solutions:
       food:

@@ -1,23 +1,93 @@
-# Robot Spawn job: single job for all player-controlled synthetic robots. #Misfits Change
-# Players choose their robot type (Mr. Handy, Protectron, Mr. Gutsy, Assaultron) as a
-# species in the character customization menu via the Robot Type variant picker panel.
-# Access is gated via the job-specific whitelist (admin: jobwhitelistadd <player> RobotSpawn).
-# On spawn, StationSpawningSystem uses profile.Species -> species.Prototype -> correct robot entity.
+# Per-species synthetic robot jobs. #Misfits Change
+# Each robot species (Mr. Handy, Protectron, Mr. Gutsy, Assaultron) gets its own job,
+# locked to that species via CharacterSpeciesRequirement. The species restrictedJobs
+# field ensures only the matching species can see each job in the lobby.
+# Access is gated via per-job whitelist (admin: jobwhitelistadd <player> SyntheticMrHandy).
 
 - type: job
-  id: RobotSpawn
-  name: job-name-robot-spawn
-  description: job-description-robot-spawn
-  playTimeTracker: RobotSpawn
+  id: SyntheticMrHandy
+  name: job-name-synthetic-mr-handy
+  description: job-description-synthetic-mr-handy
+  playTimeTracker: SyntheticMrHandy
   icon: JobIconBorg
   supervisors: job-supervisors-synthetic
   canBeAntag: false
   setPreference: true
   overrideConsoleVisibility: true
-  whitelisted: true # #Misfits Change: per-job whitelist via jobwhitelistadd
+  whitelisted: true # #Misfits Change
   hideWithoutWhitelist: true # #Misfits Change
   spawnLoadout: false
   applyTraits: false
+  requirements: # #Misfits Change: lock to species
+  - !type:CharacterSpeciesRequirement
+    species:
+    - RobotMrHandy
+
+- type: job
+  id: SyntheticProtectron
+  name: job-name-synthetic-protectron
+  description: job-description-synthetic-protectron
+  playTimeTracker: SyntheticProtectron
+  icon: JobIconBorg
+  supervisors: job-supervisors-synthetic
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true # #Misfits Change
+  hideWithoutWhitelist: true # #Misfits Change
+  spawnLoadout: false
+  applyTraits: false
+  requirements: # #Misfits Change: lock to species
+  - !type:CharacterSpeciesRequirement
+    species:
+    - RobotProtectron
+
+- type: job
+  id: SyntheticMrGutsy
+  name: job-name-synthetic-mr-gutsy
+  description: job-description-synthetic-mr-gutsy
+  playTimeTracker: SyntheticMrGutsy
+  icon: JobIconBorg
+  supervisors: job-supervisors-synthetic
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true # #Misfits Change
+  hideWithoutWhitelist: true # #Misfits Change
+  spawnLoadout: false
+  applyTraits: false
+  requirements: # #Misfits Change: lock to species
+  - !type:CharacterSpeciesRequirement
+    species:
+    - RobotMrGutsy
+
+- type: job
+  id: SyntheticAssaultron
+  name: job-name-synthetic-assaultron
+  description: job-description-synthetic-assaultron
+  playTimeTracker: SyntheticAssaultron
+  icon: JobIconBorg
+  supervisors: job-supervisors-synthetic
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true # #Misfits Change
+  hideWithoutWhitelist: true # #Misfits Change
+  spawnLoadout: false
+  applyTraits: false
+  requirements: # #Misfits Change: lock to species
+  - !type:CharacterSpeciesRequirement
+    species:
+    - RobotAssaultron
 
 - type: playTimeTracker
-  id: RobotSpawn
+  id: SyntheticMrHandy
+
+- type: playTimeTracker
+  id: SyntheticProtectron
+
+- type: playTimeTracker
+  id: SyntheticMrGutsy
+
+- type: playTimeTracker
+  id: SyntheticAssaultron

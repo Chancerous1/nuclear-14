@@ -198,6 +198,15 @@ namespace Content.Client.Stylesheets
                 ExpandMarginBottom = 3,
                 ContentMarginBottomOverride = 0
             };
+            // #Misfits Change - Purple header for Mentor Help window
+            var windowHeaderMentor = new StyleBoxTexture
+            {
+                Texture = windowHeaderTex,
+                Modulate = Color.FromHex("#7B2FBE"),
+                PatchMarginBottom = 3,
+                ExpandMarginBottom = 3,
+                ContentMarginBottomOverride = 0
+            };
             var windowBackgroundTex = resCache.GetTexture("/Textures/Interface/Nano/window_background.png");
             var windowBackground = new StyleBoxTexture
             {
@@ -613,6 +622,13 @@ namespace Content.Client.Stylesheets
                     new[]
                     {
                         new StyleProperty(PanelContainer.StylePropertyPanel, windowHeaderAlert),
+                    }),
+                // #Misfits Change - Mentor (purple) window header.
+                new StyleRule(
+                    new SelectorElement(typeof(PanelContainer), new[] {"windowHeaderMentor"}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(PanelContainer.StylePropertyPanel, windowHeaderMentor),
                     }),
 
                 // Shapes for the buttons.

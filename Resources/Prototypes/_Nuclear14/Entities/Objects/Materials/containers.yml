@@ -59,7 +59,8 @@
         Heat: 10
   - type: PacifismDangerousAttack
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     totalIntensity: 20 # ~ 4 tile radius
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/handyfuel.rsi

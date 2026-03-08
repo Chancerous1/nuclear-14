@@ -1,0 +1,41 @@
+# Misfits Change - Wendover Map items
+# Handheld and wall-mounted maps that display the station/area navmap
+
+# Handheld paper map - no power required
+- type: entity
+  parent: BaseItem
+  id: MisfitsWendoverMap
+  name: Wendover map
+  description: A weathered paper map of the Wendover area. Useful for navigating the wasteland.
+  components:
+  - type: StationMap
+    showLocation: true
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/clutter.rsi
+    layers:
+    - state: map
+  - type: Item
+    size: Small
+  - type: ActivatableUI
+    inHandsOnly: false
+    singleUser: true
+    key: enum.StationMapUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StationMapUiKey.Key:
+        type: StationMapBoundUserInterface
+  - type: Tag
+    tags:
+    - Document
+
+# Handheld map - alternate variant for spawning
+- type: entity
+  parent: MisfitsWendoverMap
+  id: MisfitsWendoverMapFolded
+  name: folded map
+  description: A folded paper map. Looks like it covers the local area.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/clutter.rsi
+    layers:
+    - state: trifold

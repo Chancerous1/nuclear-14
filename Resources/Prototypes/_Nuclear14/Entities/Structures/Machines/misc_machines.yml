@@ -32,6 +32,17 @@
           True: { visible: true }
           False: { visible: false }
   - type: Appearance
+  # #Misfits Change - Make tactical map functional with station map UI
+  - type: StationMap
+    showLocation: true
+  - type: ActivatableUI
+    key: enum.StationMapUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.StationMapUiKey.Key:
+        type: StationMapBoundUserInterface
+  # End Misfits Change
   - type: Destructible
     thresholds:
     - trigger:

@@ -158,6 +158,13 @@ public sealed partial class NPCSteeringSystem
             }
         }
 
+        // If coordinates are still invalid (e.g. path empty or target entity deleted), bail out.
+        if (!targetCoordinates.IsValid(EntityManager))
+        {
+            steering.Status = SteeringStatus.NoPath;
+            return false;
+        }
+
         // Check if mapids match.
         var targetMap = targetCoordinates.ToMap(EntityManager, _transform);
         var ourMap = ourCoordinates.ToMap(EntityManager, _transform);

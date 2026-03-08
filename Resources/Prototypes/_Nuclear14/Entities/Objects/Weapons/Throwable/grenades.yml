@@ -44,7 +44,8 @@
   id: N14Dynamite
   components:
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 4
     intensitySlope: 14
     totalIntensity: 50 #medium range mid damage takes about 2-3 to crit
@@ -109,7 +110,8 @@
     - state: icon
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 2
     intensitySlope: 10
     totalIntensity: 20
@@ -145,7 +147,8 @@
     sprite: _Nuclear14/Objects/Weapons/Grenades/TincanNade.rsi
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 3
     intensitySlope: 10 #dynamite but smaller area?
     totalIntensity: 30
@@ -176,7 +179,8 @@
     sprite: _Nuclear14/Objects/Weapons/Grenades/NukaNade.rsi
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 5
     intensitySlope: 1
     totalIntensity: 1
@@ -407,7 +411,8 @@
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 1
     intensitySlope: 5
     totalIntensity: 5 # should be about 1 tile max very small damage
@@ -443,7 +448,8 @@
     sprite: _Nuclear14/Objects/Weapons/Grenades/CryoGrenade.rsi
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    #Misfits Change - use the structural-capable N14 explosion profile.
+    explosionType: N14DefaultStructural
     maxIntensity: 5
     intensitySlope: 1
     totalIntensity: 1

@@ -82,37 +82,37 @@
     prototypes:
       - N14MobBrahdoLighttribal
 
-# Swampers
+# Mirelurks
 
 - type: entity
-  name: Swamp Creature Spawner
-  id: N14SpawnMobSwamper
+  name: Mirelurk Spawner
+  id: N14SpawnMobMirelurk
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
       - state: green
-      - sprite: Corvax/Mobs/Animals/swamper.rsi
-        state: swamper
+      - sprite: Corvax/Mobs/Animals/mirelurk.rsi
+        state: mirelurk
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - N14MobSwamper
+      - N14MobMirelurk
 
 - type: entity
-  name: Radioactive Swamp Creature Spawner
-  id: N14SpawnMobRadSwamper
+  name: Radioactive Mirelurk Spawner
+  id: N14SpawnMobRadMirelurk
   parent: MarkerBase
   components:
   - type: Sprite
     layers:
       - state: green
-      - sprite: Corvax/Mobs/Animals/radswamper.rsi
-        state: radswamper
+      - sprite: Corvax/Mobs/Animals/radmirelurk.rsi
+        state: radmirelurk
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - N14MobRadSwamper
+      - N14MobRadMirelurk
 
 # Jackal
 

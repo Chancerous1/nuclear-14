@@ -229,6 +229,7 @@
     speechSounds: Borg
   - type: TypingIndicator # Corvax-Change
     proto: robot
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60

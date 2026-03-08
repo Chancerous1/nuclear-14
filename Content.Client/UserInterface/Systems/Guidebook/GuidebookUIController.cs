@@ -115,7 +115,8 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         if (_guideWindow != null)
         {
             _guideWindow.ReturnContainer.Visible = false;
-            _lastEntry = _guideWindow.LastEntry;
+            if (_guideWindow.LastEntry.Id != null)
+                _lastEntry = _guideWindow.LastEntry;
         }
     }
 

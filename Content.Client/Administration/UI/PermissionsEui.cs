@@ -26,6 +26,33 @@ namespace Content.Client.Administration.UI
 
         [Dependency] private readonly IClientAdminManager _adminManager = default!;
 
+        // #Misfits Change — short descriptions shown next to each flag in the rank editor
+        private static readonly Dictionary<AdminFlags, string> FlagDescriptions = new()
+        {
+            { AdminFlags.Admin,       "Basic admin verbs" },
+            { AdminFlags.Ban,         "Ban/unban players" },
+            { AdminFlags.Debug,       "Developer debug commands" },
+            { AdminFlags.Fun,         "Events & fun commands" },
+            { AdminFlags.Permissions, "Edit admin permissions" },
+            { AdminFlags.Server,      "Restart/manage server" },
+            { AdminFlags.Spawn,       "Spawn entities in-game" },
+            { AdminFlags.VarEdit,     "Use VarView (VV)" },
+            { AdminFlags.Mapping,     "Large mapping operations" },
+            { AdminFlags.Logs,        "View admin/server logs" },
+            { AdminFlags.Round,       "Force map/round management" },
+            { AdminFlags.Query,       "Run BQL queries" },
+            { AdminFlags.Adminhelp,   "Use the ahelp system" },
+            { AdminFlags.ViewNotes,   "View player notes" },
+            { AdminFlags.EditNotes,   "Create/edit player notes" },
+            { AdminFlags.MassBan,     "Ban multiple players at once" },
+            { AdminFlags.Stealth,     "Hide from non-stealth admins" },
+            { AdminFlags.Adminchat,   "Use admin chat" },
+            { AdminFlags.Pii,         "View IPs & HWIDs" },
+            { AdminFlags.Whitelist,   "Manage the whitelist" },
+            { AdminFlags.Mentorhelp,  "MHelp for mentors to receive help requests" },
+            { AdminFlags.Host,        "Full host-level access (dangerous)" },
+        };
+
         private readonly Menu _menu;
         private readonly List<DefaultWindow> _subWindows = new();
 
@@ -404,6 +431,9 @@ namespace Content.Client.Administration.UI
                     var disable = !ui._adminManager.HasFlag(flag);
                     var flagName = flag.ToString().ToUpper();
 
+                    // #Misfits Change — tooltip shows short description for each flag
+                    var flagTooltip = FlagDescriptions.TryGetValue(flag, out var flagLabelDesc) ? flagLabelDesc : null;
+
                     var group = new ButtonGroup();
 
                     var inherit = new Button
@@ -448,7 +478,7 @@ namespace Content.Client.Administration.UI
                         inherit.Pressed = true;
                     }
 
-                    permGrid.AddChild(new Label { Text = flagName });
+                    permGrid.AddChild(new Label { Text = flagName, ToolTip = flagTooltip }); // #Misfits Change
                     permGrid.AddChild(inherit);
                     permGrid.AddChild(sub);
                     permGrid.AddChild(plus);
@@ -566,10 +596,15 @@ namespace Content.Client.Administration.UI
                     var disable = !ui._adminManager.HasFlag(flag);
                     var flagName = flag.ToString().ToUpper();
 
+                    // #Misfits Change — show short description alongside the flag name
+                    var checkBoxText = FlagDescriptions.TryGetValue(flag, out var flagDesc)
+                        ? $"{flagName} — {flagDesc}"
+                        : flagName;
+
                     var checkBox = new CheckBox
                     {
                         Disabled = disable,
-                        Text = flagName
+                        Text = checkBoxText
                     };
 
                     if (data != null && (data.Value.Value.Flags & flag) != 0)

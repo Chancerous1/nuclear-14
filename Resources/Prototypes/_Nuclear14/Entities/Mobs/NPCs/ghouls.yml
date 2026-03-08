@@ -18,6 +18,7 @@
       types:
         Slash: 7
     range: 1
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -49,6 +50,7 @@
       types:
         Slash: 7
     range: 1
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -84,6 +86,7 @@
       types:
         Slash: 7
     range: 1
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60

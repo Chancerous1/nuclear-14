@@ -228,6 +228,7 @@
     damage:
       groups:
         Brute: 2
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -306,6 +307,7 @@
       types:
         Slash: 2
         Piercing: 8
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60
@@ -410,6 +412,7 @@
     damage:
       types:
         Piercing: 6
+  - type: IdleSound #Misfits Change
   - type: SpamEmitSound #Misfits Change
     minInterval: 10
     maxInterval: 60

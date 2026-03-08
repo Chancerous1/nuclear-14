@@ -347,6 +347,42 @@ namespace Content.Server.Voting.Managers
                     return false;
             }
 
+            // #Misfits Change: Require minimum round duration before a restart vote can be called.
+            if (voteType == StandardVoteType.Restart)
+            {
+                var minRoundMinutes = _cfg.GetCVar(CCVars.VoteRestartMinimumRoundTime);
+                if (minRoundMinutes > 0)
+                {
+                    var ticker = _entityManager.System<GameTicker>();
+                    if (ticker.RunLevel == GameRunLevel.InRound)
+                    {
+                        var roundDuration = ticker.RoundDuration();
+                        if (roundDuration < TimeSpan.FromMinutes(minRoundMinutes))
+                        {
+                            timeSpan = TimeSpan.Zero;
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        // Not in round — restart vote not applicable
+                        timeSpan = TimeSpan.Zero;
+                        return false;
+                    }
+                }
+            }
+
+            // #Misfits Change: Extend vote requires an active round.
+            if (voteType == StandardVoteType.Extend)
+            {
+                var ticker = _entityManager.System<GameTicker>();
+                if (ticker.RunLevel != GameRunLevel.InRound)
+                {
+                    timeSpan = TimeSpan.Zero;
+                    return false;
+                }
+            }
+
             return !_voteTimeout.TryGetValue(initiator.UserId, out timeSpan);
         }
 

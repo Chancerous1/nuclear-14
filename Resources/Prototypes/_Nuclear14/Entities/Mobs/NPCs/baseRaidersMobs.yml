@@ -10,7 +10,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        100: Dead
+        60: Dead
     - type: PassiveDamage # It's mostly for the faction NPCs, but can be here nonetheless.
       allowedStates:
       - Alive
