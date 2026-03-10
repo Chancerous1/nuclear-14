@@ -893,3 +893,38 @@ Entries:
   id: 5627
   time: '2026-03-09T23:29:57.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/93
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: >-
+        Super Mutants now have species-locked clothing slots, requiring Super
+        Mutant-specific gear
+    - type: Add
+      message: >-
+        Added placeholder Super Mutant clothing items (head, jumpsuit,
+        outerclothing, gloves, shoes, mask, neck)
+    - type: Add
+      message: Super Mutants now have a 50% reduction to all incoming damage
+    - type: Add
+      message: Super Mutants now have doubled health (200 crit / 400 dead thresholds)
+    - type: Add
+      message: Super Mutants are now immune to stamina crits
+    - type: Add
+      message: >-
+        Radiation now heals Super Mutants instead of damaging them, at roughly
+        twice the rate of a super stimpack
+    - type: Add
+      message: Super Mutant melee attacks deal twice as much damage with all weapons
+    - type: Add
+      message: Super Mutant unarmed base damage is 15 (effective 30 with multiplier)
+    - type: Add
+      message: Super Mutant melee attacks knock back targets
+    - type: Add
+      message: Super Mutants stun grabbed targets for 5 seconds
+    - type: Add
+      message: >-
+        Super Mutant limb integrity thresholds scaled to match doubled health
+        pool
+  id: 5628
+  time: '2026-03-10T03:11:07.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/97
