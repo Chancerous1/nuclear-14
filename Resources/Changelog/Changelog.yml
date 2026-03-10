@@ -928,3 +928,20 @@ Entries:
   id: 5628
   time: '2026-03-10T03:11:07.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/97
+- author: Dpellowski
+  changes:
+    - type: Fix
+      message: >-
+        Super Mutants now properly stun grabbed entities for 5 seconds (fixed
+        duplicate subscription crash)
+    - type: Fix
+      message: >-
+        Super Mutants now stun pulled entities for 5 seconds when initiating a
+        pull
+    - type: Tweak
+      message: >-
+        Refactored grab stun logic into CarryingSystem to avoid event
+        subscription conflicts
+  id: 5629
+  time: '2026-03-10T03:43:16.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/99
