@@ -236,8 +236,9 @@
           groups:
             Brute: 0.2
         withdrawalStaminaDrain: 8.0
+      # TODO: Implement HealthIncreaseReagent effect type to temporarily boost max HP
       # - !type:HealthIncreaseReagent
-        # increaseAmount: 50
+      #   increaseAmount: 50
 
 - type: reagent
   id: Buffjet

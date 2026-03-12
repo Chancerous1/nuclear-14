@@ -233,8 +233,8 @@ namespace Content.Client.PDA
             AddressLabel.Text = state.Address?.ToUpper() ?? " - ";
 
             EjectIdButton.IsActive = state.PdaOwnerInfo.IdOwner != null || state.PdaOwnerInfo.JobTitle != null;
-            // #Misfits Add - Track ID card state for Programs tab gating
-            _hasIdCard = EjectIdButton.IsActive;
+            // #Misfits Add - Track ID card state for Programs tab gating (use physical slot presence, not name/job)
+            _hasIdCard = state.HasId;
             EjectPenButton.IsActive = state.HasPen;
             EjectPaiButton.IsActive = state.HasPai;
             ActivateMusicButton.Visible = state.CanPlayMusic;

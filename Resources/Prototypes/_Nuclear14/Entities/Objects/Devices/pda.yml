@@ -52,6 +52,8 @@
         # IdCardNCR       -> NCR shared map (NCR feed)
         # IdCardLegion    -> Legion shared map (Legion feed)
         # When adding a new faction map, add its tag here AND define it in _Misfits/tags.yml.
+        components:
+        - IdCard # #Misfits Add - accept any entity with IdCard component (belt-and-suspenders with tag list)
         tags:
         - IdCardVault # Misfits Change
         - IdCardBrotherhood #Misfits Change

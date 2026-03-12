@@ -173,6 +173,7 @@ namespace Content.Server.PDA
                 pda.FlashlightOn,
                 pda.PenSlot.HasItem,
                 pda.PaiSlot.HasItem,
+                pda.IdSlot.HasItem, // #Misfits Add - physical ID card presence for Programs tab gating
                 new PdaIdInfoText
                 {
                     ActualOwnerName = pda.OwnerName,

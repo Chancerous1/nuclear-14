@@ -1,7 +1,9 @@
 // #Misfits Change - Ported from Delta-V addiction system
 using Content.Shared._Misfits.Addictions;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
@@ -54,21 +56,39 @@ public sealed partial class Addicting : EntityEffect
     [DataField]
     public float WithdrawalStaminaDrain = 0.0f;
 
+    /// <summary>
+    ///     Number of exposures to this specific drug required before a full addiction is applied.
+    ///     Values less than or equal to 1 preserve the old first-use behavior.
+    /// </summary>
+    [DataField]
+    public int AddictionThreshold = 4;
+
     public override void Effect(EntityEffectBaseArgs args)
     {
         var addictionSys = args.EntityManager.EntitySysManager.GetEntitySystem<SharedAddictionSystem>();
 
         var time = Time;
+        ProtoId<ReagentPrototype>? drugId = null;
+        FixedPoint2? currentQuantity = null;
 
         // #Misfits Change /Tweak:/ Pass the reagent's localized name so chat messages can name the specific drug
         var drugName = string.Empty;
         if (args is EntityEffectReagentArgs reagentArgs)
         {
             time *= reagentArgs.Scale.Float();
+            drugId = reagentArgs.Reagent?.ID;
             drugName = reagentArgs.Reagent?.LocalizedName ?? string.Empty;
+
+            if (reagentArgs.Reagent != null
+                && reagentArgs.Source != null
+                && reagentArgs.Source.TryGetReagent(new ReagentId(reagentArgs.Reagent.ID, null), out var reagentQuantity))
+            {
+                currentQuantity = reagentQuantity.Quantity;
+            }
         }
 
-        addictionSys.TryApplyAddiction(args.TargetEntity, time, drugName);
+        if (!addictionSys.TryApplyAddiction(args.TargetEntity, time, drugId, drugName, AddictionThreshold, currentQuantity))
+            return;
 
         // #Misfits Change /Add:/ Register withdrawal parameters (strongest values win on multi-drug)
         addictionSys.SetWithdrawalEffects(

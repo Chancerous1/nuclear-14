@@ -1,7 +1,10 @@
 // #Misfits Change - Ported from Delta-V addiction system
 using Content.Shared.Damage;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.FixedPoint;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Misfits.Addictions;
 
@@ -11,7 +14,10 @@ namespace Content.Shared._Misfits.Addictions;
 /// </summary>
 public abstract class SharedAddictionSystem : EntitySystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+
+    private static readonly TimeSpan ExposureGap = TimeSpan.FromSeconds(15);
 
     /// <summary>
     ///     Status effect key used for the addiction status.
@@ -26,18 +32,77 @@ public abstract class SharedAddictionSystem : EntitySystem
     /// <summary>
     ///     Attempts to apply an addiction to the entity.
     ///     If the entity already has the effect, extends its duration.
+    ///     If the entity is not yet addicted, repeated exposures to the specific reagent are tracked
+    ///     until the configured threshold is reached.
     ///     Calls <see cref="OnAddictionApplied"/> so the server can send drug-specific chat messages.
     /// </summary>
+    /// <param name="drugId">Prototype ID of the addictive reagent. Null falls back to immediate addiction.</param>
     /// <param name="drugName">Localized name of the drug (e.g. "hydra"). Empty skips chat messages.</param>
-    public virtual void TryApplyAddiction(EntityUid uid, float addictionTime, string drugName = "", StatusEffectsComponent? status = null)
+    /// <param name="addictionThreshold">Number of exposures required before addiction starts.</param>
+    /// <returns>
+    ///     True if the entity is addicted after this call and withdrawal data should be updated.
+    ///     False if the exposure was only recorded toward the threshold.
+    /// </returns>
+    public virtual bool TryApplyAddiction(
+        EntityUid uid,
+        float addictionTime,
+        ProtoId<ReagentPrototype>? drugId = null,
+        string drugName = "",
+        int addictionThreshold = 4,
+        FixedPoint2? currentQuantity = null,
+        StatusEffectsComponent? status = null)
     {
         if (!Resolve(uid, ref status, false))
-            return;
+            return false;
 
         UpdateTime(uid);
 
         // #Misfits Change /Tweak:/ Track whether this is a new addiction or an existing one deepening
         var isNew = !_statusEffects.HasStatusEffect(uid, StatusEffectKey, status);
+
+        if (isNew)
+        {
+            var threshold = Math.Max(1, addictionThreshold);
+
+            if (threshold > 1 && drugId != null)
+            {
+                var exposure = EnsureComp<AddictionExposureComponent>(uid);
+                var reagentId = drugId.Value;
+                var now = _timing.CurTime;
+                var isNewExposure = true;
+
+                if (exposure.LastSeenTimes.TryGetValue(reagentId, out var lastSeen))
+                    isNewExposure = now - lastSeen > ExposureGap;
+
+                if (!isNewExposure
+                    && currentQuantity != null
+                    && exposure.LastSeenQuantities.TryGetValue(reagentId, out var lastQuantity)
+                    && currentQuantity.Value > lastQuantity)
+                {
+                    isNewExposure = true;
+                }
+
+                exposure.LastSeenTimes[reagentId] = now;
+
+                if (currentQuantity != null)
+                    exposure.LastSeenQuantities[reagentId] = currentQuantity.Value;
+
+                exposure.ExposureCounts.TryGetValue(reagentId, out var count);
+
+                if (isNewExposure)
+                    count++;
+
+                if (count < threshold)
+                {
+                    exposure.ExposureCounts[reagentId] = count;
+                    return false;
+                }
+
+                exposure.ExposureCounts.Remove(reagentId);
+                exposure.LastSeenTimes.Remove(reagentId);
+                exposure.LastSeenQuantities.Remove(reagentId);
+            }
+        }
 
         if (isNew)
         {
@@ -63,6 +128,7 @@ public abstract class SharedAddictionSystem : EntitySystem
         }
 
         OnAddictionApplied(uid, isNew);
+        return true;
     }
 
     // #Misfits Change /Add:/ Store per-drug withdrawal effect parameters on the component.
