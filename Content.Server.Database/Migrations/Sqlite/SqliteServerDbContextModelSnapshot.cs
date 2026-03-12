@@ -1333,6 +1333,35 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("player_round", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.CharacterCurrency", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("character_currency_id");
+
+                    b.Property<int>("Bottlecaps")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("bottlecaps");
+
+                    b.Property<string>("CharacterName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("character_name");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_character_currency");
+
+                    b.HasIndex("PlayerId", "CharacterName")
+                        .IsUnique();
+
+                    b.ToTable("character_currency", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Admin", b =>
                 {
                     b.HasOne("Content.Server.Database.AdminRank", "AdminRank")
