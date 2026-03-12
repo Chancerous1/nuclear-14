@@ -53,6 +53,7 @@
 - type: entity
   parent: RMCDropshipDoorBase
   id: RMCDropshipCockpitBase
+  categories: [ HideSpawnMenu ]
   abstract: true
   name: cockpit
   components:
@@ -77,7 +78,6 @@
     openingSpriteState: pilot_door_opening
     openSpriteState: pilot_door_open
     closedSpriteState: pilot_door_closed
-    location: Cockpit
   - type: Airlock
     denySpriteState: pilot_door_deny
     powered: true
@@ -85,18 +85,17 @@
     powerLoad: 0
     needsPower: false
   - type: AccessReader
-    access: [["CMAccessDropship"]]
   - type: BlockTileFire
 
 - type: entity
   parent: RMCDropshipDoorBase
   id: RMCDropshipDoorAftBase
+  categories: [ HideSpawnMenu ]
   abstract: true
   suffix: Aft
   components:
   - type: Sprite
   - type: Door
-    location: Aft
   - type: Fixtures
     fixtures:
       fix1:
@@ -114,13 +113,13 @@
 - type: entity
   parent: RMCDropshipDoorBase
   id: RMCDropshipDoorPortBase
+  categories: [ HideSpawnMenu ]
   abstract: true
   suffix: Port
   components:
   - type: Sprite
     offset: 0, 0.5
   - type: Door
-    location: Port
   - type: Fixtures
     fixtures:
       fix1:
@@ -138,13 +137,13 @@
 - type: entity
   parent: RMCDropshipDoorBase
   id: RMCDropshipDoorStarboardBase
+  categories: [ HideSpawnMenu ]
   abstract: true
   suffix: Starboard
   components:
   - type: Sprite
     offset: 0, 0.5
   - type: Door
-    location: Starboard
   - type: Fixtures
     fixtures:
       fix1:

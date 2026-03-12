@@ -23,6 +23,12 @@ namespace Content.YAMLLinter
 
             var (errors, fieldErrors) = await RunValidation();
 
+            // Filter out errors from upstream _RMC prototypes — those are maintained by RMC14,
+            // not this repo, so we only report errors from our own content.
+            foreach (var key in errors.Keys.Where(k => k.StartsWith("/Prototypes/_RMC/")).ToList())
+                errors.Remove(key);
+            fieldErrors.RemoveAll(e => e.Contains("/Prototypes/_RMC/"));
+
             var count = errors.Count + fieldErrors.Count;
 
             if (count == 0)

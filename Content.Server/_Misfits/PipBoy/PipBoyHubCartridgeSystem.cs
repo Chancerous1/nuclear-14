@@ -101,7 +101,7 @@ public sealed class PipBoyHubCartridgeSystem : EntitySystem
                 HandleGroupJoin(cardUid, netComp, ownNumber, msg);
                 break;
             case PipBoyHubMessageType.GroupLeave:
-                HandleGroupLeave(cardUid, netComp, ownNumber, msg);
+                HandleGroupLeave(ent, cardUid, netComp, ownNumber, msg);
                 break;
             case PipBoyHubMessageType.GroupToggleMapTracking:
                 HandleGroupToggleMapTracking(cardUid, netComp, msg);
@@ -234,11 +234,33 @@ public sealed class PipBoyHubCartridgeSystem : EntitySystem
         if (string.IsNullOrWhiteSpace(msg.Content))
             return;
 
-        var name = msg.Content.Trim();
+        // #Misfits Change - Support custom group ID: content format is "name\0customId"
+        var content = msg.Content;
+        uint customId = 0;
+        var separatorIdx = content.IndexOf('\0');
+        if (separatorIdx >= 0)
+        {
+            var idPart = content[(separatorIdx + 1)..];
+            uint.TryParse(idPart, out customId);
+            content = content[..separatorIdx];
+        }
+
+        var name = content.Trim();
         if (name.Length > MaxNameLength)
             name = name[..MaxNameLength];
 
-        var groupId = _network.CreateGroup(name, ownNumber);
+        uint groupId;
+        if (customId > 0)
+        {
+            groupId = _network.CreateGroupWithId(customId, name, ownNumber);
+            if (groupId == 0)
+                return; // ID already taken, silently fail
+        }
+        else
+        {
+            groupId = _network.CreateGroup(name, ownNumber);
+        }
+
         netComp.Groups[groupId] = new PipBoyGroupMembership(groupId, name);
         Dirty(cardUid, netComp);
     }
@@ -259,7 +281,7 @@ public sealed class PipBoyHubCartridgeSystem : EntitySystem
         Dirty(cardUid, netComp);
     }
 
-    private void HandleGroupLeave(EntityUid cardUid, PipBoyNetworkComponent netComp, uint ownNumber, PipBoyHubUiMessageEvent msg)
+    private void HandleGroupLeave(Entity<PipBoyHubCartridgeComponent> ent, EntityUid cardUid, PipBoyNetworkComponent netComp, uint ownNumber, PipBoyHubUiMessageEvent msg)
     {
         if (msg.GroupId == null)
             return;
@@ -267,6 +289,10 @@ public sealed class PipBoyHubCartridgeSystem : EntitySystem
         _network.LeaveGroup(msg.GroupId.Value, ownNumber);
         netComp.Groups.Remove(msg.GroupId.Value);
         Dirty(cardUid, netComp);
+
+        // #Misfits Add - Clear selection if we left the currently selected group
+        if (ent.Comp.SelectedGroupId == msg.GroupId)
+            ent.Comp.SelectedGroupId = null;
     }
 
     private void HandleGroupToggleMapTracking(EntityUid cardUid, PipBoyNetworkComponent netComp, PipBoyHubUiMessageEvent msg)

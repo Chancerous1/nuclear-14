@@ -32,6 +32,10 @@
   id: HydraTint
 
 - type: statusEffect
+  id: MedXProtection
+  alwaysAllowed: true
+
+- type: statusEffect
   id: Electrocution
 
 - type: statusEffect

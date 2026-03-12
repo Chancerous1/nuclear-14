@@ -18,9 +18,11 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
+using Content.Shared.StepTrigger.Components;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Light.Components;
+using Content.Shared.Slippery;
 using Content.Shared.Maps;
 using Content.Shared.Weather;
 using Robust.Shared.Map;
@@ -189,6 +191,13 @@ public sealed class RainPuddleSystem : EntitySystem
                 // this simulates rain literally washing it away.
                 // SplitSolutionWithout removes only reagents NOT in EvaporationReagents (i.e. blood);
                 // the split solution is discarded and UpdateChemicals is called internally.
+                //
+                // #Misfits Fix: Track whether non-evaporating reagents (blood) were present so we
+                // can skip the rain-water addition step below. Previously, rain always added water
+                // even after washing, causing puddle volume to INCREASE each pass
+                // (3u water added > 2u blood removed). Now: if blood still exists after washing,
+                // we only wash — no extra water is deposited on that tile this pass.
+                bool hadNonEvapReagents = false;
                 if (proto.WashBloodPuddles && existingUid.IsValid() && existingComp != null)
                 {
                     if (_solutionContainerSystem.ResolveSolution(existingUid, existingComp.SolutionName,
@@ -200,6 +209,7 @@ public sealed class RainPuddleSystem : EntitySystem
 
                         if (nonEvapVol > FixedPoint2.Zero)
                         {
+                            hadNonEvapReagents = true;
                             _solutionContainerSystem.SplitSolutionWithout(
                                 existingComp.Solution!.Value,
                                 FixedPoint2.Min(nonEvapVol, FixedPoint2.New(proto.PuddleWashAmount)),
@@ -209,6 +219,14 @@ public sealed class RainPuddleSystem : EntitySystem
                 }
 
                 // === Rain water addition ===
+                // Skip adding water to tiles where blood is being washed this pass.
+                // Adding water on top of blood washing caused puddle volumes to GROW each interval
+                // because PuddleAmountPerInterval > PuddleWashAmount.
+                // Once blood is fully removed, the tile is treated as a clean tile next pass
+                // and rain water can accumulate normally.
+                if (hadNonEvapReagents)
+                    continue;
+
                 // CurrentVolume re-reads the solution so it reflects the post-wash state above.
                 // PuddleMaxVolume must stay below PuddleComponent.OverflowVolume (default 20 u)
                 // so the fluid spreader never triggers and puddles won't creep indoors.
@@ -225,7 +243,18 @@ public sealed class RainPuddleSystem : EntitySystem
                 // No spill sound — rain should be ambient, not a constant splat chorus.
                 var coords = _map.GridTileToLocal(gridUid, grid, tileRef.GridIndices);
                 var rainSolution = new Solution(proto.PuddleReagent, FixedPoint2.New(proto.PuddleAmountPerInterval));
-                _puddle.TrySpillAt(coords, rainSolution, out _, sound: false);
+                _puddle.TrySpillAt(coords, rainSolution, out var spawnedPuddleUid, sound: false);
+
+                // #Misfits Fix: Rain water should not cause slipping.
+                // If TrySpillAt created a BRAND NEW puddle (no pre-existing puddle was on this
+                // tile — existingUid was invalid), strip the SlipperyComponent and StepTrigger
+                // that the base "Puddle" prototype adds. Pre-existing puddles (blood, etc.) are
+                // untouched, so they stay slippery as expected.
+                if (!existingUid.IsValid() && spawnedPuddleUid.IsValid())
+                {
+                    RemComp<SlipperyComponent>(spawnedPuddleUid);
+                    RemComp<StepTriggerComponent>(spawnedPuddleUid);
+                }
             }
         }
     }

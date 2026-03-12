@@ -13,83 +13,44 @@ misfits-chat-offer-handoff = hands {$item} to {$target}
 # Broadcast when a player picks up or puts down another entity.
 misfits-chat-carry-pickup = picks up {$carried}
 misfits-chat-carry-drop = puts down {$carried}
-misfits-chat-carry-throw = hurls {$victim}
-
-## Knockdown Systems
-misfits-chat-knockdown-hit = knocks {$target} to the ground
-misfits-chat-knockdown-hit-victim = is knocked to the ground by {$user}
-misfits-chat-collision-knockdown = slams {$target} sprawling
-misfits-chat-collision-knockdown-victim = is sent sprawling by {$user}
-
-## CPRSystem
-misfits-chat-cpr-start = begins giving CPR to {$target}
-misfits-chat-cpr-victim = is being given CPR by {$user}
-
-## FoodSystem / DrinkSystem
-misfits-chat-force-feed-start = tries to force-feed {$target} with {$item}
-misfits-chat-force-feed-victim = is being force-fed {$item} by {$user}
-misfits-chat-force-drink-start = tries to force {$target} to drink {$item}
-misfits-chat-force-drink-victim = is being forced to drink {$item} by {$user}
-
-## BuckleChatSystem
-misfits-chat-buckle-strap = straps {$target} onto {$strap}
-misfits-chat-buckle-victim = is strapped onto {$strap} by {$user}
-misfits-chat-unbuckle-release = frees {$target} from {$strap}
-misfits-chat-unbuckle-victim = is freed from {$strap} by {$user}
-
-## StrippableSystem
-misfits-chat-strip-remove = strips {$item} off {$target}
-misfits-chat-strip-victim-remove = has {$item} stripped off by {$user}
-misfits-chat-gag-apply = gags {$target} with {$item}
-misfits-chat-gag-victim = is gagged with {$item} by {$user}
-
-## EscapeInventorySystem
-misfits-chat-struggle-carried = struggles in {$carrier}'s grip
-
-## ResistLockerSystem
-misfits-chat-locker-struggle = pounds against {$container} from the inside
-misfits-chat-locker-breakout = kicks their way out of {$container}
-
-## SurgerySystem
-misfits-chat-surgery-start = begins operating on {$target}
-misfits-chat-surgery-victim = is being operated on by {$user}
-
-## BodySystem
-misfits-chat-gib-body = bursts apart in a shower of gore
-misfits-chat-gib-part = loses their {$part}
-
-## ThrowImpactChatSystem
-misfits-chat-throw-hit = hits {$target} with {$item}
-misfits-chat-throw-hit-victim = is hit by {$user}'s {$item}
-misfits-chat-throw-poison-hit = poisons {$target} with {$item}
-misfits-chat-throw-poison-hit-victim = is poisoned by {$user}'s {$item}
+misfits-chat-carry-throw = throws {$victim}
+misfits-chat-double-grab-throw = hurls {$victim} across the room
 
 ## CuffingChatSystem
-# Broadcast when a player begins trying to restrain another entity with handcuffs.
-misfits-chat-cuff-start = tries to restrain {$target}
-misfits-chat-cuff-start-self = tries to restrain themselves
 # Broadcast when a player successfully restrains another entity with handcuffs.
 misfits-chat-cuff-applied = restrains {$target}
 misfits-chat-cuff-self = restrains themselves
-# Broadcast when a player begins trying to remove cuffs from another entity.
-misfits-chat-uncuff-start = tries to remove restraints from {$target}
-misfits-chat-uncuff-start-self = tries to remove their own restraints
+
+## FactionBankTerminalSystem
+# Observable emote broadcast to bystanders when a player uses a terminal.
+misfits-chat-terminal-use = uses the {$terminal} terminal
+
+## PersistentCurrencySystem
+# Private feedback (only to the player) for deposit/withdraw actions.
+misfits-currency-no-currency = You are not holding any currency to deposit.
+misfits-currency-deposited = Deposited {$amount} {$type}. Total: {$total}
+misfits-currency-insufficient = Not enough currency!
+misfits-currency-withdrew = Withdrew {$amount} {$type}.
+
+## SpearBlockSystem
+# Emote sent from the defender describing the block — "* Jane deflects John's spear... *"
+spear-block-embedded-emote = deflects {$thrower}'s {$spear}, embedding it in their {$shield}
+spear-block-deflected-emote = deflects {$thrower}'s {$spear}, sending it to the ground
+
 ## GrabChatSystem
-# Broadcast when a mob entity is grabbed/pulled by another entity.
+# Emote broadcast from the puller when they start dragging another mob.
 misfits-chat-grab-start = grabs {$grabbed}
-misfits-chat-double-grab-cinch = cinches {$victim} into a chokehold
-misfits-chat-double-grab-victim = is being chokeholded by {$carrier}
-misfits-chat-double-grab-resist = struggles against {$carrier}'s grip
-misfits-chat-double-grab-throw = hurls {$victim}
+
+## DoubleGrabSystem
+# Carrier locks the victim into an active carry hold.
+misfits-chat-double-grab-cinch = pins {$victim} in a firm grip
+# Emote from the victim when they are picked up.
+misfits-chat-double-grab-victim = is forcibly picked up by {$carrier}
+# Victim breaks free during the pending-grab phase.
+misfits-chat-double-grab-resist = breaks free from {$carrier}'s grip
+# Victim gasps while being choked during an active carry.
 misfits-chat-double-grab-gasp = gasps for air
-misfits-chat-inject-other = injects {$target} with {$item}
 
-## BlockingChatSystem
-# Broadcast when a player raises their shield to block.
-misfits-chat-blocking-start = raises their {$shield}
-# Broadcast when a player lowers their shield.
-misfits-chat-blocking-stop = lowers their {$shield}
+## PersistentCurrencySystem — new keys
+misfits-currency-unsupported-type = Only Bottlecaps can be deposited.
 
-## DisarmChatSystem
-# Broadcast when a player successfully disarms and knocks another player down (stam-crit).
-misfits-chat-disarm-knockdown = pushes {$target} down

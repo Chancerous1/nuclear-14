@@ -2,6 +2,7 @@
 
 - type: entity
   id: RMCMarkerSoundBase
+  categories: [ HideSpawnMenu ]
   abstract: true
   name: sound marker
   placement:
@@ -62,7 +63,7 @@
   components:
   - type: RMCEmitSoundOnSpawn
     sound:
-      path: /Audio/_RMC/Machines/buzz_two.ogg
+      path: /Audio/Effects/Buzzes/buzz2.ogg
 
 - type: entity
   parent: RMCMarkerSoundSingleBase
