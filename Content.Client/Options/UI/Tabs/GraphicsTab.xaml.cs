@@ -89,7 +89,7 @@ namespace Content.Client.Options.UI.Tabs
             ViewportVerticalFitCheckBox.Pressed = _cfg.GetCVar(CCVars.ViewportVerticalFit);
             ViewportLowResCheckBox.Pressed = !_cfg.GetCVar(CCVars.ViewportScaleRender);
             ParallaxLowQualityCheckBox.Pressed = _cfg.GetCVar(CCVars.ParallaxLowQuality);
-            TileBlendMasksCheckBox.Pressed = _cfg.GetCVar(CVars.RenderTileBlendMasks);
+            TileBlendMasksCheckBox.Pressed = _cfg.GetCVar(CVars.RenderTileEdges);
             FpsCounterCheckBox.Pressed = _cfg.GetCVar(CCVars.HudFpsCounterVisible);
             ViewportWidthSlider.Value = _cfg.GetCVar(CCVars.ViewportWidth);
 
@@ -123,7 +123,7 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SetCVar(CCVars.ViewportVerticalFit, ViewportVerticalFitCheckBox.Pressed);
             _cfg.SetCVar(CCVars.ViewportScaleRender, !ViewportLowResCheckBox.Pressed);
             _cfg.SetCVar(CCVars.ParallaxLowQuality, ParallaxLowQualityCheckBox.Pressed);
-            _cfg.SetCVar(CVars.RenderTileBlendMasks, TileBlendMasksCheckBox.Pressed);
+            _cfg.SetCVar(CVars.RenderTileEdges, TileBlendMasksCheckBox.Pressed);
             _cfg.SetCVar(CCVars.HudFpsCounterVisible, FpsCounterCheckBox.Pressed);
             _cfg.SetCVar(CCVars.ViewportWidth, (int) ViewportWidthSlider.Value);
 
@@ -154,7 +154,7 @@ namespace Content.Client.Options.UI.Tabs
             var isVPVerticalFitSame = ViewportVerticalFitCheckBox.Pressed == _cfg.GetCVar(CCVars.ViewportVerticalFit);
             var isVPResSame = ViewportLowResCheckBox.Pressed == !_cfg.GetCVar(CCVars.ViewportScaleRender);
             var isPLQSame = ParallaxLowQualityCheckBox.Pressed == _cfg.GetCVar(CCVars.ParallaxLowQuality);
-            var isTileBlendMasksSame = TileBlendMasksCheckBox.Pressed == _cfg.GetCVar(CVars.RenderTileBlendMasks);
+            var isTileBlendMasksSame = TileBlendMasksCheckBox.Pressed == _cfg.GetCVar(CVars.RenderTileEdges);
             var isFpsCounterVisibleSame = FpsCounterCheckBox.Pressed == _cfg.GetCVar(CCVars.HudFpsCounterVisible);
             var isWidthSame = (int) ViewportWidthSlider.Value == _cfg.GetCVar(CCVars.ViewportWidth);
 
