@@ -1,4 +1,4 @@
-using System.Linq; // #Misfits Fix: needed for IReadOnlyList<T>.Contains() extension
+using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Shared.CCVar;
@@ -418,7 +418,7 @@ namespace Content.Client.Options.UI.Tabs
                 _deferCommands.Add(() =>
                 {
                     if (rebinding.Binding != null &&
-                        !_inputManager.GetKeyBindings(rebinding.KeyControl.Function).Contains(rebinding.Binding))
+                        !_inputManager.GetKeyBindings(rebinding.KeyControl.Function).Any(b => b == rebinding.Binding))
                     {
                         // The old binding was removed; re-register it to restore the prior state.
                         var oldReg = new KeyBindingRegistration

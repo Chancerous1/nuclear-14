@@ -14,6 +14,7 @@ chatsan-sighs = sighs.
 chatsan-stick-out-tongue = sticks { POSS-ADJ($ent) } tongue out.
 chatsan-wide-eyed = looks shocked.
 chatsan-confused = looks confused?
+chatsan-mumbles = mumbles something inaudibly. # Misfits Add - used for lone '?' over radio; more immersive than "looks confused"
 chatsan-unimpressed = seems unimpressed.
 chatsan-waves = waves.
 chatsan-salutes = salutes.

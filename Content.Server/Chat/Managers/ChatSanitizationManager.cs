@@ -102,7 +102,7 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "o-o", "chatsan-wide-eyed" },
         { "o.o", "chatsan-wide-eyed" },
         { "._.", "chatsan-surprised" },
-        { ".-.", "chatsan-confused" },
+        { ".-.", "chatsan-mumbles" },
         { "-_-", "chatsan-unimpressed" },
         { "o/", "chatsan-waves" },
         { "^^/", "chatsan-waves" },
@@ -207,10 +207,10 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         // Confusion / uncertainty
         { "omfg", "chatsan-surprised" },         // oh my f***ing god
         { "omg",  "chatsan-surprised" },         // oh my god
-        { "wtf",  "chatsan-confused" },          // what the f***
+        { "wtf",  "chatsan-mumbles" },          // what the f***
         { "tbh",  "chatsan-shrugs" },            // to be honest
         { "idk",  "chatsan-shrugs" },            // I don't know
-        { "?",    "chatsan-confused" },          // Misfits Add - lone question mark (confusion/query reaction)
+        { "?",    "chatsan-mumbles" },           // Misfits Add - lone question mark; sounds more natural over radio than "looks confused"
         // Physical gestures
         { "smh",  "chatsan-shakes-head" },       // shaking my head
         { "fml",  "chatsan-facepalms" },         // f*** my life
@@ -309,12 +309,24 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
 
         foreach (var (acronym, replacement) in AcronymToEmote)
         {
-            if (input.EndsWith(acronym, true, CultureInfo.InvariantCulture))
+            if (!input.EndsWith(acronym, true, CultureInfo.InvariantCulture))
+                continue;
+
+            // Misfits Fix - ensure the acronym is a standalone token, not the tail of a real sentence.
+            // Trim trailing whitespace from the portion before the match so that "What ?" and "What?"
+            // are both rejected (the real last character before the token would be 't', a letter).
+            // A bare "?" or "idk" alone has an empty before-string and always matches.
+            var matchStart = input.Length - acronym.Length;
+            if (matchStart > 0)
             {
-                sanitized = input.Remove(input.Length - acronym.Length).TrimEnd();
-                emote = Loc.GetString(replacement, ("ent", speaker));
-                return true;
+                var beforeTrimmed = input[..matchStart].TrimEnd();
+                if (beforeTrimmed.Length > 0 && char.IsLetterOrDigit(beforeTrimmed[^1]))
+                    continue;
             }
+
+            sanitized = input.Remove(matchStart).TrimEnd();
+            emote = Loc.GetString(replacement, ("ent", speaker));
+            return true;
         }
 
         sanitized = input;

@@ -323,6 +323,17 @@
         - NCRCadet
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRPrivateFirstClass # Misfits Change /Add/: expand access to all NCR roles
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingEyesGlassesGoggles
 
@@ -338,6 +349,17 @@
         - NCRCadet
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRPrivateFirstClass # Misfits Change /Add/: expand access to all NCR roles
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingHandsGlovesNCR
 
@@ -367,6 +389,18 @@
         - NCRSoldier
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+        - NCRPrivateFirstClass
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingHeadHatWinterBoonie
 
@@ -381,6 +415,18 @@
         - NCRSoldier
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+        - NCRPrivateFirstClass
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingHeadHatWoodBoonie
 
@@ -395,6 +441,18 @@
         - NCRSoldier
         - NCRSGT
         - NCRWS
+        - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+        - NCRPrivateFirstClass
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingHeadHatDesertBoonie
 
@@ -409,6 +467,18 @@
         - NCRSoldier
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+        - NCRPrivateFirstClass
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingNeckCloakNCR
 
@@ -423,6 +493,18 @@
         - NCRSoldier
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+        - NCRPrivateFirstClass
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingNeckCloakGhillie
 
@@ -437,6 +519,18 @@
         - NCRSoldier
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+        - NCRPrivateFirstClass
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingNeckCloakNCRSnow
 
@@ -451,6 +545,18 @@
         - NCRSoldier
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+        - NCRPrivateFirstClass
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingNeckCloakNCRWoods
 
@@ -465,6 +571,18 @@
         - NCRSoldier
         - NCRSGT
         - NCRWS # Forge-Change
+        - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+        - NCRPrivateFirstClass
+        - NCRMedic
+        - NCREngineer
+        - NCRDoctor
+        - NCRStaffSergeant
+        - NCRFirstSergeant
+        - NCRLT
+        - NCRCaptain
+        - NCRMPinvestigator
+        - NCRRanger
+        - NCRRangerVeteran
   items:
     - N14ClothingMaskBrownBalaclava
 

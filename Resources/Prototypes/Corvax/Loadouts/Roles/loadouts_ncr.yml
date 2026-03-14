@@ -10,6 +10,19 @@
     #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
     #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRWS # #Misfits Add - Specialist absorbs former Engineer/Medic
+    - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+    - NCRPrivateFirstClass
+    - NCRMedic
+    - NCREngineer
+    - NCRDoctor
+    - NCRSGT
+    - NCRStaffSergeant
+    - NCRFirstSergeant
+    - NCRLT
+    - NCRCaptain
+    - NCRMPinvestigator
+    - NCRRanger
+    - NCRRangerVeteran
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
     min: 12000 # 5 hours veterancy unlock
@@ -28,6 +41,19 @@
     #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
     #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRWS
+    - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+    - NCRPrivateFirstClass
+    - NCRMedic
+    - NCREngineer
+    - NCRDoctor
+    - NCRSGT
+    - NCRStaffSergeant
+    - NCRFirstSergeant
+    - NCRLT
+    - NCRCaptain
+    - NCRMPinvestigator
+    - NCRRanger
+    - NCRRangerVeteran
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
     min: 36000 # 10 hours veterancy unlock
@@ -46,6 +72,19 @@
     #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
     #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRWS
+    - NCRCadet # Misfits Change /Add/: expand access to all NCR roles
+    - NCRPrivateFirstClass
+    - NCRMedic
+    - NCREngineer
+    - NCRDoctor
+    - NCRSGT
+    - NCRStaffSergeant
+    - NCRFirstSergeant
+    - NCRLT
+    - NCRCaptain
+    - NCRMPinvestigator
+    - NCRRanger
+    - NCRRangerVeteran
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
     min: 72000 # 20 hours veterancy unlock
@@ -61,6 +100,10 @@
   - !type:CharacterJobRequirement
     jobs:
     - NCRSGT
+    - NCRStaffSergeant # Misfits Change /Add/: expand access to all NCR senior roles
+    - NCRFirstSergeant
+    - NCRLT
+    - NCRCaptain
   - !type:CharacterPlaytimeRequirement
     tracker: NCRNCO
     min: 72000 # 20 hours veterancy unlock

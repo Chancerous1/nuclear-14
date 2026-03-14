@@ -71,6 +71,8 @@
     - !type:CharacterJobRequirement
       jobs:
         - BoSMidScribe
+        - BoSWestScribe # Misfits Change /Add/: also accessible to West BoS scribes
+        - BoSScribe
     - !type:CharacterPlaytimeRequirement
       tracker: BoSMidScribe
       min: 72000 # 20 hours veterancy unlock
