@@ -95,11 +95,18 @@ public sealed class MenuButton : ContainerButton
 
     private void OnKeyBindingChanged(IKeyBinding obj)
     {
+        // #Misfits Fix - Guard against default (uninitialized) _function whose FunctionName is null.
+        // Without this, RegisterBinding → OnKeyBindingAdded → here → TryGetKeyBinding throws NRE
+        // because Dictionary.TryGetValue calls FunctionName.GetHashCode() on a null string.
+        if (_function.FunctionName == null)
+            return;
         _buttonLabel!.Text = BoundKeyHelper.ShortKeyName(_function);
     }
 
     private void OnKeyBindingChanged()
     {
+        if (_function.FunctionName == null)
+            return;
         _buttonLabel!.Text = BoundKeyHelper.ShortKeyName(_function);
     }
 

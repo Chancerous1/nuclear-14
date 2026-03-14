@@ -132,6 +132,14 @@
         - BoSMidPaladin
         - BoSMidKnight
         - BoSMidSquire
+        - BoSWestElderCommander # Misfits Change /Add/: expand access to all BoS roles
+        - BoSHeadKnight
+        - BoSWestScribe
+        - BoSInitiate
+        - BoSKnight
+        - BoSPaladin
+        - BoSScribe
+        - BoSMidScribe
     - !type:CharacterPlaytimeRequirement
       tracker: BoSMidSquire
       min: 18000
@@ -149,6 +157,13 @@
         - BoSMidPaladinCommander
         - BoSMidPaladin
         - BoSMidKnight
+        - BoSWestElderCommander # Misfits Change /Add/: expand access to all BoS roles
+        - BoSHeadKnight
+        - BoSWestScribe
+        - BoSKnight
+        - BoSPaladin
+        - BoSScribe
+        - BoSMidScribe
     - !type:CharacterPlaytimeRequirement
       tracker: BoSMidKnight
       min: 36000
@@ -165,6 +180,9 @@
       jobs:
         - BoSMidPaladinCommander
         - BoSMidPaladin
+        - BoSWestElderCommander # Misfits Change /Add/: expand access to all BoS senior roles
+        - BoSHeadKnight
+        - BoSPaladin
     - !type:CharacterPlaytimeRequirement
       tracker: BoSMidPaladin
       min: 36000
