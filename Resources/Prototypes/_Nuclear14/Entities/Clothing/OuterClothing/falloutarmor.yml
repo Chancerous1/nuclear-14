@@ -1220,7 +1220,7 @@
   parent: N14ClothingOuterCombatArmorMK2
   id: N14ClothingOuterCombatArmorBOSMK2
   name: BoS Combat Armor MK2
-  description: A suit of combat armor used by the Washington Brotherhood of Steel.
+  description: A suit of combat armor used by the Brotherhood of Steel. #Misfits Tweak - Removed Washington reference
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosmk2armor.rsi
@@ -1231,7 +1231,7 @@
   parent: N14ClothingOuterCombatArmor
   id: N14ClothingOuterCombatArmorBOS
   name: BoS Combat Armor
-  description: A suit of combat armor used by the low-ranking members of the Washington Brotherhood of Steel.
+  description: A suit of combat armor used by the low-ranking members of the Brotherhood of Steel. #Misfits Tweak - Removed Washington reference
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosarmor.rsi
@@ -1242,7 +1242,7 @@
   parent: N14ClothingOuterCombatArmor
   id: N14ClothingOuterCombatArmorKnightBOS
   name: Knight Combat Armor
-  description: A suit of combat armor used by the Knights in the Washington Brotherhood of Steel.
+  description: A suit of combat armor used by the Knights of the Brotherhood of Steel. #Misfits Tweak - Removed Washington reference
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbosknight.rsi
@@ -1253,7 +1253,7 @@
   parent: N14ClothingOuterCombatArmorMK2
   id: N14ClothingOuterCombatArmorSeniorBOS
   name: Senior Knight Combat Armor
-  description: A suit of combat armor used by the Senior Knights in the Washington Brotherhood of Steel.
+  description: A suit of combat armor used by the Senior Knights of the Brotherhood of Steel. #Misfits Tweak - Removed Washington reference
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutbossenior.rsi
@@ -1263,8 +1263,8 @@
 - type: entity
   parent: N14ClothingOuterCombatArmorMK2
   id: N14ClothingOuterCombatArmorCaptainBOS
-  name: Captain Combat Armor
-  description: A suit of combat armor used by the Captains in the Washington Brotherhood of Steel.
+  name: Head Knight Combat Armor #Misfits Tweak - Renamed to match Head Knight role
+  description: A suit of combat armor used by the Head Knights of the Brotherhood of Steel. #Misfits Tweak - Removed Washington reference
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/Armor/falloutboscaptain.rsi

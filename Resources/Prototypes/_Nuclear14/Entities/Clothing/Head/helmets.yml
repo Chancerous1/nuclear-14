@@ -240,8 +240,8 @@
 - type: entity
   parent: N14ClothingHeadHatBaseHelmetMK2
   id: N14ClothingHeadHatBrotherhoodHelmetPaladin
-  name: BoS Paladin Helmet
-  description: A helmet worn by Paladins of the Brotherhood of Steel.
+  name: BoS Head Knight Helmet.
+  description: A helmet worn by Head Knights of the Brotherhood of Steel.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/brotherhoodhelmetsenior.rsi
