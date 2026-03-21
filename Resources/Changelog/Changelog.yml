@@ -1874,3 +1874,12 @@ Entries:
   id: 5660
   time: '2026-03-21T00:30:54.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/153
+- author: Dpellowski
+  changes:
+    - type: Fix
+      message: >-
+        Fixing strip takes priority of all actions for left clicks. Can now use
+        other things before strip
+  id: 5661
+  time: '2026-03-21T01:17:46.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/154
