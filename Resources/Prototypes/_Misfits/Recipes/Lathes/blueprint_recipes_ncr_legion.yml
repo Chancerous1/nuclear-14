@@ -683,10 +683,6 @@
     Circuitry: 50
 
 - type: latheRecipe
-
-- type: latheRecipe
-
-- type: latheRecipe
   id: N14BPNCRArmorPowerArmorT45Sierra
   result: N14ClothingOuterPowerArmorT45Sierra
   category: N14BlueprintNCRArmorT4
@@ -1530,12 +1526,6 @@
     N14Iron: 75
 
 # --- Legion Tier 4 Armor ---
-- type: latheRecipe
-    Leather: 400
-    N14Iron: 300
-    Cloth: 250
-    Thread: 200
-
 - type: latheRecipe
   id: N14BPLegionArmorDeanVeteranArmor
   result: N14ClothingOuterDeanLegionnaireVeteranArmor

@@ -311,6 +311,7 @@
     Leather: 50
 
 - type: latheRecipe
+  id: N14BPBoSArmorWBoSSquireArmor
   result: N14ClothingOuterWBoSSquireArmor
   category: N14BlueprintBoSArmorT2
   completetime: 10
