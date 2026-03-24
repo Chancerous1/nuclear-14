@@ -2020,3 +2020,39 @@ Entries:
   id: 5670
   time: '2026-03-24T18:21:15.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/181
+- author: Cythisiax
+  changes:
+    - type: Fix
+      message: >-
+        removed sheets divisor and just incorporated scale from yaml raw value,
+        was showing raw value originally, rather than true sheet value for
+        player in hand. 
+    - type: Fix
+      message: >-
+        compostbins not actually able to have anything put in, N14Produce to
+        include N14Dung variants can be put in to make compost
+    - type: Fix
+      message: N14Dung no longer despawns, time to shovel the shit
+    - type: Fix
+      message: >-
+        contract tiers now register in shopkeep vendor after
+        attribution/applying materials, progression broke
+    - type: Tweak
+      message: admin ticket system DB presence
+    - type: Add
+      message: Pinky109's Priestess of Mars sprite inner clothing
+    - type: Add
+      message: accreddited .json for Pinky109's sprites
+    - type: Fix
+      message: debloat all unused textures & prototypes
+    - type: Tweak
+      message: NCR Major loadout
+    - type: Fix
+      message: coordinates for map system off scale
+    - type: Add
+      message: NCR Captain slot to current Wendover map file
+    - type: Fix
+      message: stealthboy function not working unless in hand
+  id: 5671
+  time: '2026-03-24T20:59:49.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/178
