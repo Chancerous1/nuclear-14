@@ -43,7 +43,11 @@
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CaptainCommandSet
   name: Captain Command Kit
-  description: Includes NCR combat armor, a loaded captain's revolver belt, a captain pin, a battle rifle with 6 clips, a handheld radio, 2 smoke grenades, a frag grenade, a C ration MRE, a stimpak, 2 super stimpaks, a RadAway blood bag, 2 gauze packs, and a flare.
+  description: |-
+    Includes NCR combat armor, a loaded captain's revolver belt,
+        a captain pin, a battle rifle with 6 clips, a handheld radio,
+        2 smoke grenades, a frag grenade, a C ration MRE, a stimpak,
+        2 super stimpaks, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
@@ -53,7 +57,11 @@
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CaptainMarksmanSet
   name: Captain Frontier Marksman Kit
-  description: Includes an NCR trench coat, a loaded captain's revolver belt, a captain pin, an NCR .50 rifle, a box of .50 ammo, a handheld radio, a smoke grenade, a C ration MRE, a stimpak, a super stimpak, a RadAway blood bag, 2 gauze packs, and a flare.
+  description: |-
+    Includes an NCR trench coat, a loaded captain's revolver belt,
+        a captain pin, an NCR .50 rifle, a box of .50 ammo,
+        a handheld radio, a smoke grenade, a C ration MRE, a stimpak,
+        a super stimpak, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
@@ -249,7 +257,11 @@
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CaptainServiceRifleSet
   name: Captain Field Officer Kit
-  description: Includes NCR combat armor, an NCR belt, a captain pin, a scoped service rifle with 6 magazines, a 9mm pistol with 3 magazines, a handheld radio, 2 smoke grenades, a frag grenade, a C ration MRE, a stimpak, 2 super stimpaks, a RadAway blood bag, 2 gauze packs, and a flare.
+  description: |-
+    Includes NCR combat armor, an NCR belt, a captain pin,
+        a scoped service rifle with 6 magazines, a 9mm pistol with 3 magazines,
+        a handheld radio, 2 smoke grenades, a frag grenade, a C ration MRE,
+        a stimpak, 2 super stimpaks, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
