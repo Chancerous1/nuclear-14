@@ -2086,3 +2086,32 @@ Entries:
   id: 5673
   time: '2026-03-25T22:22:18.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/187
+- author: Chancerous1
+  changes:
+    - type: Add
+      message: Added NCR rain mantles
+    - type: Add
+      message: Readded Legion spray paint cabinet
+    - type: Add
+      message: Gave NCR scissors for regulations
+    - type: Fix
+      message: Fixed some NCR prisoner spawns
+    - type: Fix
+      message: Fixed tribe warp point to say Tribe
+    - type: Tweak
+      message: Relocated BoS 2nd power sledgehammer
+    - type: Tweak
+      message: Removed BoS gatling laser
+    - type: Tweak
+      message: Removed BoS LMG spawn
+    - type: Tweak
+      message: Removed recharger weapons, no more aliens for you
+    - type: Tweak
+      message: Increased ore veins
+    - type: Tweak
+      message: Increased difficulty of snow bunker
+    - type: Tweak
+      message: Increased airbase difficulty
+  id: 5674
+  time: '2026-03-25T22:22:29.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/188
