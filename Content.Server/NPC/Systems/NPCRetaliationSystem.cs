@@ -74,7 +74,7 @@ public sealed class NPCRetaliationSystem : EntitySystem
 
         // #Misfits Change — reuse the victim's configured aggro vision radius so assist behavior tracks per-mob tuning.
         var assistRange = htn.Blackboard.GetValueOrDefault<float>("AggroVisionRadius", EntityManager);
-        return assistRange is > 0f ? assistRange.Value : DefaultAssistRange;
+        return assistRange > 0f ? assistRange : DefaultAssistRange;
     }
 
     public bool TryRetaliate(Entity<NPCRetaliationComponent> ent, EntityUid target)
