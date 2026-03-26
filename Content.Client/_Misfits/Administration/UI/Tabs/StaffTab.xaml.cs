@@ -20,7 +20,7 @@ namespace Content.Client._Misfits.Administration.UI.Tabs;
 public sealed partial class StaffTab : Control
 {
     // Window references
-    private TicketLogWindow? _ticketLogWindow;
+    // private TicketLogWindow? _ticketLogWindow; // Removed — redundant with Audit Log
     private TicketAuditLogWindow? _auditLogWindow;
 
     // Ticket data from both systems, keyed by (Type, TicketId)
@@ -45,20 +45,6 @@ public sealed partial class StaffTab : Control
             ContentMarginRightOverride = 6,
             ContentMarginTopOverride = 4,
             ContentMarginBottomOverride = 4,
-        };
-
-        // Ticket log button
-        OpenTicketLog.OnPressed += _ =>
-        {
-            if (_ticketLogWindow is { Disposed: false })
-            {
-                _ticketLogWindow.MoveToFront();
-                return;
-            }
-
-            _ticketLogWindow = new TicketLogWindow();
-            _ticketLogWindow.OnClose += () => _ticketLogWindow = null;
-            _ticketLogWindow.OpenCentered();
         };
 
         // Audit log button — opens the persistent DB-backed audit log window (cross-round)
@@ -255,7 +241,7 @@ public sealed partial class StaffTab : Control
     {
         base.Dispose(disposing);
 
-        _ticketLogWindow?.Close();
+        // _ticketLogWindow?.Close(); // Removed — redundant with Audit Log
         _auditLogWindow?.Close();
 
         if (_bwoinkSys != null)
