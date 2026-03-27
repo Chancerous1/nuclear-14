@@ -2182,3 +2182,48 @@ Entries:
   id: 5678
   time: '2026-03-27T05:16:56.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/196
+- author: cythisiax
+  changes:
+    - type: Tweak
+      message: >-
+        Users in Power Armor (All variants) No longer have mob collision. No
+        more body moving people in power armor.
+    - type: Tweak
+      message: >-
+        Powerarmor now has Piercing and Burn ArmorComponent readded @0.75 value
+        reduction. Slightly better than Centurion's armor. >> Edit, now T45 is
+        on PAR to Legion Centurion armor.
+    - type: Add
+      message: >-
+        When ArmorIntegrity is BROKEN, ArmorComponent disappears entirely.
+        Player takes FULL WEAPON damage.
+    - type: Add
+      message: Paladin and Senior Paladin timelock 5 > 10 hours
+    - type: Tweak
+      message: >-
+        Reduce Senior Paladin Slot > 1 instead of 2, added 1 regular paladin (3
+        paladin) (1 senior) (1 head) total
+    - type: Tweak
+      message: AER14 and Bozar removed from paladin kits, replaced AER14 with AER9s
+    - type: Tweak
+      message: Temporarily disabled SPECIAL stats.
+    - type: Tweak
+      message: NPC steering adjust, hopefully less circles, looks to be locally.
+    - type: Fix
+      message: >-
+        T1-T7 armor values. Essentially, NCR Recruit, Legion Recruit, Squire are
+        similar armor component values. Each rank by rank of each faction has
+        equivalent armor values to that rank, BoS now has no "technological"
+        edge, and Squire armor is not equivalent of a vet ranger's gear. Head
+        Knight Combat Armor is equiv. to Prime Decanus, etc. (Flat balance)
+    - type: Remove
+      message: >-
+        Misfit changes to CPR system, re-use commented out _Shitmed system, CPR
+        perk now requires 8 points
+    - type: Fix
+      message: BoS jobslots allowed ghouls
+    - type: Tweak
+      message: PA now has examinable values
+  id: 5679
+  time: '2026-03-27T17:55:55.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/197
