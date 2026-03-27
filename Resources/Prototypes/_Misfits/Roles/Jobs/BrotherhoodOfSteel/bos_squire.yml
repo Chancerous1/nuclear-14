@@ -11,12 +11,9 @@
   description: job-description-bos-mid-squire
   playTimeTracker: BoSMidSquire
   requirements:
-    - !type:CharacterLogicOrRequirement
-      requirements:
-        - !type:CharacterSpeciesRequirement
-          species:
-            - Human
-            - Ghoul
+    - !type:CharacterSpeciesRequirement # BoS does not accept Ghouls or Glowing Ghouls
+      species:
+        - Human
     #- !type:CharacterPlaytimeRequirement # TEMP REMOVED
     #  tracker: BoSInitiate
     #  min: 18000 # 5 hours

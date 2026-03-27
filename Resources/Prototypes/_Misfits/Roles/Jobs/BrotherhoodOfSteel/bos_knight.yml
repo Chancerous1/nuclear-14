@@ -61,10 +61,9 @@
   description: job-description-bos-knight
   playTimeTracker: BoSKnight
   requirements:
-    - !type:CharacterSpeciesRequirement
+    - !type:CharacterSpeciesRequirement # BoS does not accept Ghouls or Glowing Ghouls
       species:
       - Human
-      - Ghoul
     #- !type:CharacterPlaytimeRequirement # TEMP REMOVED
     #  tracker: BoSMidSquire
     #  min: 36000 # 10 hours
