@@ -4,6 +4,7 @@
 // The toggle action has a 5-second useDelay so neither state can be exited immediately.
 
 using Content.Shared.Actions;
+using Content.Shared.Armor;
 using Content.Shared.Damage;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
