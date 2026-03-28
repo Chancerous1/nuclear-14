@@ -47,8 +47,8 @@
 
 - type: radioChannel
   id: Security
-  name: chat-radio-security
-  # keycode: '4'  # Misfits — disabled
+  name: chat-radio-vault-security
+  keycode: 's'
   frequency: 1359
   color: "#dd3535"
 
