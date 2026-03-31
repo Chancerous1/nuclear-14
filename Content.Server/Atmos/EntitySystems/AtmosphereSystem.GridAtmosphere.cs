@@ -59,6 +59,8 @@ public sealed partial class AtmosphereSystem
             return;
 
         InvalidateAllTiles((uid, mapGrid, component));
+
+        component.Simulated = AtmosSimulated; // #Misfits Add — apply simulation kill-switch to freshly loaded grids
     }
 
     private void OnGridSplit(EntityUid uid, GridAtmosphereComponent originalGridAtmos, ref GridSplitEvent args)

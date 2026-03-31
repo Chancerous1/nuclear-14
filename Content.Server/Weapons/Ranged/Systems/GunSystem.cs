@@ -454,6 +454,9 @@ public sealed partial class GunSystem : SharedGunSystem
             RaiseNetworkEvent(new HitscanEvent
             {
                 Sprites = sprites,
+                TintColor = hitscan.TintColor, // #Misfits Add: forward beam customisation
+                BeamWidth = hitscan.BeamWidth,
+                BeamDuration = hitscan.BeamDuration,
             }, Filter.Pvs(fromCoordinates, entityMan: EntityManager));
         }
     }

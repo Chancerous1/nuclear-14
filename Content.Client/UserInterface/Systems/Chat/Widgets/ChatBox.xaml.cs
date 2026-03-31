@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Client._Misfits.Chat; // #Misfits Change
-using Content.Client._Misfits.Roster; // #Misfits Add
 using Content.Client.Administration.Systems; // #Misfits Change
 using Content.Client.Guidebook.RichText; // #Misfits Change
 using Content.Client.UserInterface.Systems.Chat.Controls;
@@ -36,6 +35,18 @@ public partial class ChatBox : UIWidget, ILinkClickHandler // #Misfits Change â€
     private readonly ILocalizationManager _loc;
     private readonly IClientConsoleHost _console; // #Misfits Change
 
+    // #Misfits Fix â€” chat messages need FontTag allowed so speech verb fontSize markup is not stripped.
+    private static readonly Type[] ChatMessageTags =
+    [
+        typeof(BoldItalicTag),
+        typeof(BoldTag),
+        typeof(BulletTag),
+        typeof(ColorTag),
+        typeof(FontTag),
+        typeof(HeadingTag),
+        typeof(ItalicTag),
+    ];
+
     // #Misfits Change â€” extended tag set that allows our AdminChatLinkTag for [Info]/[Ghost] hyperlinks.
     private static readonly Type[] AdminChatTags =
     [
@@ -43,6 +54,7 @@ public partial class ChatBox : UIWidget, ILinkClickHandler // #Misfits Change â€
         typeof(BoldTag),
         typeof(BulletTag),
         typeof(ColorTag),
+        typeof(FontTag),
         typeof(HeadingTag),
         typeof(ItalicTag),
         typeof(AdminChatLinkTag),
@@ -74,10 +86,9 @@ public partial class ChatBox : UIWidget, ILinkClickHandler // #Misfits Change â€
         _controller.MessageAdded += OnMessageAdded;
         _controller.RegisterChat(this);
 
-        // #Misfits Add - Wire the Roster button to open the crew manifest window.
-        // Uses RosterUIController so the network send has proper DI/entity-system access.
-        var rosterCtrl = UserInterfaceManager.GetUIController<RosterUIController>();
-        RosterButton.OnPressed += _ => rosterCtrl.RequestRoster();
+        // #Misfits Change - Roster button now triggers the chat-equivalent /players command
+        // so players get the active player list without opening the Crew Manifest UI.
+        RosterButton.OnPressed += _ => _console.ExecuteCommand("players");
 
         _cfg = IoCManager.Resolve<IConfigurationManager>();
         //_chatStackAmount = _cfg.GetCVar(CCVars.ChatStackLastLines);
@@ -261,7 +272,8 @@ public partial class ChatBox : UIWidget, ILinkClickHandler // #Misfits Change â€
                                 ("size", 8 + sizeIncrease)
                                 ));
         }
-        Contents.AddMessage(formatted);
+        // #Misfits Fix â€” use explicit allowed tags so [font size=...] from wrapped chat is preserved.
+        Contents.AddMessage(formatted, ChatMessageTags, null);
     }
 
     // #Misfits Change â€” like AddLine but appends [Ghost] (all ghosts) and optionally [Info] (aghost admins only).

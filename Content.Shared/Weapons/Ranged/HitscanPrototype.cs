@@ -2,6 +2,7 @@ using Content.Shared.Damage;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Audio;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -54,4 +55,16 @@ public sealed partial class HitscanPrototype : IPrototype, IShootable
     /// </summary>
     [DataField("maxLength")]
     public float MaxLength = 20f;
+
+    // #Misfits Add: optional beam colour tint applied on the client
+    [DataField("tintColor")]
+    public Color? TintColor;
+
+    // #Misfits Add: vertical scale multiplier for the beam sprite (wider = thicker beam)
+    [DataField("beamWidth")]
+    public float BeamWidth = 1f;
+
+    // #Misfits Add: how long the beam visual stays on-screen (seconds)
+    [DataField("beamDuration")]
+    public float BeamDuration = 0.48f;
 }

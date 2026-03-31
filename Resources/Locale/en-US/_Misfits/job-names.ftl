@@ -25,10 +25,16 @@ job-name-synthetic-protectron = Protectron
 job-description-synthetic-protectron = You are a RobCo Industries Protectron security and utility robot. Slow but sturdy, your chassis can take a beating. Ensure order, protect the community, or simply find your own purpose.
 job-name-synthetic-assaultron = Assaultron
 job-description-synthetic-assaultron = You are a RobCo Industries Assaultron combat robot, built for speed and destruction. Your laser systems and melee capabilities make you a formidable force. Choose your allegiances wisely.
+job-name-synthetic-sentrybot = Sentry Bot
+job-description-synthetic-sentrybot = You are a pre-war military Sentry Bot — a walking weapons platform bristling with armaments. Your massive armored chassis houses a minigun or gatling laser and a missile launcher. What remains of your programming demands annihilation.
+job-name-synthetic-robobrain = Robobrain
+job-description-synthetic-robobrain = You are a pre-war military Robobrain, a cybernetic construct housing a living brain within a robotic chassis. Slower but versatile, with medical and utility capabilities — or an integrated laser if combat is your calling.
 
 # Super Mutant
-job-name-supermutant = Super Mutant
+job-name-supermutant = Supermutant
 job-description-supermutant = You are a hulking FEV-mutated humanoid, towering over normal humans. Your immense strength and endurance are matched only by your reduced intellect. Find your place in the wasteland — through force, loyalty, or surprising compassion.
+job-name-supermutant-gladiator = Supermutant Gladiator
+job-description-supermutant-gladiator = You are an arena-forged supermutant who lives for close combat and spectacle. Wear your gladiator kit proudly and prove your strength in the wasteland.
 
 # #Misfits Add — Western BoS chapter command-tier jobs (Elder + Head Scribe).
 # These keys were commented out in the Corvax locale when the Corvax west-BoS chapter

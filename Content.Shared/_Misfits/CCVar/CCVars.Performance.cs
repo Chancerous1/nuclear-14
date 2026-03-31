@@ -30,4 +30,14 @@ public sealed class PerformanceCVars : CVars
     /// </summary>
     public static readonly CVarDef<float> ProximityNPCCheckInterval =
         CVarDef.Create("misfits.proximity_npc_check_interval", 5f, CVar.SERVER | CVar.SERVERONLY);
+
+    /// <summary>
+    /// Whether the atmos tile simulation runs on grids. When false, the 9-phase
+    /// processing loop (tile equalization, active tiles, hotspots, pipe nets,
+    /// atmos devices) is skipped entirely. Breathing, temperature, and smoke
+    /// continue working via the static <c>MapAtmosphereComponent</c> mixture.
+    /// Reclaims ~2-3ms of tick budget on maps with no functional HVAC.
+    /// </summary>
+    public static readonly CVarDef<bool> AtmosSimulated =
+        CVarDef.Create("misfits.atmos_simulated", false, CVar.SERVERONLY);
 }
