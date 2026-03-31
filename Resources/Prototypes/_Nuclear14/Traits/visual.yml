@@ -51,7 +51,7 @@
     - CaesarLegionLegionnaireRecruit
     - CaesarLegionHoundmaster
     - CaesarLegionAuxilia
-    - CaesarLegionRecruit
+    # #Misfits Change: CaesarLegionRecruit removed — Legionnaire covers entry-level.
     - Overseer
     - VaultSecurity
   - !type:CharacterTraitRequirement

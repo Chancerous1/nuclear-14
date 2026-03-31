@@ -148,10 +148,10 @@
 - type: entity
   id: N14SpawnPointLegionRecruit
   parent: N14SpawnPointCenturion
-  name: legion recruit
+  name: legion legionnaire
   components:
   - type: SpawnPoint
-    job_id: CaesarLegionRecruit
+    job_id: CaesarLegionLegionnaireRecruit # #Misfits Change: Redirected from defunct CaesarLegionRecruit
   - type: Sprite
     layers:
       - state: green

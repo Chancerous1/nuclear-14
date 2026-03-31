@@ -3,7 +3,7 @@
   setPreference: true
   hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 90
+  weight: 100
   name: job-name-caesar-legion-explorer
   description: job-description-caesar-legion-explorer
   playTimeTracker: CaesarLegionExplorer
@@ -14,10 +14,7 @@
     - !type:CharacterSpeciesRequirement
       species:
       - Human
-    - !type:CharacterSexRequirement
-      sex: Male
-    - !type:CharacterGenderRequirement
-      gender: Male
+    # #Misfits Change: Explorer is now open to Female characters.
   startingGear: CaesarLegionExplorerGear
   alwaysUseSpawner: true
   icon: "JobIconlegionerVenator"

@@ -191,5 +191,6 @@
   - CaesarLegionExplorer        # Explorer            | _Misfits/Roles/Jobs/CaesarLegion/legion_explorer.yml
   - CaesarLegionAuxilia         # Auxilia             | _Misfits/Roles/Jobs/CaesarLegion/legion_auxilia.yml
   # Recruits
-  - CaesarLegionRecruit         # Recruit             | _Misfits/Roles/Jobs/CaesarLegion/legion_recruit.yml
+  # #Misfits Change: CaesarLegionRecruit removed — replaced by Legionnaire (CaesarLegionLegionnaireRecruit).
+  # - CaesarLegionRecruit         # Recruit             | _Misfits/Roles/Jobs/CaesarLegion/legion_recruit.yml
   - CaesarLegionSlave           # Slave               | _Misfits/Roles/Jobs/CaesarLegion/legion_slave.yml
