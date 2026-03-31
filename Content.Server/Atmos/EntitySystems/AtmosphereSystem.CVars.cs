@@ -1,4 +1,6 @@
+using Content.Server.Atmos.Components; // #Misfits Add
 using Content.Shared.CCVar;
+using Content.Shared._Misfits.CCVar; // #Misfits Add
 using Robust.Shared.Configuration;
 
 namespace Content.Server.Atmos.EntitySystems
@@ -31,6 +33,9 @@ namespace Content.Server.Atmos.EntitySystems
         public float Speedup { get; private set; }
         public float HeatScale { get; private set; }
         public float HumanoidThrowMultiplier { get; private set; }
+
+    // #Misfits Add — kill-switch for the full grid simulation loop; Wendover has no functional HVAC
+    public bool AtmosSimulated { get; private set; }
 
         /// <summary>
         /// Time between each atmos sub-update.  If you are writing an atmos device, use AtmosDeviceUpdateEvent.dt
@@ -65,6 +70,15 @@ namespace Content.Server.Atmos.EntitySystems
             Subs.CVar(_cfg, CCVars.ExcitedGroups, value => ExcitedGroups = value, true);
             Subs.CVar(_cfg, CCVars.ExcitedGroupsSpaceIsAllConsuming, value => ExcitedGroupsSpaceIsAllConsuming = value, true);
             Subs.CVar(_cfg, CCVars.AtmosHumanoidThrowMultiplier, value => HumanoidThrowMultiplier = value, true);
+
+            // #Misfits Add — when toggled, retroactively update all loaded grids so hot-reload via console works
+            Subs.CVar(_cfg, PerformanceCVars.AtmosSimulated, value =>
+            {
+                AtmosSimulated = value;
+                var query = EntityQueryEnumerator<GridAtmosphereComponent>();
+                while (query.MoveNext(out _, out var atmos))
+                    atmos.Simulated = value;
+            }, true);
         }
     }
 }
