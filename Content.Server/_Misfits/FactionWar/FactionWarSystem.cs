@@ -53,6 +53,9 @@ public sealed class FactionWarSystem : EntitySystem
     /// <summary>Minimum word count for casus belli.</summary>
     private const int MinCasusBelliWords = 5;
 
+    /// <summary>Cooldown after a war ends before the same faction can declare again.</summary>
+    private static readonly TimeSpan WarCooldownAfterEnd = TimeSpan.FromMinutes(10);
+
     // ── State ──────────────────────────────────────────────────────────────
 
     private readonly List<FactionWarEntry> _activeWars = new();
@@ -67,6 +70,13 @@ public sealed class FactionWarSystem : EntitySystem
     /// </summary>
     private readonly Dictionary<NetUserId, (string WarKey, string Side)> _warParticipants = new();
 
+    /// <summary>Per-faction cooldown after a war ends. Key = faction ID, Value = earliest next war time.</summary>
+    private readonly Dictionary<string, TimeSpan> _factionWarCooldowns = new();
+
+    /// <summary>Interval between periodic participant broadcasts (keeps overlay fresh).</summary>
+    private static readonly TimeSpan ParticipantBroadcastInterval = TimeSpan.FromSeconds(2);
+    private TimeSpan _nextParticipantBroadcast;
+
     // ── Lifecycle ──────────────────────────────────────────────────────────
 
     public override void Initialize()
@@ -79,6 +89,13 @@ public sealed class FactionWarSystem : EntitySystem
             "Forcibly end an active war between two factions.",
             "warend <aggressorFactionId> <targetFactionId>",
             WarEndCommand);
+
+        // Admin-only: force-declare a war, bypassing 30-min cooldown and rank checks.
+        _conHost.RegisterCommand(
+            "forcewar",
+            "Force-declare a war between two factions (admin, bypasses cooldown/rank).",
+            "forcewar <aggressorFactionId> <targetFactionId> [casusBelli...]",
+            ForceWarCommand);
 
         // Receive GUI form submissions from clients.
         SubscribeNetworkEvent<FactionWarOpenPanelRequestEvent>(OnPanelRequest);
@@ -99,16 +116,28 @@ public sealed class FactionWarSystem : EntitySystem
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
     }
 
-    // ── Tick: transition Pending → Active ──────────────────────────────────
+    // ── Tick: transition Pending → Active, periodic participant broadcast ─
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
+        // Periodically re-broadcast the full participant dict so the client
+        // overlay stays in sync as entities spawn, move, or leave.
+        if (_activeWars.Count > 0)
+        {
+            var now = _gameTiming.CurTime;
+            if (now >= _nextParticipantBroadcast)
+            {
+                _nextParticipantBroadcast = now + ParticipantBroadcastInterval;
+                BroadcastParticipants();
+            }
+        }
+
         if (_warActivationTimes.Count == 0)
             return;
 
-        var now = _gameTiming.CurTime;
+        var now2 = _gameTiming.CurTime;
         var activated = new List<FactionWarEntry>();
 
         foreach (var war in _activeWars)
@@ -120,7 +149,7 @@ public sealed class FactionWarSystem : EntitySystem
             if (!_warActivationTimes.TryGetValue(key, out var activationTime))
                 continue;
 
-            if (now < activationTime)
+            if (now2 < activationTime)
                 continue;
 
             war.Phase = WarPhase.Active;
@@ -257,6 +286,23 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
+        // Per-faction cooldown after a previous war ended.
+        var now = _gameTiming.CurTime;
+        if (_factionWarCooldowns.TryGetValue(myFactionId, out var myCooldown) && now < myCooldown)
+        {
+            var rem = myCooldown - now;
+            SendResult(player, false,
+                $"Your faction recently ended a war. Cooldown: {rem.Minutes}m {rem.Seconds}s remaining.");
+            return;
+        }
+        if (_factionWarCooldowns.TryGetValue(targetFactionId, out var tgtCooldown) && now < tgtCooldown)
+        {
+            var rem = tgtCooldown - now;
+            SendResult(player, false,
+                $"{FactionDisplayName(targetFactionId)} recently ended a war. Cooldown: {rem.Minutes}m {rem.Seconds}s remaining.");
+            return;
+        }
+
         if (!FactionWarConfig.WarCapableFactions.Contains(targetFactionId))
         {
             SendResult(player, false, $"'{targetFactionId}' is not a valid faction.");
@@ -388,7 +434,7 @@ public sealed class FactionWarSystem : EntitySystem
         _chat.DispatchServerAnnouncement(
             $"CEASEFIRE\n" +
             $"{aggressorDisplay} and {targetDisplay} have agreed to a ceasefire.\n" +
-            $"{charName}, {jobName}",
+            $"However, escalation and tensions still exist.",
             Color.SkyBlue);
 
         _chat.SendAdminAnnouncement(
@@ -523,6 +569,97 @@ public sealed class FactionWarSystem : EntitySystem
             $"[FactionWar] Admin {adminName} ended war: {aggressorDisplay} vs {targetDisplay}");
     }
 
+    /// <summary>
+    /// Admin-only /forcewar: declares a war between two factions, bypassing the 30-minute
+    /// round-start cooldown and rank/faction-membership checks. Useful for testing.
+    /// </summary>
+    private void ForceWarCommand(IConsoleShell shell, string argStr, string[] args)
+    {
+        if (shell.Player is { } player && !_adminManager.IsAdmin(player))
+        {
+            shell.WriteError("You must be an admin to use this command.");
+            return;
+        }
+
+        if (args.Length < 2)
+        {
+            shell.WriteError("Usage: forcewar <aggressorFactionId> <targetFactionId> [casusBelli...]");
+            return;
+        }
+
+        var aggressorId = args[0].Trim();
+        var targetId    = args[1].Trim();
+
+        // Validate both are war-capable factions.
+        if (!FactionWarConfig.WarCapableFactions.Contains(aggressorId))
+        {
+            shell.WriteError($"'{aggressorId}' is not a war-capable faction. Valid: {string.Join(", ", FactionWarConfig.WarCapableFactions)}");
+            return;
+        }
+        if (!FactionWarConfig.WarCapableFactions.Contains(targetId))
+        {
+            shell.WriteError($"'{targetId}' is not a war-capable faction. Valid: {string.Join(", ", FactionWarConfig.WarCapableFactions)}");
+            return;
+        }
+        if (aggressorId == targetId)
+        {
+            shell.WriteError("Aggressor and target cannot be the same faction.");
+            return;
+        }
+        if (IsFactionInWar(aggressorId))
+        {
+            shell.WriteError($"{FactionDisplayName(aggressorId)} is already in a war.");
+            return;
+        }
+        if (IsFactionInWar(targetId))
+        {
+            shell.WriteError($"{FactionDisplayName(targetId)} is already in a war.");
+            return;
+        }
+
+        // Optional casus belli from remaining args, default if omitted.
+        var casus = args.Length > 2
+            ? string.Join(" ", args.Skip(2))
+            : "Admin-forced war (testing)";
+
+        var adminName = shell.Player?.Name ?? "Server";
+
+        var entry = new FactionWarEntry
+        {
+            AggressorFaction      = aggressorId,
+            TargetFaction         = targetId,
+            CasusBelli            = casus,
+            DeclarerCharacterName = adminName,
+            DeclarerJobName       = "Admin",
+            Phase                 = WarPhase.Pending,
+        };
+
+        _activeWars.Add(entry);
+
+        // Start the 5-minute preparation timer.
+        var warKey = WarKey(entry);
+        _warActivationTimes[warKey] = _gameTiming.CurTime + WarPrepDuration;
+
+        BroadcastWarState();
+        SendPanelDataToAll();
+
+        var aggDisplay = FactionDisplayName(aggressorId);
+        var tgtDisplay = FactionDisplayName(targetId);
+
+        _chat.DispatchServerAnnouncement(
+            $"WAR DECLARED\n" +
+            $"{aggDisplay} has declared war on {tgtDisplay}!\n" +
+            $"Casus Belli: \"{casus}\"\n" +
+            $"{adminName}, Admin\n\n" +
+            $"War begins in 5 minutes. Use (/warjoin) to choose a side.",
+            Color.OrangeRed);
+
+        _chat.SendAdminAnnouncement(
+            $"[FactionWar] Admin {adminName} force-declared war: {aggDisplay} vs {tgtDisplay}. Casus: {casus}");
+
+        shell.WriteLine($"War declared: {aggDisplay} vs {tgtDisplay} (pending 5 min).");
+    }
+
     // ── Round lifecycle ────────────────────────────────────────────────────
 
     private void OnRoundRestart(RoundRestartCleanupEvent _)
@@ -530,6 +667,8 @@ public sealed class FactionWarSystem : EntitySystem
         _activeWars.Clear();
         _warActivationTimes.Clear();
         _warParticipants.Clear();
+        _factionWarCooldowns.Clear();
+        _nextParticipantBroadcast = TimeSpan.Zero;
         _roundStartTime = _gameTiming.CurTime;
     }
 
@@ -560,6 +699,11 @@ public sealed class FactionWarSystem : EntitySystem
 
         var warKey = WarKey(war);
         _warActivationTimes.Remove(warKey);
+
+        // Set per-faction cooldown so neither side can immediately re-declare.
+        var cooldownEnd = _gameTiming.CurTime + WarCooldownAfterEnd;
+        _factionWarCooldowns[war.AggressorFaction] = cooldownEnd;
+        _factionWarCooldowns[war.TargetFaction]    = cooldownEnd;
 
         // Remove all participants enlisted for this specific war.
         var toRemove = _warParticipants
@@ -604,14 +748,51 @@ public sealed class FactionWarSystem : EntitySystem
         }
     }
 
-    /// <summary>Builds a NetEntity → side dictionary from the current participants.</summary>
+    /// <summary>
+    /// Builds a NetEntity → side dictionary from ALL war-relevant entities:
+    /// NPC faction members in active-war factions AND individual /warjoin participants.
+    /// This is needed because NpcFactionMemberComponent.Factions is NOT synced to clients,
+    /// so the client overlay cannot check faction membership itself.
+    /// </summary>
     private Dictionary<NetEntity, string> BuildParticipantDict()
     {
+        var dict = new Dictionary<NetEntity, string>();
+
+        // Collect the set of faction IDs currently at war.
+        var warFactions = new HashSet<string>();
+        foreach (var war in _activeWars)
+        {
+            warFactions.Add(war.AggressorFaction);
+            warFactions.Add(war.TargetFaction);
+            // Include aliases (e.g. Rangers → NCR) so those members are found too.
+            foreach (var (raw, canonical) in FactionWarConfig.FactionAliases)
+            {
+                if (canonical == war.AggressorFaction || canonical == war.TargetFaction)
+                    warFactions.Add(raw);
+            }
+        }
+
+        // Pass 1: All NPC faction members whose faction is involved in a war.
+        var factionQuery = EntityQueryEnumerator<NpcFactionMemberComponent>();
+        while (factionQuery.MoveNext(out var uid, out _))
+        {
+            foreach (var fId in warFactions)
+            {
+                if (!_npcFaction.IsMember(uid, fId))
+                    continue;
+
+                // Resolve alias to canonical war faction (e.g. Rangers → NCR).
+                var canonical = FactionWarConfig.ResolveWarFaction(fId);
+                dict[GetNetEntity(uid)] = canonical;
+                break; // first match wins
+            }
+        }
+
+        // Pass 2: Individual /warjoin participants (may overlap with pass 1 — their side wins).
         var sessionByUserId = new Dictionary<NetUserId, ICommonSession>();
         foreach (var session in _playerManager.Sessions)
             sessionByUserId[session.UserId] = session;
 
-        var dict = new Dictionary<NetEntity, string>();
         foreach (var (userId, (_, side)) in _warParticipants)
         {
             if (!sessionByUserId.TryGetValue(userId, out var session))
@@ -620,6 +801,7 @@ public sealed class FactionWarSystem : EntitySystem
                 continue;
             dict[GetNetEntity(entity)] = side;
         }
+
         return dict;
     }
 

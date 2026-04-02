@@ -19,3 +19,15 @@
     useDelay: 45
     icon: Interface/Alerts/Fire/fire.png
     event: !type:PerformWarcryActionEvent
+
+- type: entity
+  id: ActionMarsWarcry
+  name: action-name-mars-warcry
+  description: action-desc-mars-warcry
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 45
+    icon: Interface/Alerts/Fire/fire.png
+    event: !type:PerformWarcryActionEvent
+    event: !type:PerformWarcryActionEvent

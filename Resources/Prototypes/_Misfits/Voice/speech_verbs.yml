@@ -22,6 +22,14 @@
   bold: true
   fontSize: 18
 
+- type: speechVerb
+  id: MisfitsMarsWarcry
+  name: chat-speech-verb-name-mars-warcry
+  speechVerbStrings:
+  - chat-speech-verb-mars-warcry
+  bold: true
+  fontSize: 18
+
 # #Misfits Add - vocal style preferences for character creation
 - type: speechVerb
   id: MisfitsRasp

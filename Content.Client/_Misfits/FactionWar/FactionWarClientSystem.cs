@@ -8,7 +8,6 @@
 using System.Linq;
 using Content.Client._Misfits.FactionWar.UI;
 using Content.Shared._Misfits.FactionWar;
-using Content.Shared.NPC.Systems;
 using Robust.Client.Console;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -30,7 +29,6 @@ public sealed class FactionWarClientSystem : EntitySystem
     [Dependency] private readonly IEyeManager         _eyeManager     = default!;
     [Dependency] private readonly IResourceCache      _resourceCache  = default!;
     [Dependency] private readonly EntityLookupSystem  _entityLookup   = default!;
-    [Dependency] private readonly NpcFactionSystem    _npcFaction     = default!;
     [Dependency] private readonly IClientConsoleHost  _conHost        = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager    = default!;
 
@@ -102,6 +100,10 @@ public sealed class FactionWarClientSystem : EntitySystem
     {
         _activeWars = msg.ActiveWars;
         UpdateOverlayVisibility();
+
+        // Refresh war panel if open so Active Wars list repopulates after respawn/state change.
+        if (_window != null)
+            RaiseNetworkEvent(new FactionWarOpenPanelRequestEvent());
 
         // Refresh warjoin panel if open (pending wars may have changed phase).
         if (_warJoinWindow != null)
@@ -255,20 +257,16 @@ public sealed class FactionWarClientSystem : EntitySystem
             return;
         }
 
-        // Either the player is in a war faction or they joined via /warjoin.
-        var effectiveFaction = LocalFactionId ?? LocalWarJoinSide;
-        if (effectiveFaction == null)
-        {
-            // Even without a faction, if there are participants the overlay may apply later.
-            RemoveOverlay();
-            return;
-        }
+        // Show the overlay if the local player is in the server-broadcast participant dict
+        // (covers both NPC faction members and /warjoin participants), OR if they have a
+        // cached faction/warjoin side from the panel.
+        var localEntity = _playerManager.LocalSession?.AttachedEntity;
+        var inDict = localEntity != null
+            && _warParticipants.ContainsKey(EntityManager.GetNetEntity(localEntity.Value));
 
-        var involved = LocalWarJoinSide != null || _activeWars.Any(w =>
-            w.AggressorFaction == effectiveFaction ||
-            w.TargetFaction    == effectiveFaction);
+        var hasCachedSide = LocalFactionId != null || LocalWarJoinSide != null;
 
-        if (involved)
+        if (inDict || hasCachedSide)
             EnsureOverlay();
         else
             RemoveOverlay();
@@ -283,7 +281,6 @@ public sealed class FactionWarClientSystem : EntitySystem
             this,
             EntityManager,
             _playerManager,
-            _npcFaction,
             _eyeManager,
             _resourceCache,
             _entityLookup);
