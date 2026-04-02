@@ -303,7 +303,7 @@
 # --- Vault Tier 2 Ammo ---
 - type: latheRecipe
   id: N14BPVaultAmmoPowerCellSmall
-  result: N14PowerCellSmall
+  result: N14MicrofusionCellRed
   category: N14BlueprintVaultAmmoT2
   completetime: 5
   requiresBlueprint: true
@@ -330,7 +330,7 @@
 # --- Vault Tier 3 Ammo ---
 - type: latheRecipe
   id: N14BPVaultAmmoPowerCellHigh
-  result: N14PowerCellHigh
+  result: N14MicrofusionCellGreen
   category: N14BlueprintVaultAmmoT3
   completetime: 8
   requiresBlueprint: true
@@ -372,7 +372,7 @@
 
 - type: latheRecipe
   id: N14BPVaultAmmoPowerCellAdvanced
-  result: N14PowerCellAdvanced
+  result: N14MicrofusionCellBlue
   category: N14BlueprintVaultAmmoT4
   completetime: 12
   requiresBlueprint: true

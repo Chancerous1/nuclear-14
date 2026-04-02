@@ -583,7 +583,23 @@
 # --- BoS Tier 1 Ammo ---
 - type: latheRecipe
   id: N14BPBoSAmmoPowerCellSmall
-  result: N14PowerCellSmall
+  result: N14MicrofusionCellRed
+  category: N14BlueprintBoSAmmoT1
+  completetime: 4
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Glass: 10
+
+    Circuitry: 5
+
+    ScrapElectronic: 5
+
+
+- type: latheRecipe
+  id: N14BPBoSAmmoElectronChargePackRed
+  result: N14ElectronChargePackRed
   category: N14BlueprintBoSAmmoT1
   completetime: 4
   requiresBlueprint: true
@@ -616,7 +632,25 @@
 # --- BoS Tier 2 Ammo ---
 - type: latheRecipe
   id: N14BPBoSAmmoPowerCellHigh
-  result: N14PowerCellHigh
+  result: N14MicrofusionCellGreen
+  category: N14BlueprintBoSAmmoT2
+  completetime: 7
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Glass: 25
+
+    Circuitry: 20
+
+    ScrapElectronic: 10
+
+    Plastic: 5
+
+
+- type: latheRecipe
+  id: N14BPBoSAmmoElectronChargePackGreen
+  result: N14ElectronChargePackGreen
   category: N14BlueprintBoSAmmoT2
   completetime: 7
   requiresBlueprint: true
@@ -651,7 +685,25 @@
 # --- BoS Tier 3 Ammo ---
 - type: latheRecipe
   id: N14BPBoSAmmoPowerCellAdvanced
-  result: N14PowerCellAdvanced
+  result: N14MicrofusionCellBlue
+  category: N14BlueprintBoSAmmoT3
+  completetime: 10
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Glass: 40
+
+    Circuitry: 35
+
+    ScrapElectronic: 20
+
+    Plastic: 10
+
+
+- type: latheRecipe
+  id: N14BPBoSAmmoElectronChargePackBlue
+  result: N14ElectronChargePackBlue
   category: N14BlueprintBoSAmmoT3
   completetime: 10
   requiresBlueprint: true
@@ -686,7 +738,7 @@
 # --- BoS Tier 4 Ammo ---
 - type: latheRecipe
   id: N14BPBoSAmmoPowerCellFusion
-  result: N14PowerCellFusion
+  result: N14MicrofusionCellHighCapRed
   category: N14BlueprintBoSAmmoT4
   completetime: 15
   requiresBlueprint: true
@@ -705,26 +757,8 @@
 
 
 - type: latheRecipe
-  id: N14BPBoSAmmoPlasmaShell
-  result: N14PlasmaShell
-  category: N14BlueprintBoSAmmoT4
-  completetime: 12
-  requiresBlueprint: true
-  availableFaction:
-  - BrotherhoodOfSteel
-  materials:
-    Glass: 80
-
-    Circuitry: 65
-
-    ScrapElectronic: 50
-
-    N14Silver: 10
-
-
-- type: latheRecipe
   id: N14BPBoSAmmoPowerCellFocused
-  result: N14PowerCellFocused
+  result: N14MicrofusionCellHighCapBlue
   category: N14BlueprintBoSAmmoT4
   completetime: 15
   requiresBlueprint: true
@@ -738,6 +772,67 @@
     ScrapElectronic: 50
 
     N14Silver: 10
+
+
+# --- BoS Tier 5 Ammo ---
+- type: latheRecipe
+  id: N14BPBoSAmmoMicrofusionViolet
+  result: N14MicrofusionCellViolet
+  category: N14BlueprintBoSAmmoT5
+  completetime: 20
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Glass: 120
+
+    Circuitry: 100
+
+    ScrapElectronic: 75
+
+    N14Gold: 15
+
+    Plastic: 25
+
+
+- type: latheRecipe
+  id: N14BPBoSAmmoElectronChargePackViolet
+  result: N14ElectronChargePackViolet
+  category: N14BlueprintBoSAmmoT5
+  completetime: 20
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Glass: 120
+
+    Circuitry: 100
+
+    ScrapElectronic: 75
+
+    N14Gold: 15
+
+    Plastic: 25
+
+
+- type: latheRecipe
+  id: N14BPBoSAmmoMicrofusionHighCapViolet
+  result: N14MicrofusionCellHighCapViolet
+  category: N14BlueprintBoSAmmoT5
+  completetime: 25
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Glass: 200
+
+    Circuitry: 150
+
+    ScrapElectronic: 100
+
+    N14Gold: 25
+
+    Plastic: 40
 
 
 # =====================================================================
