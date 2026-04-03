@@ -2694,3 +2694,10 @@ Entries:
   id: 5703
   time: '2026-04-03T00:24:13.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/241
+- author: Oli
+  changes:
+    - type: Add
+      message: Gloomy & Long Gloomy Hairstyle
+  id: 5704
+  time: '2026-04-03T00:35:25.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/242
