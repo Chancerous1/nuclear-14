@@ -30,14 +30,14 @@ public sealed partial class WarJoinWindow : FancyWindow
 
         // KOS warning — hardcoded markup (FTL can't have lines starting with '[').
         WarningLabel.SetMarkup(
-            "[color=#FF4500][bold]⚠ WARNING[/bold][/color]\n" +
+            "[color=#FF4500][bold]WARNING[/bold][/color]\n" +
             "By joining this war you become [bold]Kill-On-Sight (KOS)[/bold] to the opposing faction.\n" +
             "Enemy combatants may kill you without negotiation or warning.\n" +
             "This cannot be undone until the war ends.");
 
         JoinButton.OnPressed += _ => OnJoinPressed();
         WarSelector.OnItemSelected += OnWarSelected;
-        SideSelector.OnItemSelected += _ => ResetConfirm();
+        SideSelector.OnItemSelected += args => { SideSelector.SelectId(args.Id); ResetConfirm(); };
     }
 
     /// <summary>

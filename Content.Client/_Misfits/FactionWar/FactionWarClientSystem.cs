@@ -299,19 +299,12 @@ public sealed class FactionWarClientSystem : EntitySystem
             return;
         }
 
-        // Show the overlay if the local player is in the server-broadcast participant dict
-        // (covers both NPC faction members and /warjoin participants), OR if they have a
-        // cached faction/warjoin side from the panel.
-        var localEntity = _playerManager.LocalSession?.AttachedEntity;
-        var inDict = localEntity != null
-            && _warParticipants.ContainsKey(EntityManager.GetNetEntity(localEntity.Value));
-
-        var hasCachedSide = LocalFactionId != null || LocalWarJoinSide != null;
-
-        if (inDict || hasCachedSide)
-            EnsureOverlay();
-        else
-            RemoveOverlay();
+        // If any wars are active, keep the overlay enabled.
+        // The overlay's Draw() method checks the participant dict each frame and only
+        // renders tags when the local player is actually in the dict with a valid side.
+        // This avoids timing issues where the overlay gets removed before the server's
+        // periodic participant broadcast arrives (e.g. after respawn).
+        EnsureOverlay();
     }
 
     private void EnsureOverlay()

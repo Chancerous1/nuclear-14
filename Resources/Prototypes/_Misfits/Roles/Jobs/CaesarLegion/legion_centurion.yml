@@ -38,7 +38,7 @@
         action: ActionLegionWarcry
         targetDepartment: CaesarLegion
         range: 6
-        speedBonus: 0.50
+        speedBonus: 0.30 # #Misfits Tweak - reduced from 0.50, was too strong
         duration: 10
         overlayColor: "#D64545"
         speechVerb: MisfitsLegionWarcry

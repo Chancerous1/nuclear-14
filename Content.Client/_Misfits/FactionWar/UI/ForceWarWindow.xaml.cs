@@ -40,6 +40,10 @@ public sealed partial class ForceWarWindow : FancyWindow
         if (_factionIds.Count > 1)
             TargetSelector.SelectId(1);
 
+        // Commit dropdown selection when the user picks an item.
+        AggressorSelector.OnItemSelected += args => AggressorSelector.SelectId(args.Id);
+        TargetSelector.OnItemSelected    += args => TargetSelector.SelectId(args.Id);
+
         ForceWarButton.OnPressed += _ => SubmitForceWar();
     }
 

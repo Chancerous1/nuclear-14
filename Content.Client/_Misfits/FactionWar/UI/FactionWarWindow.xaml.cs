@@ -47,10 +47,10 @@ public sealed partial class FactionWarWindow : FancyWindow
 
         // Populate rules text — hardcoded markup because FTL can't have lines starting with '['.
         RulesLabel.SetMarkup(
-            "[bold]§ 6.3 — Faction Warfare Rules[/bold]\n" +
+            "[bold]6.3 - Faction Warfare Rules[/bold]\n" +
             "[bullet]Factions begin [bold]neutral[/bold].[/bullet]\n" +
             "[bullet]Only [bold]leaders[/bold] may declare war.[/bullet]\n" +
-            "[bullet]War begins [bold]five minutes[/bold] after a face-to-face declaration.[/bullet]\n" +
+            "[bullet]War begins [bold]five minutes[/bold] after declaration.[/bullet]\n" +
             "[bullet]Killing diplomats or surrendered individuals is [bold]forbidden[/bold].[/bullet]\n" +
             "[bullet]You must prioritize taking [bold]slaves / prisoners[/bold].[/bullet]\n" +
             "[bullet]No intentionally round-ending someone (de-heading, gibbing, etc.).[/bullet]\n" +
@@ -59,8 +59,9 @@ public sealed partial class FactionWarWindow : FancyWindow
         DeclareWarButton.OnPressed  += _ => OnDeclareWarPressed();
         CeasefireButton.OnPressed   += _ => SubmitCeasefire();
 
-        // Reset confirm state when the target changes.
-        TargetFactionSelector.OnItemSelected += _ => ResetConfirm();
+        // Commit dropdown selection and reset confirm state when the target changes.
+        TargetFactionSelector.OnItemSelected += args => { TargetFactionSelector.SelectId(args.Id); ResetConfirm(); };
+        CeasefireTargetSelector.OnItemSelected += args => CeasefireTargetSelector.SelectId(args.Id);
     }
 
     // ── Public API called by FactionWarClientSystem ────────────────────────
@@ -100,8 +101,8 @@ public sealed partial class FactionWarWindow : FancyWindow
                 var entry = new Label
                 {
                     Text   = $"{phaseTag}{FactionWarConfig.FactionDisplayName(war.AggressorFaction)}" +
-                             $" ⚔ {FactionWarConfig.FactionDisplayName(war.TargetFaction)}" +
-                             $" — \"{war.CasusBelli}\"",
+                             $" vs {FactionWarConfig.FactionDisplayName(war.TargetFaction)}" +
+                             $" - \"{war.CasusBelli}\"",
                     Margin            = new Thickness(4, 2),
                     ClipText          = true,
                     HorizontalExpand  = true,
