@@ -2732,3 +2732,34 @@ Entries:
   id: 5706
   time: '2026-04-03T21:46:18.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/245
+- author: cythisiax
+  changes:
+    - type: Fix
+      message: >-
+        heated cigarette system now iterates the small set of "can-be-hot"
+        entity types instead of every solution container on the map.....
+    - type: Fix
+      message: >-
+        atmosphere system skips all processing on maps that have atmos
+        simulation disabled
+    - type: Fix
+      message: player robots no longer drop positronicbrain upon death
+    - type: Tweak
+      message: NPC max updates reduced from 2048 to 512 to reduce server CPU load
+    - type: Tweak
+      message: >-
+        starvation & dehyd no longer deals direct damage lol, only movement
+        speed reduction remains
+    - type: Add
+      message: >-
+        procedurally generated expedition maps with rich room situations taken
+        from current map files (Decent state)
+    - type: Add
+      message: >-
+        admin ticket audit log now supports filtering by player name, admin
+        name, admin ID, and date range
+    - type: Add
+      message: rotten meat, NPC corpses auto-despawn after 20 minutes
+  id: 5707
+  time: '2026-04-04T04:17:59.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/246
