@@ -1,5 +1,6 @@
 using System.Linq;
-using Content.Client._Misfits.WebView; // #Misfits Add - WebView guidebook window
+// #Misfits Removed - WebView module deprecated by upstream (all versions marked insecure)
+// using Content.Client._Misfits.WebView;
 using Content.Client.Gameplay;
 using Content.Client.Guidebook;
 using Content.Client.Guidebook.Controls;
@@ -23,12 +24,10 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
 
-    // #Misfits Removed - replaced by MisfitsGuidebookWebWindow
-    // private GuidebookWindow? _guideWindow;
-    private MisfitsGuidebookWebWindow? _guideWebWindow; // #Misfits Add - WebView guidebook window
+    // #Misfits Change - Reverted to standard GuidebookWindow (WebView module deprecated upstream)
+    private GuidebookWindow? _guideWindow;
     private MenuButton? GuidebookButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.GuidebookButton;
-    // #Misfits Removed - wiki handles its own navigation history
-    // private ProtoId<GuideEntryPrototype>? _lastEntry;
+    private ProtoId<GuideEntryPrototype>? _lastEntry;
 
     public void OnStateEntered(LobbyState state)
     {
@@ -42,17 +41,12 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
 
     private void HandleStateEntered()
     {
-        // #Misfits Removed - old XAML guidebook window
-        // DebugTools.Assert(_guideWindow == null);
-        // _guideWindow = UIManager.CreateWindow<GuidebookWindow>();
-        // _guideWindow.OnClose += OnWindowClosed;
-        // _guideWindow.OnOpen += OnWindowOpen;
+        DebugTools.Assert(_guideWindow == null);
 
-        // #Misfits Add - WebView guidebook window
-        DebugTools.Assert(_guideWebWindow == null);
-        _guideWebWindow = UIManager.CreateWindow<MisfitsGuidebookWebWindow>();
-        _guideWebWindow.OnClose += OnWindowClosed;
-        _guideWebWindow.OnOpen += OnWindowOpen;
+        // setup window
+        _guideWindow = UIManager.CreateWindow<GuidebookWindow>();
+        _guideWindow.OnClose += OnWindowClosed;
+        _guideWindow.OnOpen += OnWindowOpen;
 
         // setup keybinding
         CommandBinds.Builder
@@ -73,15 +67,14 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
 
     private void HandleStateExited()
     {
-        // #Misfits Change - dispose WebView guidebook window
-        if (_guideWebWindow == null)
+        if (_guideWindow == null)
             return;
 
-        _guideWebWindow.OnClose -= OnWindowClosed;
-        _guideWebWindow.OnOpen -= OnWindowOpen;
+        _guideWindow.OnClose -= OnWindowClosed;
+        _guideWindow.OnOpen -= OnWindowOpen;
 
-        _guideWebWindow.Dispose();
-        _guideWebWindow = null;
+        _guideWindow.Dispose();
+        _guideWindow = null;
         CommandBinds.Unregister<GuidebookUIController>();
     }
 
@@ -121,13 +114,12 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         if (GuidebookButton != null)
             GuidebookButton.Pressed = false;
 
-        // #Misfits Removed - XAML GuidebookWindow-specific ReturnContainer / LastEntry tracking
-        // if (_guideWindow != null)
-        // {
-        //     _guideWindow.ReturnContainer.Visible = false;
-        //     if (_guideWindow.LastEntry.Id != null)
-        //         _lastEntry = _guideWindow.LastEntry;
-        // }
+        if (_guideWindow != null)
+        {
+            _guideWindow.ReturnContainer.Visible = false;
+            if (_guideWindow.LastEntry.Id != null)
+                _lastEntry = _guideWindow.LastEntry;
+        }
     }
 
     private void OnWindowOpen()
@@ -155,31 +147,52 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         bool includeChildren = true,
         string? selected = null)
     {
-        // #Misfits Change - ToggleGuidebook now opens/closes MisfitsGuidebookWebWindow; XAML tree params ignored
-        // #Misfits Removed - old GuidebookWindow logic below
-        // if (_guideWindow == null) return;
-        // if (_guideWindow.IsOpen) { UIManager.ClickSound(); _guideWindow.Close(); return; }
-        // ... guides/rootEntries/forceRoot/selected tree processing ...
-        // _guideWindow.UpdateGuides(...); _guideWindow.Tree.SetAllExpanded(...); _guideWindow.OpenCenteredRight();
-
-        if (_guideWebWindow == null)
+        if (_guideWindow == null)
             return;
 
-        if (_guideWebWindow.IsOpen)
+        if (_guideWindow.IsOpen)
         {
             UIManager.ClickSound();
-            _guideWebWindow.Close();
+            _guideWindow.Close();
             return;
         }
 
         if (GuidebookButton != null)
-            GuidebookButton.SetClickPressed(!_guideWebWindow.IsOpen);
+            GuidebookButton.SetClickPressed(!_guideWindow.IsOpen);
 
-        // Navigate to a specific guide's wiki equivalent if a URL was passed via selected
-        if (selected != null && selected.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-            _guideWebWindow.OpenUrl(selected);
+        if (guides == null)
+        {
+            guides = _prototypeManager.EnumeratePrototypes<GuideEntryPrototype>()
+                .ToDictionary(x => x.ID, x => (GuideEntry) x);
+        }
+        else if (includeChildren)
+        {
+            var oldGuides = guides;
+            guides = new(oldGuides);
+            foreach (var guide in oldGuides.Values)
+            {
+                RecursivelyAddChildren(guide, guides);
+            }
+        }
 
-        _guideWebWindow.OpenCenteredRight();
+        if (selected == null)
+        {
+            if (_lastEntry is { } lastEntry && guides.ContainsKey(lastEntry))
+            {
+                selected = _lastEntry;
+            }
+            else
+            {
+                selected = _cfgManager.GetCVar(CCVars.DefaultGuide);
+            }
+        }
+        _guideWindow.UpdateGuides(guides, rootEntries, forceRoot, selected);
+
+        // Expand up to depth-2.
+        _guideWindow.Tree.SetAllExpanded(false);
+        _guideWindow.Tree.SetAllExpanded(true, 1);
+
+        _guideWindow.OpenCenteredRight();
     }
 
     public void ToggleGuidebook(
@@ -201,18 +214,6 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         }
 
         ToggleGuidebook(guides, rootEntries, forceRoot, includeChildren, selected);
-    }
-
-    // #Misfits Add - Open the WebView guidebook directly to a specific URL (e.g. wiki Rules page)
-    public void OpenToUrl(string url)
-    {
-        if (_guideWebWindow == null)
-            return;
-
-        _guideWebWindow.OpenUrl(url);
-
-        if (!_guideWebWindow.IsOpen)
-            _guideWebWindow.OpenCenteredRight();
     }
 
     private void RecursivelyAddChildren(GuideEntry guide, Dictionary<string, GuideEntry> guides)

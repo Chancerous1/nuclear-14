@@ -70,11 +70,11 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
             _changelog.ToggleWindow();
         };
 
-        // #Misfits Change - Rules button opens WebView wiki Rules page instead of legacy RulesAndInfoWindow
+        // #Misfits Change - Reverted to _info.OpenWindow() (WebView module deprecated upstream)
         _escapeWindow.RulesButton.OnPressed += _ =>
         {
             CloseEscapeWindow();
-            _guidebook.OpenToUrl("https://ss14.misfitsystems.net/wiki/index.php/Rules");
+            _info.OpenWindow();
         };
 
         _escapeWindow.DisconnectButton.OnPressed += _ =>
@@ -151,11 +151,11 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
             _changelog.ToggleWindow();
         };
 
-        // #Misfits Change - Rules button opens WebView wiki Rules page instead of legacy RulesAndInfoWindow
+        // #Misfits Change - Reverted to _info.OpenWindow() (WebView module deprecated upstream)
         _escapeWindow.RulesButton.OnPressed += _ =>
         {
             CloseEscapeWindow();
-            _guidebook.OpenToUrl("https://ss14.misfitsystems.net/wiki/index.php/Rules");
+            _info.OpenWindow();
         };
 
         _escapeWindow.DisconnectButton.OnPressed += _ =>
