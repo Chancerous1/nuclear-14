@@ -961,7 +961,7 @@
   name: veteran ranger heavy sniper kit
   parent: KitBase
   id: KitHeavySniperRangerVeteran
-  description: A cache containing the belongings of a Veteran Ranger.
+  description: A cache containing the belongings of a Veteran Ranger. # #Misfits Change - Veteran Ranger carries the semi-auto Anti-Materiel rifle with full magazines
   components:
   - type: Sprite
     state: marksman
@@ -970,7 +970,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCRPouches
-      - id: N14WeaponSniper50AntiMateriel
+      - id: N14WeaponSniper50AntiMateriel  # #Misfits Change - Veteran Ranger gets the semi-auto magazine-fed AMR
       - id: N14Magazine50AMR
         amount: 4
       - id: MagazineBox50

@@ -101,6 +101,17 @@
     - N14BPNCRWeaponRevolver45-70Hunter
     - N14BPNCRWeaponMinigun
 
+# #Misfits Add - T5 anti-materiel rifle; costs so much scrap it earns its own tier
+- type: entity
+  parent: N14BlueprintBase
+  id: N14BlueprintNCRWeaponsT5
+  name: NCR Anti-Materiel Ordnance Schema
+  description: "Costs so much scrap metal to make these dang things." Classified anti-materiel rifle schematics, cleared only at the highest NCR command level. Tier 5 weapons.
+  components:
+  - type: Blueprint
+    recipes:
+    - N14BPNCRWeaponAntiMateriel
+
 # --- NCR Armor ---
 - type: entity
   parent: N14BlueprintBase
