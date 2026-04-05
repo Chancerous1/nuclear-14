@@ -48,11 +48,13 @@ public sealed class MisfitsWebViewControl : Control
             || url.StartsWith("res://", StringComparison.Ordinal))
             return true;
 
-        if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
+        // Extract host using simple string parsing — avoids System.Uri/UriKind (sandbox-blocked)
+        var host = ExtractHost(url);
+        if (host == null)
             return false;
 
-        return uri.Host.Equals(AllowedHost, StringComparison.OrdinalIgnoreCase)
-               || uri.Host.EndsWith("." + AllowedHost, StringComparison.OrdinalIgnoreCase);
+        return host.Equals(AllowedHost, StringComparison.OrdinalIgnoreCase)
+               || host.EndsWith("." + AllowedHost, StringComparison.OrdinalIgnoreCase);
     }
 
     private static void OnBeforeBrowse(IBeforeBrowseContext ctx)
@@ -65,4 +67,34 @@ public sealed class MisfitsWebViewControl : Control
         if (!IsAllowed(ctx.Url))
             ctx.DoCancel();
     }
+
+    /// <summary>
+    /// Extracts the hostname from a URL string without using System.Uri (sandbox restriction).
+    /// Returns null if the URL has no recognizable scheme separator.
+    /// </summary>
+    private static string? ExtractHost(string url)
+    {
+        // Find "://" to locate start of host
+        var sep = url.IndexOf("://", StringComparison.Ordinal);
+        if (sep < 0)
+            return null;
+
+        var hostStart = sep + 3;
+        if (hostStart >= url.Length)
+            return null;
+
+        // Host ends at the first '/' (path) or ':' (port), or end of string
+        var hostEnd = url.Length;
+        for (var i = hostStart; i < url.Length; i++)
+        {
+            if (url[i] == '/' || url[i] == ':')
+            {
+                hostEnd = i;
+                break;
+            }
+        }
+
+        return url.Substring(hostStart, hostEnd - hostStart);
+    }
 }
+
