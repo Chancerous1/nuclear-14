@@ -18,13 +18,21 @@
     - type: Flammable
       fireSpread: true
       canResistFire: false
-      allyFlammable: false
       damage:
         types:
           Heat: 1
     - type: PhysicalComposition
       materialComposition:
         Leather: 100
+
+- type: material
+  id: TribalLegendaryLeather
+  name: materials-legendary-tribal-leather
+  unit: materials-unit-piece
+  stackEntity: TribalLegendaryLeather
+  icon: { sprite: /Textures/_Nuclear14/Objects/Misc/materials.rsi, state: leather_3 }
+  color: "#FFD700"
+  price: 0.5
 
 # Legendary tribal armor - helmet
 - type: entity
