@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using Content.Server.Actions;
 using Content.Shared._Misfits.TribalHunt;
+using Content.Shared._Misfits.Warcry;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -27,6 +30,7 @@ public sealed class TribalHuntSystem : EntitySystem
     [Dependency] private readonly SharedJobSystem _jobs = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly LegendaryCreatureSpawnerSystem _legendarySpawner = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -35,6 +39,8 @@ public sealed class TribalHuntSystem : EntitySystem
     private TimeSpan _gatheringEndsAt;
     private TimeSpan _huntEndsAt;
     private TimeSpan _configuredHuntDuration;
+    private TimeSpan _configuredRewardDuration;
+    private float _configuredRewardSpeedBonus;
     private EntityUid? _activeLegendaryCreature;
     private EntityUid? _activeHuntSessionId;
     private EntityUid? _chief;
@@ -57,6 +63,7 @@ public sealed class TribalHuntSystem : EntitySystem
         SubscribeLocalEvent<TribalHuntParticipantComponent, ComponentShutdown>(OnParticipantShutdown);
         SubscribeLocalEvent<TribalHuntParticipantComponent, PerformTribalToggleHuntGuiActionEvent>(OnToggleHuntGuiAction);
 
+        SubscribeLocalEvent<LegendaryCreatureComponent, LegendaryCreatureKilledEvent>(OnLegendaryCreatureKilled);
         SubscribeLocalEvent<LegendaryCreatureComponent, ComponentShutdown>(OnLegendaryCreatureShutdown);
         SubscribeNetworkEvent<TribalHuntJoinRequestEvent>(OnJoinRequest);
     }
@@ -78,7 +85,7 @@ public sealed class TribalHuntSystem : EntitySystem
         {
             if (_activeLegendaryCreature == null || !Exists(_activeLegendaryCreature.Value))
             {
-                EndHunt(Loc.GetString("tribal-hunt-popup-legendary-killed"));
+                EndHunt(Loc.GetString("tribal-hunt-popup-failed"));
                 return;
             }
 
@@ -165,6 +172,8 @@ public sealed class TribalHuntSystem : EntitySystem
         _joinedHunters.Add(uid);
         _gatheringEndsAt = _timing.CurTime + TimeSpan.FromMinutes(2);
         _configuredHuntDuration = component.HuntDuration;
+        _configuredRewardDuration = component.RewardDuration;
+        _configuredRewardSpeedBonus = component.RewardSpeedBonus;
         _activeLegendaryCreature = null;
         _lastLocationBroadcast = _timing.CurTime;
         _lastUiHeartbeat = TimeSpan.Zero;
@@ -208,18 +217,18 @@ public sealed class TribalHuntSystem : EntitySystem
             return;
         }
 
-        if (!EntityManager.TryGetComponent(_chief.Value, out TransformComponent? chiefXform) || chiefXform == null || chiefXform.MapID == MapId.Nullspace)
+        if (!TryComp(_chief.Value, out TransformComponent? chiefXform) || chiefXform.MapID == MapId.Nullspace)
         {
             EndHunt(Loc.GetString("tribal-hunt-popup-failed"));
             return;
         }
 
-        var chiefMapId = chiefXform.MapID;
+        var chiefMapCoords = _transform.GetMapCoordinates(_chief.Value, chiefXform);
 
         _activeLegendaryCreature = _legendarySpawner.TrySpawnLegendaryCreature(
-            "TribalLegendaryBeast",
+            "N14MobDeathclaw",
             _activeHuntSessionId ?? _chief.Value,
-            chiefMapId);
+            chiefMapCoords);
 
         if (_activeLegendaryCreature == null)
         {
@@ -247,9 +256,39 @@ public sealed class TribalHuntSystem : EntitySystem
         _hasKnownCoordinates = true;
     }
 
-    private void EndHunt(string statusText)
+    private void CompleteHunt()
+    {
+        var expiresAt = _timing.CurTime + _configuredRewardDuration;
+        var participants = EntityQueryEnumerator<TribalHuntParticipantComponent>();
+
+        while (participants.MoveNext(out var uid, out _))
+        {
+            if (!_joinedHunters.Contains(uid))
+                continue;
+
+            if (!IsInDepartment(uid, _targetDepartment))
+                continue;
+
+            if (_mobState.IsDead(uid) || !HasComp<MovementSpeedModifierComponent>(uid))
+                continue;
+
+            var buff = EnsureComp<WarcryBuffComponent>(uid);
+            buff.SpeedBonus = Math.Max(buff.SpeedBonus, _configuredRewardSpeedBonus);
+            if (expiresAt > buff.ExpiresAt)
+                buff.ExpiresAt = expiresAt;
+
+            Dirty(uid, buff);
+            _movementSpeed.RefreshMovementSpeedModifiers(uid);
+        }
+
+        EndHunt(Loc.GetString("tribal-hunt-popup-complete",
+            ("seconds", (int) Math.Ceiling(_configuredRewardDuration.TotalSeconds))), cleanupLegendary: false);
+    }
+
+    private void EndHunt(string statusText, bool cleanupLegendary = true)
     {
         var department = _targetDepartment;
+        var legendary = _activeLegendaryCreature;
 
         _stage = TribalHuntStage.Inactive;
         _activeLegendaryCreature = null;
@@ -258,6 +297,9 @@ public sealed class TribalHuntSystem : EntitySystem
         _lastKnownCoordinates = string.Empty;
         _hasKnownCoordinates = false;
         _joinedHunters.Clear();
+
+        if (cleanupLegendary && legendary != null && Exists(legendary.Value))
+            Del(legendary.Value);
 
         BroadcastUiToDepartment(department, statusText);
     }
@@ -347,9 +389,17 @@ public sealed class TribalHuntSystem : EntitySystem
         RaiseNetworkEvent(new TribalHuntUiUpdateEvent { State = state }, actor.PlayerSession);
     }
 
+    private void OnLegendaryCreatureKilled(EntityUid uid, LegendaryCreatureComponent component, LegendaryCreatureKilledEvent args)
+    {
+        if (_stage != TribalHuntStage.Active || _activeLegendaryCreature != uid)
+            return;
+
+        CompleteHunt();
+    }
+
     private void OnLegendaryCreatureShutdown(EntityUid uid, LegendaryCreatureComponent component, ComponentShutdown args)
     {
         if (_stage == TribalHuntStage.Active && _activeLegendaryCreature == uid)
-            EndHunt(Loc.GetString("tribal-hunt-popup-legendary-killed"));
+            EndHunt(Loc.GetString("tribal-hunt-popup-failed"), cleanupLegendary: false);
     }
 }

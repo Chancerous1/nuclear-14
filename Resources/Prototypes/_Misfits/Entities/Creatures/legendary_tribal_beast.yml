@@ -35,5 +35,3 @@
         types:
           Slash: 12
           Blunt: 15
-    - type: TimedDespawn
-      lifetime: 600

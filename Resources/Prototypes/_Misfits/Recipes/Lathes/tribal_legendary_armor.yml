@@ -6,7 +6,7 @@
   completetime: 45
   materials:
     TribalLegendaryLeather: 2
-  result: TribalLegendaryArmorHead
+  result: MisfitsClothingHeadDeathclawHood
 
 - type: latheRecipe
   id: TribalLegendaryArmorChestRecipe
@@ -15,80 +15,25 @@
   completetime: 60
   materials:
     TribalLegendaryLeather: 4
-  result: TribalLegendaryArmorChest
-
-- type: latheRecipe
-  id: TribalLegendaryArmorLegsRecipe
-  name: recipe-tribal-legendary-legs-name
-  description: recipe-tribal-legendary-legs-desc
-  completetime: 60
-  materials:
-    TribalLegendaryLeather: 4
-  result: TribalLegendaryArmorLegs
-
-- type: latheRecipe
-  id: TribalLegendaryArmorFeetRecipe
-  name: recipe-tribal-legendary-boots-name
-  description: recipe-tribal-legendary-boots-desc
-  completetime: 30
-  materials:
-    TribalLegendaryLeather: 2
-  result: TribalLegendaryArmorFeet
+  result: MisfitsClothingOuterDeathclawCloak
 
 # Blueprint entities for crafting terminal access
 - type: entity
   id: TribalLegendaryArmorHeadBlueprint
-  name: Blueprint - Legendary Tribal Helm
+  name: Blueprint - Deathclaw Hood
   description: A crafting blueprint for legendary tribal armor.
-  parent: BaseItem
+  parent: N14BlueprintBase
   components:
-    - type: Sprite
-      sprite: Objects/Misc/blueprints.rsi
-      state: blueprint
-    - type: Item
-      size: Small
     - type: Blueprint
       recipes:
         - TribalLegendaryArmorHeadRecipe
 
 - type: entity
   id: TribalLegendaryArmorChestBlueprint
-  name: Blueprint - Legendary Tribal Chestplate
-  parent: BaseItem
+  name: Blueprint - Deathclaw Cloak
+  parent: N14BlueprintBase
   components:
-    - type: Sprite
-      sprite: Objects/Misc/blueprints.rsi
-      state: blueprint
-    - type: Item
-      size: Small
     - type: Blueprint
       recipes:
         - TribalLegendaryArmorChestRecipe
 
-- type: entity
-  id: TribalLegendaryArmorLegsBlueprint
-  name: Blueprint - Legendary Tribal Legguards
-  parent: BaseItem
-  components:
-    - type: Sprite
-      sprite: Objects/Misc/blueprints.rsi
-      state: blueprint
-    - type: Item
-      size: Small
-    - type: Blueprint
-      recipes:
-        - TribalLegendaryArmorLegsRecipe
-
-- type: entity
-  id: TribalLegendaryArmorFeetBlueprint
-  name: Blueprint - Legendary Tribal Boots
-  parent: BaseItem
-  components:
-    - type: Sprite
-      sprite: Objects/Misc/blueprints.rsi
-      state: blueprint
-    - type: Item
-      size: Small
-    - type: Blueprint
-      recipes:
-        - TribalLegendaryArmorFeetRecipe
