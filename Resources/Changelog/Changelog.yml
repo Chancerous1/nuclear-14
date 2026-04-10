@@ -3020,3 +3020,10 @@ Entries:
   id: 5716
   time: '2026-04-10T02:24:13.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/266
+- author: Dpellowski
+  changes:
+    - type: Fix
+      message: Made slave collar and NCR prisoner collar craftable.
+  id: 5717
+  time: '2026-04-10T19:59:17.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/269
