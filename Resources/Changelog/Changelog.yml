@@ -3115,3 +3115,10 @@ Entries:
   id: 5725
   time: '2026-04-12T15:19:13.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/280
+- author: qevie
+  changes:
+    - type: Tweak
+      message: Made antiseptic be able to craft sterile wipes & sterile spray!
+  id: 5726
+  time: '2026-04-12T15:19:25.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/279
