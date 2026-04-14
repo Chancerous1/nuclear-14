@@ -1,0 +1,23 @@
+- type: entity
+  parent: N14BasePipboy
+  id: N14HeadPaladin_PipBoy
+  suffix: Head Paladin
+  components:
+  - type: Pda
+    id: N14IDBrotherhoodHolotagCommander
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14HeadScribe_PipBoy
+  suffix: Head Scribe
+  components:
+  - type: Pda
+    id: N14IDBrotherhoodOfSteelHolotagHeadScribe
+
+- type: entity
+  parent: N14BasePipboy
+  id: N14HeadKnight_PipBoy
+  suffix: Head Knight
+  components:
+  - type: Pda
+    id: N14IDBrotherhoodOfSteelHolotagHeadKnight
