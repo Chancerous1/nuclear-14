@@ -3147,3 +3147,12 @@ Entries:
   id: 5729
   time: '2026-04-13T19:38:32.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/284
+- author: qevie
+  changes:
+    - type: Add
+      message: >-
+        New pip-boys from lost hills have been issued out for brotherhood
+        chapter heads!
+  id: 5730
+  time: '2026-04-14T07:54:28.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/285
