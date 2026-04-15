@@ -3207,3 +3207,14 @@ Entries:
   id: 5735
   time: '2026-04-15T01:18:56.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/290
+- author: Bill Clinton
+  changes:
+    - type: Tweak
+      message: gave veteran sarge NCR kit a 5.56 carbine
+    - type: Tweak
+      message: Town guard lose HMG millions must die
+    - type: Fix
+      message: poultice doesn't make you vomit every time you take it now
+  id: 5736
+  time: '2026-04-15T01:19:18.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/292
