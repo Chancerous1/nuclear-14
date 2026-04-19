@@ -3341,3 +3341,10 @@ Entries:
   id: 5745
   time: '2026-04-19T15:42:23.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/303
+- author: qevie
+  changes:
+    - type: Fix
+      message: Fixed map init issues.
+  id: 5746
+  time: '2026-04-19T15:56:13.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/304
