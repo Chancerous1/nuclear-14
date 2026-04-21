@@ -40,4 +40,11 @@ public sealed partial class SmokeSignalComponent : Component
     /// </summary>
     [DataField]
     public Color AnnouncementColor = Color.FromHex("#d69b3d");
+
+    /// <summary>
+    /// Radius (tiles) within which non-tribe bystanders receive an atmospheric smoke notice.
+    /// Set to 0 to disable the nearby broadcast.
+    /// </summary>
+    [DataField]
+    public float NearbyRange = 18f;
 }

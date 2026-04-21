@@ -47,12 +47,31 @@ job-description-synthetic-robobrain = You are a pre-war military Robobrain, a cy
 # Super Mutant
 job-name-supermutant = Supermutant
 job-description-supermutant = You are a hulking FEV-mutated humanoid, towering over normal humans. Your immense strength and endurance are matched only by your reduced intellect. Find your place in the wasteland — through force, loyalty, or surprising compassion.
-job-name-supermutant-gladiator = Supermutant Gladiator
-job-description-supermutant-gladiator = You are an arena-forged supermutant who lives for close combat and spectacle. Wear your gladiator kit proudly and prove your strength in the wasteland.
+# #Misfits Tweak - renamed to reflect Legion alignment
+job-name-supermutant-gladiator = Supermutant Legion Gladiator
+job-description-supermutant-gladiator = You are an arena-forged supermutant who fights under Caesar's banner. Your strength and brutality make you a prized weapon of the Legion — a living symbol of conquest.
+
+# #Misfits Add - Supermutant Ranger and Trooper job locale strings (generic variants).
+job-name-supermutant-ranger = Supermutant Ranger
+job-description-supermutant-ranger = You are a supermutant who has learned patience and cunning alongside brute strength. Your ranger armor marks you as one who scouts, ambushes, and survives where others do not.
+job-name-supermutant-trooper = Supermutant Trooper
+job-description-supermutant-trooper = You are the hammer — a supermutant front-liner built for direct assault. Your trooper armor can soak punishment that would shred a human, and you intend to make the most of it.
+
+# #Misfits Add - NCR-aligned supermutant variants for the FEVMutants whitelist department.
+job-name-supermutant-ncr-ranger = Supermutant NCR Ranger
+job-description-supermutant-ncr-ranger = You are a supermutant who earned a place among the NCR Rangers — an unlikely alliance forged in blood and mutual necessity. Your ranger armor and NCR badge open doors that your fists would otherwise destroy.
+job-name-supermutant-ncr-trooper = Supermutant NCR Trooper
+job-description-supermutant-ncr-trooper = You are a supermutant who fights under the NCR bear. Dismissed as a freak by most troopers, you prove your worth one engagement at a time. Your trooper armor and dogtag are the only credentials you need.
 
 # #Misfits Add (Phase G) - C-27 Humanoid Robot job locale.
 job-name-c27 = C-27 Humanoid Robot
 job-description-c27 = You are a C-27 humanoid robot — a pre-war General Atomics workshop frame retrofitted for Wasteland service. Slow but durable, immune to flash and broken glass, and self-repairing. Choose your factory paint, serve your masters, or carve your own path through the wastes.
+
+# #Misfits Add - C-27 faction-aligned variants (separate whitelist entries).
+job-name-c27-ncr = C-27 NCR Humanoid Robot
+job-description-c27-ncr = You are a C-27 humanoid robot conscripted into the New California Republic — repainted in NCR livery and issued an Army headset, dogtags, and a light NCR-pattern armor kit. Slow but durable, immune to flash and broken glass, and self-repairing. Serve the Republic.
+job-name-c27-bos = C-27 Brotherhood Humanoid Robot
+job-description-c27-bos = You are a C-27 humanoid robot reclaimed by the Brotherhood of Steel — repainted in Brotherhood livery and issued a Brotherhood headset, Initiate holotag, and a light Brotherhood-pattern armor kit. Slow but durable, immune to flash and broken glass, and self-repairing. Serve the Codex.
 
 # #Misfits Add — Western BoS chapter command-tier jobs (Elder + Head Scribe).
 # These keys were commented out in the Corvax locale when the Corvax west-BoS chapter

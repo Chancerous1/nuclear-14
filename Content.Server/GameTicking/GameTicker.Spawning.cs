@@ -201,6 +201,21 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            // #Misfits Add - Same-round respawn lock. If this character died this round and no admin
+            // has force-respawned them, block re-entry under the same character. Admin 'respawn'
+            // command clears the lock; cryo also clears the lock for that character.
+            if (!_adminManager.IsAdmin(player)
+                && EntityManager.System<Content.Server._Misfits.JobSlotReclaim.MisfitsJobSlotReclaimSystem>()
+                    .IsCharacterLocked(player.UserId, character.Name))
+            {
+                var lockMessage = Loc.GetString("misfits-job-slot-reclaim-character-locked",
+                    ("character", character.Name));
+                var wrappedLockMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", lockMessage));
+                _chatManager.ChatMessageToOne(ChatChannel.Server, lockMessage, wrappedLockMessage,
+                    default, false, player.Channel, Color.Red);
+                return;
+            }
+
             // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
             var bev = new PlayerBeforeSpawnEvent(player, character, jobId, lateJoin, station);
             RaiseLocalEvent(bev);

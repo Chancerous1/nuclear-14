@@ -31,6 +31,11 @@
           Wastelander: [ -1, -1 ]
           SuperMutant: [ 0, 1 ] # #Misfits Change /Fix/: make the FEV Mutant role available for mid-round joins.
           SuperMutantGladiator: [ 0, 1 ] # #Misfits Add: Gladiator variant latejoin slot.
+          SuperMutantNCRRanger: [ 0, 1 ] # #Misfits Add: NCR Ranger variant latejoin slot.
+          SuperMutantNCRTrooper: [ 0, 1 ] # #Misfits Add: NCR Trooper variant latejoin slot.
+          C27: [ 0, 1 ]    # #Misfits Add - C-27 Generic latejoin slot (whitelist gates actual access).
+          C27NCR: [ 0, 1 ] # #Misfits Add - C-27 NCR variant latejoin slot.
+          C27BoS: [ 0, 1 ] # #Misfits Add - C-27 Brotherhood variant latejoin slot.
           # WastelandScavenger: [ 3, 5 ]
           WastelandReporter: [ 1, 2 ]
           # WastelandMusician: [ 2, 3 ]
@@ -124,3 +129,13 @@
           SyntheticAssaultron: [ 1, 2 ]
           SyntheticSentryBot: [ 1, 2 ] # #Misfits Add: sentry bot late join slots
           SyntheticRobobrain: [ 1, 2 ] # #Misfits Add: robobrain late join slots
+          # #Misfits Add - Enclave faction activation: whitelist-only roles. Spawns at Vault bunker (~-92.5, 50.5).
+          EnclaveReformer: [ 1, 0 ]      # admin-only leader (The Reformer); 0 active latejoin slots
+          EnclaveCommander: [ 1, 1 ]
+          EnclaveSeniorOfficer: [ 1, 1 ]
+          EnclaveJuniorOfficer: [ 2, 2 ]
+          EnclaveNCO: [ 2, 2 ]
+          EnclaveEnlisted: [ 4, 4 ]
+          EnclaveHeadScientist: [ 1, 1 ]
+          EnclaveScientist: [ 2, 2 ]
+          EnclaveJuniorScientist: [ 2, 2 ]

@@ -1,12 +1,13 @@
 <!-- // #Misfits Add — Smoke Signal text input window. Simple single-line input with a send/cancel pair. -->
 <DefaultWindow xmlns="https://spacestation14.io"
                Title="{Loc smoke-signal-window-title}"
-               MinWidth="380"
-               MinHeight="120"
-               SetSize="380 120">
+               MinWidth="480"
+               MinHeight="130"
+               SetSize="480 130">
     <BoxContainer Orientation="Vertical" Margin="8">
-        <!-- Flavor label -->
-        <Label Text="{Loc smoke-signal-window-prompt}" Margin="0 0 0 6" />
+         <!-- Flavor label — wider window keeps the full prompt visible without wrapping -->
+         <Label Text="{Loc smoke-signal-window-prompt}" Margin="0 0 0 6"
+             HorizontalExpand="True" />
         <!-- Message input -->
         <LineEdit Name="MessageInput"
                   PlaceHolder="{Loc smoke-signal-window-placeholder}"
