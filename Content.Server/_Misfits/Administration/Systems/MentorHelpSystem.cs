@@ -85,6 +85,21 @@ public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
     // #Misfits Add — 1-minute cooldown per player after ticket resolution
     private readonly Dictionary<NetUserId, DateTime> _mhelpCooldowns = new();
 
+    // #Misfits Fix — per-channel mentor message history for the current round so
+    // late-joining mentors (and reconnects/rementoring) see past conversations.
+    // Mirrors the admin BwoinkSystem replay fix.
+    private readonly Dictionary<NetUserId, List<MentorHelpTextMessage>> _messageHistory = new();
+
+    // #Misfits Fix — cap per-channel history to prevent unbounded memory growth and
+    // a client-side replay flood that froze/crashed the client (same root cause as
+    // the admin bwoink fix).
+    private const int MaxHistoryPerChannel = 100;
+
+    // #Misfits Fix — track sessions that already received a history replay this
+    // connection cycle. Prevents double-replay when both OnPlayerStatusChanged and
+    // OnAdminPermsChanged would otherwise both push history for the same connect.
+    private readonly HashSet<NetUserId> _replayedSessions = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -117,6 +132,9 @@ public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
             _mhelpTickets.Clear();
             _nextTicketId = 1;
             _mhelpCooldowns.Clear();
+            // #Misfits Fix — clear message history so stale conversations don't leak across rounds
+            _messageHistory.Clear();
+            _replayedSessions.Clear();
         });
 
         // #Misfits Add — mentor ticket system handlers
@@ -133,6 +151,13 @@ public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
                 CCVars.AhelpRateLimitCount,
                 PlayerRateLimitedAction)
         );
+
+        // #Misfits Fix — replay ticket list + message history when a mentor (re)gains
+        // ViewNotes mid-round. This is the SOLE replay path: it covers both initial
+        // connect (admin data loads after InGame fires) and rementoring (loss → regain).
+        // Without this, mentors reconnecting or being granted mentor mid-round saw an
+        // empty chat panel even though the server still held the ticket + conversation.
+        _adminManager.OnPermsChanged += OnMentorPermsChanged;
     }
 
     private void PlayerRateLimitedAction(ICommonSession obj)
@@ -144,15 +169,13 @@ public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
 
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
-        // #Misfits Add — push existing mentor ticket list to newly connected mentors/admins
-        // so they see tickets created before they joined.
-        if (e.NewStatus == SessionStatus.InGame
-            && (_adminManager.GetAdminData(e.Session)?.HasFlag(AdminFlags.ViewNotes) ?? false))
-        {
-            var list = _mhelpTickets.Values.ToList();
-            if (list.Count > 0)
-                RaiseNetworkEvent(new HelpTicketListMessage(list, HelpTicketType.MentorHelp), e.Session.Channel);
-        }
+        // #Misfits Fix — clear the replay-dedup entry on disconnect so a reconnect
+        // gets a fresh ticket-list + history replay via OnMentorPermsChanged.
+        // Ticket-list/history push moved out of here entirely — it now happens solely
+        // in OnMentorPermsChanged, which fires after admin data is fully loaded
+        // (avoids the empty-list race that broke replay before).
+        if (e.NewStatus == SessionStatus.Disconnected)
+            _replayedSessions.Remove(e.Session.UserId);
 
         if (e.NewStatus != SessionStatus.Connected && e.NewStatus != SessionStatus.Disconnected)
             return;
@@ -532,6 +555,39 @@ public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
         RaiseNetworkEvent(new HelpTicketListMessage(list, HelpTicketType.MentorHelp), args.SenderSession.Channel);
     }
 
+    // #Misfits Fix — when a player gains (or regains) the ViewNotes (mentor) flag,
+    // replay the mentor ticket list and per-channel message history so the panel
+    // is populated immediately. Mirrors the admin BwoinkSystem.OnAdminPermsChanged fix.
+    private void OnMentorPermsChanged(AdminPermsChangedEventArgs args)
+    {
+        // Lost the mentor flag — drop the dedup entry so a re-grant triggers a fresh replay.
+        if (args.Flags == null || !args.Flags.Value.HasFlag(AdminFlags.ViewNotes))
+        {
+            _replayedSessions.Remove(args.Player.UserId);
+            return;
+        }
+
+        // Already replayed this connection cycle — guard against multiple OnPermsChanged
+        // invocations during the same connect (e.g. flag changes, admin data refresh).
+        if (!_replayedSessions.Add(args.Player.UserId))
+            return;
+
+        // Push current ticket list (even if empty so the client clears stale state).
+        var list = _mhelpTickets.Values.ToList();
+        RaiseNetworkEvent(new HelpTicketListMessage(list, HelpTicketType.MentorHelp), args.Player.Channel);
+
+        // Replay stored message history so the mentor sees past conversations.
+        // Sound is already suppressed on history entries (see OnMentorHelpTextMessage)
+        // so this doesn't blast a wave of bwoink chimes.
+        foreach (var (_, messages) in _messageHistory)
+        {
+            foreach (var historyMsg in messages)
+            {
+                RaiseNetworkEvent(historyMsg, args.Player.Channel);
+            }
+        }
+    }
+
     private void OnFooterIconChanged(string url) => _footerIconUrl = url;
     private void OnAvatarChanged(string url) => _avatarUrl = url;
     private void OnServerNameChanged(string obj) => _serverName = obj;
@@ -591,6 +647,19 @@ public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
 
         var playSound = senderAdmin == null || message.PlaySound;
         var msg = new MentorHelpTextMessage(message.UserId, senderSession.UserId, senderText, playSound: playSound);
+
+        // #Misfits Fix — store this message in per-channel history for late-joining mentor
+        // replay. Sound is forced off on the stored copy so a replay burst doesn't blast
+        // chimes at a reconnecting mentor (same pattern as admin BwoinkSystem).
+        var historyMsg = new MentorHelpTextMessage(msg.UserId, msg.TrueSender, msg.Text, msg.SentAt, playSound: false);
+        if (!_messageHistory.TryGetValue(msg.UserId, out var history))
+        {
+            history = new List<MentorHelpTextMessage>();
+            _messageHistory[msg.UserId] = history;
+        }
+        history.Add(historyMsg);
+        if (history.Count > MaxHistoryPerChannel)
+            history.RemoveRange(0, history.Count - MaxHistoryPerChannel);
 
         int? ticketId = _mhelpTickets.TryGetValue(message.UserId, out var historyTicket) ? historyTicket.TicketId : null;
         LogMentorTicketMessage(ticketId, message.UserId, senderSession.Name, senderMentor, message.Text);

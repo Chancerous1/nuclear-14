@@ -816,3 +816,30 @@
     layers:
       - state: green # base spawn marker; no overlay until C27-specific marker art exists
 
+# #Misfits Add - per-faction spawn points so each whitelisted C-27 job gets its own
+# slot. SpawnPoint accepts a single job_id, so we ship one spawner per sibling job
+# (C27 / C27NCR / C27BoS). All three are placed adjacent to each other on the map.
+- type: entity
+  parent: SpawnPointJobBase
+  id: MisfitsSpawnPointC27NCR
+  name: C-27 Autonomous Unit (NCR)
+  components:
+  - type: SpawnPoint
+    job_id: C27NCR
+  - type: Sprite
+    sprite: Corvax/Markers/jobs.rsi
+    layers:
+      - state: green
+
+- type: entity
+  parent: SpawnPointJobBase
+  id: MisfitsSpawnPointC27BoS
+  name: C-27 Autonomous Unit (Brotherhood)
+  components:
+  - type: SpawnPoint
+    job_id: C27BoS
+  - type: Sprite
+    sprite: Corvax/Markers/jobs.rsi
+    layers:
+      - state: green
+
