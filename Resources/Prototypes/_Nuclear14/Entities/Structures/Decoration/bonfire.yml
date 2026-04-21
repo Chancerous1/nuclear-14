@@ -107,10 +107,10 @@
     cooldown: 300
     maxMessageLength: 128
     targetDepartment: Tribe
-  - type: ActivatableUI
-    inHandsOnly: false
-    singleUser: true
-    key: enum.SmokeSignalUiKey.Key
+  # #Misfits Fix - No ActivatableUI: left-click must stay as ExtinguishOnInteract.
+  # The "Send Smoke Signal" verb opens the BUI via _ui.OpenUi directly, so ActivatableUI
+  # would collide with ExtinguishOnInteract on ActivateInWorldEvent (UseDelay fires, popup
+  # shows "you start patting the flames", and the BUI closes the same frame it opens).
   - type: UserInterface
     interfaces:
       enum.SmokeSignalUiKey.Key:

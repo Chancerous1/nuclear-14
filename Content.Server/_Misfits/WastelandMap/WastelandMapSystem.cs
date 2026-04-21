@@ -35,6 +35,16 @@ public sealed class WastelandMapSystem : EntitySystem
     private float _updateAccumulator;
     private readonly Dictionary<(MapId MapId, WastelandMapTacticalFeedKind Feed), List<WastelandMapAnnotation>> _sharedFeedAnnotations = new();
 
+    // #Misfits Add - Scratch buffers + tick-local cache for BuildState.
+    // At 150 pop with many open wasteland maps, the 2.5s sweep was the single hottest user-
+    // facing UI allocator. These buffers are reused per Update sweep; the _nonActorCache
+    // holds faction/tribal blips keyed by (mapId, feed) so multiple map entities with the
+    // same feed only pay for one world-scan per sweep.
+    private readonly List<WastelandMapTrackedBlip> _blipScratch = new();
+    private readonly List<WastelandMapTrackedBlip> _groupScratch = new();
+    private readonly Dictionary<(MapId MapId, WastelandMapTacticalFeedKind Feed), WastelandMapTrackedBlip[]> _nonActorCache = new();
+    private bool _inUpdateSweep;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -54,23 +64,35 @@ public sealed class WastelandMapSystem : EntitySystem
 
         _updateAccumulator = 0f;
 
-        var query = EntityQueryEnumerator<WastelandMapComponent, UserInterfaceComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var map, out var ui, out var xform))
+        // #Misfits Add - Open a sweep window so BuildState can cache the non-actor blip
+        // portion per (mapId, feed) across multiple map entities on this tick.
+        _nonActorCache.Clear();
+        _inUpdateSweep = true;
+        try
         {
-            // #Misfits Fix: Skip the expensive BUI rebuild when nobody has this map open.
-            // GetActors() is O(1) with the early-out; the rebuild + GetIdCardBlips world-scan is O(all id cards).
-            var viewerMap = xform.MapID;
-            EntityUid? firstActor = null;
-            foreach (var actor in _uiSystem.GetActors((uid, ui), WastelandMapUiKey.Key))
+            var query = EntityQueryEnumerator<WastelandMapComponent, UserInterfaceComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out var map, out var ui, out var xform))
             {
-                viewerMap = Transform(actor).MapID;
-                firstActor = actor; // #Misfits Add - pass actor so group blips are relative to who holds the map
-                break;
-            }
-            if (firstActor == null)
-                continue;
+                // #Misfits Fix: Skip the expensive BUI rebuild when nobody has this map open.
+                // GetActors() is O(1) with the early-out; the rebuild + GetIdCardBlips world-scan is O(all id cards).
+                var viewerMap = xform.MapID;
+                EntityUid? firstActor = null;
+                foreach (var actor in _uiSystem.GetActors((uid, ui), WastelandMapUiKey.Key))
+                {
+                    viewerMap = Transform(actor).MapID;
+                    firstActor = actor; // #Misfits Add - pass actor so group blips are relative to who holds the map
+                    break;
+                }
+                if (firstActor == null)
+                    continue;
 
-            _uiSystem.SetUiState((uid, ui), WastelandMapUiKey.Key, BuildState(map, viewerMap, actor: firstActor));
+                _uiSystem.SetUiState((uid, ui), WastelandMapUiKey.Key, BuildState(map, viewerMap, actor: firstActor));
+            }
+        }
+        finally
+        {
+            _inUpdateSweep = false;
+            _nonActorCache.Clear();
         }
     }
 
@@ -231,36 +253,74 @@ public sealed class WastelandMapSystem : EntitySystem
     // #Misfits Add - actor param enables group-member blip injection
     private WastelandMapTrackedBlip[] GetTrackedBlips(WastelandMapTacticalFeedKind feed, MapId mapId, Box2 bounds, EntityUid? actor = null)
     {
-        var blips = new List<WastelandMapTrackedBlip>();
-
-        var factionBlips = feed switch
+        // #Misfits Tweak - Cache the non-actor (faction + tribal) portion per (mapId, feed)
+        // for the lifetime of a single Update sweep, so multiple open maps sharing a feed
+        // pay for one world-scan instead of N. Outside the sweep this falls back to a
+        // direct rebuild (e.g. OnAfterOpen, annotation messages).
+        WastelandMapTrackedBlip[] nonActorBlips;
+        var cacheKey = (mapId, feed);
+        if (_inUpdateSweep && _nonActorCache.TryGetValue(cacheKey, out var cached))
         {
-            WastelandMapTacticalFeedKind.Brotherhood => GetIdCardBlips(mapId, bounds, "IdCardBrotherhood"),
-            WastelandMapTacticalFeedKind.Vault => GetIdCardBlips(mapId, bounds, "IdCardVault"),
-            WastelandMapTacticalFeedKind.NCR => GetIdCardBlips(mapId, bounds, "IdCardNCR"),
-            WastelandMapTacticalFeedKind.Enclave => GetIdCardBlips(mapId, bounds, "IdCardEnclave"), // #Misfits Change
-            WastelandMapTacticalFeedKind.Legion => GetIdCardBlips(mapId, bounds, "IdCardLegion"), // #Misfits Add - Legion tactical feed
-            _ => [],
-        };
+            nonActorBlips = cached;
+        }
+        else
+        {
+            _blipScratch.Clear();
+            AppendFactionBlips(_blipScratch, feed, mapId, bounds);
+            AppendTribalHuntTargetBlips(_blipScratch, mapId, bounds);
+            nonActorBlips = _blipScratch.ToArray();
+            if (_inUpdateSweep)
+                _nonActorCache[cacheKey] = nonActorBlips;
+        }
 
-        blips.AddRange(factionBlips);
-        blips.AddRange(GetTribalHuntTargetBlips(mapId, bounds));
-
-        // #Misfits Add - inject group member blips if the map carrier is in a group
+        // Group blips are per-actor and therefore never cached across viewers.
         if (actor.HasValue)
-            blips.AddRange(GetGroupMemberBlips(actor.Value, mapId, bounds));
+        {
+            _groupScratch.Clear();
+            AppendGroupMemberBlips(_groupScratch, actor.Value, mapId, bounds);
+            if (_groupScratch.Count == 0)
+                return nonActorBlips;
 
-        return blips.ToArray();
+            var combined = new WastelandMapTrackedBlip[nonActorBlips.Length + _groupScratch.Count];
+            nonActorBlips.CopyTo(combined, 0);
+            for (var i = 0; i < _groupScratch.Count; i++)
+                combined[nonActorBlips.Length + i] = _groupScratch[i];
+            return combined;
+        }
+
+        return nonActorBlips;
     }
 
-    /// <summary>Returns a blip for each group member on the same map as the actor, excluding the actor themselves.</summary>
-    private WastelandMapTrackedBlip[] GetGroupMemberBlips(EntityUid actor, MapId mapId, Box2 bounds)
+    // #Misfits Add - Append the faction blip set for this feed into the supplied buffer.
+    private void AppendFactionBlips(List<WastelandMapTrackedBlip> buffer, WastelandMapTacticalFeedKind feed, MapId mapId, Box2 bounds)
+    {
+        switch (feed)
+        {
+            case WastelandMapTacticalFeedKind.Brotherhood:
+                AppendIdCardBlips(buffer, mapId, bounds, "IdCardBrotherhood");
+                break;
+            case WastelandMapTacticalFeedKind.Vault:
+                AppendIdCardBlips(buffer, mapId, bounds, "IdCardVault");
+                break;
+            case WastelandMapTacticalFeedKind.NCR:
+                AppendIdCardBlips(buffer, mapId, bounds, "IdCardNCR");
+                break;
+            case WastelandMapTacticalFeedKind.Enclave:
+                AppendIdCardBlips(buffer, mapId, bounds, "IdCardEnclave");
+                break;
+            case WastelandMapTacticalFeedKind.Legion:
+                AppendIdCardBlips(buffer, mapId, bounds, "IdCardLegion");
+                break;
+        }
+    }
+
+    /// <summary>Appends a blip for each group member on the same map as the actor, excluding the actor themselves.</summary>
+    private void AppendGroupMemberBlips(List<WastelandMapTrackedBlip> buffer, EntityUid actor, MapId mapId, Box2 bounds)
     {
         var members = _groupSystem.GetGroupMemberEntities(actor);
         if (members == null || members.Count == 0)
-            return [];
+            return;
 
-        var blips = new List<WastelandMapTrackedBlip>(members.Count);
         foreach (var member in members)
         {
             if (member == actor)
@@ -275,15 +335,12 @@ public sealed class WastelandMapSystem : EntitySystem
                 continue;
 
             var label = Name(member);
-            blips.Add(new WastelandMapTrackedBlip(pos.X, pos.Y, label, WastelandMapTrackedBlipKind.PipBoyGroupMember));
+            buffer.Add(new WastelandMapTrackedBlip(pos.X, pos.Y, label, WastelandMapTrackedBlipKind.PipBoyGroupMember));
         }
-
-        return blips.ToArray();
     }
 
-    private WastelandMapTrackedBlip[] GetTribalHuntTargetBlips(MapId mapId, Box2 bounds)
+    private void AppendTribalHuntTargetBlips(List<WastelandMapTrackedBlip> buffer, MapId mapId, Box2 bounds)
     {
-        var blips = new List<WastelandMapTrackedBlip>();
         var query = EntityQueryEnumerator<LegendaryCreatureComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var legendary, out var xform))
@@ -303,19 +360,16 @@ public sealed class WastelandMapSystem : EntitySystem
                 ? "Legendary Target"
                 : $"Legendary {legendary.CreatureName}";
 
-            blips.Add(new WastelandMapTrackedBlip(
+            buffer.Add(new WastelandMapTrackedBlip(
                 pos.X,
                 pos.Y,
                 label,
                 WastelandMapTrackedBlipKind.TribalHuntTarget));
         }
-
-        return blips.ToArray();
     }
 
-    private WastelandMapTrackedBlip[] GetIdCardBlips(MapId mapId, Box2 bounds, string requiredTag)
+    private void AppendIdCardBlips(List<WastelandMapTrackedBlip> buffer, MapId mapId, Box2 bounds, string requiredTag)
     {
-        var blips = new List<WastelandMapTrackedBlip>();
         var query = EntityQueryEnumerator<PresetIdCardComponent, IdCardComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var presetId, out var idCard, out var xform))
@@ -335,10 +389,8 @@ public sealed class WastelandMapSystem : EntitySystem
 
             var label = GetHolotagLabel(idCard, presetId);
             var kind = GetHolotagKind(idCard, presetId, meta);
-            blips.Add(new WastelandMapTrackedBlip(pos.X, pos.Y, label, kind));
+            buffer.Add(new WastelandMapTrackedBlip(pos.X, pos.Y, label, kind));
         }
-
-        return blips.ToArray();
     }
 
     private static string GetHolotagLabel(IdCardComponent idCard, PresetIdCardComponent presetId)

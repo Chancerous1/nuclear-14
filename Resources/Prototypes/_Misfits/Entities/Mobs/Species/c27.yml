@@ -13,6 +13,12 @@
   components:
   - type: HumanoidAppearance
     species: C27
+  # #Misfits Fix - Override BaseMobSpecies' default NanoTrasen faction with Wastelander
+  # (same as MobHuman / SuperMutant). Raiders, ghouls (Feral), wastelandanimal, etc. only
+  # target Wastelander — without this C-27 players are invisible to all hostile wasteland NPCs.
+  - type: NpcFactionMember
+    factions:
+    - Wastelander
   - type: Inventory
     templateId: c27
     speciesId: c27

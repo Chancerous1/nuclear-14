@@ -189,6 +189,10 @@
                             <Button Visible="False" Name="Rejuv" Access="Public"
                                     Text="{Loc 'admin-player-actions-rejuv'}"
                                     StyleClasses="ButtonSmall" MinWidth="55" MinHeight="26" />
+                            <!-- #Misfits Add - Logs button: opens admin logs panel filtered for the selected player. -->
+                            <Button Visible="False" Name="Logs" Access="Public"
+                                    Text="{Loc 'admin-player-actions-logs'}"
+                                    StyleClasses="ButtonSmall" MinWidth="55" MinHeight="26" />
                         </BoxContainer>
                     </PanelContainer>
 

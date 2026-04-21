@@ -93,6 +93,12 @@ public sealed class FactionWarSystem : EntitySystem
     private float _warUpdateAccumulator;
     private const float WarUpdateInterval = 1.0f;
 
+    // #Misfits Add - Scratch buffers reused by Update() for pending-activation and auto-expiry
+    // scans. These were per-tick allocations; keeping them resident eliminates steady-state
+    // GC pressure on the 1 Hz war sweep.
+    private readonly List<FactionWarEntry> _activatedScratch = new();
+    private readonly List<FactionWarEntry> _expiredScratch = new();
+
     /// <summary>
     /// Sessions that currently have the /war panel open.
     /// Panel data is only sent to these sessions on state change, avoiding O(N) broadcasts.
@@ -176,7 +182,9 @@ public sealed class FactionWarSystem : EntitySystem
         // ── Pending → Active transitions ──────────────────────────────
         if (_warActivationTimes.Count > 0)
         {
-            var activated = new List<FactionWarEntry>();
+            // #Misfits Tweak - Reused scratch buffer; cleared here each sweep.
+            var activated = _activatedScratch;
+            activated.Clear();
 
             foreach (var war in _activeWars)
             {
@@ -222,7 +230,9 @@ public sealed class FactionWarSystem : EntitySystem
         // #Misfits Add - End wars that have exceeded WarMaxDuration.
         if (_warAutoEndTimes.Count > 0)
         {
-            var expired = new List<FactionWarEntry>();
+            // #Misfits Tweak - Reused scratch buffer; cleared here each sweep.
+            var expired = _expiredScratch;
+            expired.Clear();
 
             foreach (var war in _activeWars)
             {

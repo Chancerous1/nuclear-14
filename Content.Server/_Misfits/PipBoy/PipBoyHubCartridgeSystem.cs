@@ -39,6 +39,20 @@ public sealed class PipBoyHubCartridgeSystem : EntitySystem
     private const int MaxWaypointLabelLength = 32;
     private const int NotificationMaxLength = 64; // #Misfits Add - max length for notification body text
 
+    // #Misfits Add - Shared empty sentinels for UpdateUI's locked/no-card placeholder paths.
+    // These replace ten per-call `new List/Dictionary` allocations that were executed on every
+    // PipBoy UI refresh (roughly once per second per active user). They are never mutated —
+    // the unlocked path reassigns the local variables to live collections returned from the
+    // network system. With ~150 concurrent users this eliminates ~1500 allocations/sec.
+    private static readonly Dictionary<uint, PipBoyContact> EmptyContacts = new();
+    private static readonly List<PipBoyTrackedLocation> EmptyTrackedLocations = new();
+    private static readonly List<PipBoyGroupInfo> EmptyGroups = new();
+    private static readonly List<PipBoyGroupMessage> EmptyGroupMessages = new();
+    private static readonly List<PipBoyWaypoint> EmptyWaypoints = new();
+    private static readonly List<PipBoyDirectoryEntry> EmptyDirectory = new();
+    private static readonly List<PipBoySosAlert> EmptySosAlerts = new();
+    private static readonly List<PipBoyDeadDrop> EmptyDeadDrops = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -606,17 +620,20 @@ public sealed class PipBoyHubCartridgeSystem : EntitySystem
         var hasPassword = false;
         var isLocked = false;
         var isVisible = true;
-        var contacts = new Dictionary<uint, PipBoyContact>();
-        var contactLocs = new List<PipBoyTrackedLocation>();
-        var groups = new List<PipBoyGroupInfo>();
-        var groupMessages = new List<PipBoyGroupMessage>();
-        var groupLocs = new List<PipBoyTrackedLocation>();
-        var groupWaypoints = new List<PipBoyWaypoint>();
-        var directory = new List<PipBoyDirectoryEntry>();
-        var sosAlerts = new List<PipBoySosAlert>();
+        // #Misfits Tweak - Start with shared empty sentinels; each field is reassigned to a
+        // live collection in the unlocked-card path. This avoids ten `new` allocations per
+        // UI refresh (see Empty* sentinel block above).
+        Dictionary<uint, PipBoyContact> contacts = EmptyContacts;
+        List<PipBoyTrackedLocation> contactLocs = EmptyTrackedLocations;
+        List<PipBoyGroupInfo> groups = EmptyGroups;
+        List<PipBoyGroupMessage> groupMessages = EmptyGroupMessages;
+        List<PipBoyTrackedLocation> groupLocs = EmptyTrackedLocations;
+        List<PipBoyWaypoint> groupWaypoints = EmptyWaypoints;
+        List<PipBoyDirectoryEntry> directory = EmptyDirectory;
+        List<PipBoySosAlert> sosAlerts = EmptySosAlerts;
         var presenceStatus = PipBoyPresenceStatus.Available;
         string? statusMessage = null;
-        var nearbyDeadDrops = new List<PipBoyDeadDrop>();
+        List<PipBoyDeadDrop> nearbyDeadDrops = EmptyDeadDrops;
         var hasRadioConnection = false;
 
         if (ent.Comp.Card != null &&

@@ -6,11 +6,13 @@ using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Systems;
+using Content.Shared._Misfits.CCVar; // #Misfits Add - CVar gate for ReplanRate
 using Content.Shared.Administration;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects; // Corvax
+using Robust.Shared.Configuration; // #Misfits Add - CVar gate for ReplanRate
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -25,6 +27,7 @@ namespace Content.Server.NPC.HTN;
 public sealed class HTNSystem : EntitySystem
 {
     [Dependency] private readonly IAdminManager _admin = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // #Misfits Add - CVar gate for ReplanRate
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
@@ -40,10 +43,11 @@ public sealed class HTNSystem : EntitySystem
 
     private readonly HashSet<ICommonSession> _subscribers = new();
 
-    // #Misfits Change — Increased from 4/sec to 7/sec to reduce delay between aggro event and combat response.
-    // HTN tasks are evaluated up to 7 times/second instead of 4, cutting combat response window from ~250ms to ~140ms.
-    // Impact: ~2-3% CPU increase in normal scenarios, negligible during average gameplay.
-    private const float ReplanRate = 7f; // per second, TODO: CVar?
+    // #Misfits Change — ReplanRate was forced to a const 7f Hz to cut combat response latency.
+    // Reverted to upstream 5f default and surfaced as CVar `misfits.htn_replan_rate` so ops
+    // can tune without a rebuild. At 150+ pop on constrained VPS hardware the extra 2 Hz of
+    // HTN work across every active NPC was measurable; 5 Hz is the safer baseline.
+    private float _replanRate = 5f; // per second, CVar-driven
     private float Accumulator; // limit replanning rate
 
     // Hierarchical Task Network
@@ -52,6 +56,8 @@ public sealed class HTNSystem : EntitySystem
         base.Initialize();
         _mapQuery = GetEntityQuery<WorldControllerComponent>(); // Corvax
         _loadedQuery = GetEntityQuery<LoadedChunkComponent>(); // Corvax
+        // #Misfits Add - Live-track the replan rate CVar (initial fire + updates).
+        Subs.CVar(_cfg, PerformanceCVars.HTNReplanRate, v => _replanRate = v > 0f ? v : 1f, true);
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -168,7 +174,9 @@ public sealed class HTNSystem : EntitySystem
         _planQueue.Process();
 
         // Limit update rate
-        const float updatePeriod = 1/ReplanRate;
+        // #Misfits Tweak - Was `const float updatePeriod = 1/ReplanRate;` when ReplanRate
+        // was a const. Now computed per-call from the CVar-driven field.
+        var updatePeriod = 1f / _replanRate;
         Accumulator += frameTime;
         if (Accumulator < updatePeriod)
             return;
