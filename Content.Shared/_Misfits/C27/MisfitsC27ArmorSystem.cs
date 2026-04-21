@@ -31,7 +31,10 @@ public sealed class MisfitsC27ArmorSystem : EntitySystem
         }
 
         // Species ProtoId compares case-sensitively as a string.
-        if (humanoid.Species == "C27")
+        // #Misfits Tweak - accept all three C-27 chassis variants (Generic / NCR / BoS).
+        // Previously only the Generic 'C27' species was permitted, which blocked NCR and
+        // BoS C-27 jobs from equipping their own faction armor kits.
+        if (humanoid.Species == "C27" || humanoid.Species == "C27NCR" || humanoid.Species == "C27BoS")
             return;
 
         args.Reason = "c27-armor-species-required";
