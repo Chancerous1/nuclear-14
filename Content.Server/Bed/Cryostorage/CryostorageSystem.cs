@@ -194,6 +194,19 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
                 _stationJobs.TryRemovePlayerJobs(uniqueStation, userId.Value, stationJobs);
             }
+
+            // #Misfits Add - cryo is a clean exit from the round. Clear the same-round
+            // respawn lock for this character so the player can rejoin under the same name.
+            // Prefer the mind's CharacterName (matches what the lock was keyed on at death);
+            // fall back to the entity's metadata name if the mind is already gone.
+            var lockName = name;
+            if (Mind.TryGetMind(ent.Owner, out _, out var lockMind)
+                && !string.IsNullOrWhiteSpace(lockMind.CharacterName))
+            {
+                lockName = lockMind.CharacterName!;
+            }
+            EntityManager.System<Content.Server._Misfits.JobSlotReclaim.MisfitsJobSlotReclaimSystem>()
+                .ClearLockFor(userId.Value, lockName);
         }
 
         _audio.PlayPvs(cryostorageComponent.RemoveSound, ent);

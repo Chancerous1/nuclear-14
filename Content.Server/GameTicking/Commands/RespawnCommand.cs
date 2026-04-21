@@ -1,3 +1,4 @@
+using Content.Server._Misfits.JobSlotReclaim; // #Misfits Add - clear same-round respawn locks
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Robust.Server.Player;
@@ -25,6 +26,10 @@ namespace Content.Server.GameTicking.Commands
             var sysMan = IoCManager.Resolve<IEntitySystemManager>();
             var ticker = sysMan.GetEntitySystem<GameTicker>();
             var mind = sysMan.GetEntitySystem<SharedMindSystem>();
+            // #Misfits Add - admin respawn is the authoritative lock bypass for the same-round
+            // respawn lock system. Clear all of this player's per-character locks so they can
+            // rejoin with any character (including the one that died).
+            var reclaim = sysMan.GetEntitySystem<MisfitsJobSlotReclaimSystem>();
 
             NetUserId userId;
             if (args.Length == 0)
@@ -42,6 +47,9 @@ namespace Content.Server.GameTicking.Commands
                 shell.WriteLine("Unknown player");
                 return;
             }
+
+            // #Misfits Add - clear locks regardless of online/offline path below.
+            reclaim.ClearLocksFor(userId);
 
             if (!playerMgr.TryGetSessionById(userId, out var targetPlayer))
             {

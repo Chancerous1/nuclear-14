@@ -1,0 +1,16 @@
+# #Misfits Add - C-27 silicon chassis damage modifier set.
+# Mirrors the upstream Metallic set exactly but adds full radiation immunity.
+# C-27 units are sealed robot chassis with no organic components, so ionising
+# radiation has no biological effect on them.
+
+- type: damageModifierSet
+  id: MisfitsC27Silicon
+  coefficients:
+    Blunt: 0.7
+    Slash: 0.5
+    Piercing: 0.7
+    Shock: 1.2       # still vulnerable to electrical damage (motor control / circuitry)
+    Radiation: 0.0   # innate full immunity — sealed chassis, no organic components
+  flatReductions:
+    Blunt: 5
+    Heat: 5

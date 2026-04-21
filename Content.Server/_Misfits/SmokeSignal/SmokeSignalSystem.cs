@@ -26,12 +26,15 @@ namespace Content.Server._Misfits.SmokeSignal;
 /// </summary>
 public sealed class SmokeSignalSystem : EntitySystem
 {
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedJobSystem _jobs = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+
+    private readonly HashSet<EntityUid> _nearbyBuffer = new();
 
     public override void Initialize()
     {
@@ -106,7 +109,7 @@ public sealed class SmokeSignalSystem : EntitySystem
         // Build the broadcast text
         var broadcastText = Loc.GetString("smoke-signal-broadcast", ("message", message));
 
-        // Send a large popup to every living Tribe-department player
+        // Send a large popup to every living Tribe-department player (server-wide)
         var query = EntityQueryEnumerator<ActorComponent>();
         while (query.MoveNext(out var playerUid, out _))
         {
@@ -117,6 +120,30 @@ public sealed class SmokeSignalSystem : EntitySystem
                 continue;
 
             _popup.PopupEntity(broadcastText, playerUid, playerUid, PopupType.Large);
+        }
+
+        // Also send an atmospheric notice to nearby non-tribe bystanders
+        // so the signal is observable in-world (and testable without a tribe job)
+        if (component.NearbyRange > 0f)
+        {
+            var nearbyText = Loc.GetString("smoke-signal-nearby");
+            _nearbyBuffer.Clear();
+            _lookup.GetEntitiesInRange(Transform(uid).Coordinates, component.NearbyRange, _nearbyBuffer);
+
+            foreach (var nearbyUid in _nearbyBuffer)
+            {
+                if (!HasComp<ActorComponent>(nearbyUid))
+                    continue;
+
+                if (_mobState.IsDead(nearbyUid))
+                    continue;
+
+                // Tribe members already got the full message above; skip duplicates
+                if (IsInDepartment(nearbyUid, component.TargetDepartment))
+                    continue;
+
+                _popup.PopupEntity(nearbyText, nearbyUid, nearbyUid, PopupType.Medium);
+            }
         }
 
         // Log so admins can see in the server log
