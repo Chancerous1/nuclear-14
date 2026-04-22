@@ -2486,11 +2486,11 @@
   availableFaction:
   - CaesarLegion
   materials:
-    Steel: 1500
+    Steel: 1200
 
-    Lead: 1100
+    Lead: 900
 
-    N14Gunpowder: 900
+    N14Gunpowder: 850
 
 # #Misfits Add - T4 ammo for M60 LMG (.308 box magazine, 50-round box). Same material cost as Bren mag per design intent. made it cost a little extra cause extra bullets -Bill
 - type: latheRecipe
@@ -2502,9 +2502,9 @@
   availableFaction:
   - CaesarLegion
   materials:
-    Steel: 1500
+    Steel: 1300
 
-    Lead: 1200
+    Lead: 1000
 
     N14Gunpowder: 900
 
