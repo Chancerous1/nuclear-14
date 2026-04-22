@@ -8,6 +8,7 @@ using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Medical;
 using Content.Server.Temperature.Components;
+using Content.Shared._Misfits.CCVar;
 using Content.Shared._Misfits.Disease;
 using Content.Shared._Misfits.Disease.Components;
 using Content.Shared._Misfits.Disease.Cures;
@@ -18,6 +19,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -31,6 +33,7 @@ namespace Content.Server._Misfits.Disease;
 /// </summary>
 public sealed class DiseaseSystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // #Misfits Add - CVar gate
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -44,9 +47,25 @@ public sealed class DiseaseSystem : EntitySystem
     /// <summary>Range in tiles for airborne disease spread.</summary>
     private const float AirborneRange = 3f;
 
+    // #Misfits Add - Performance: throttle the outer tick. Disease TickTime is seconds-scale
+    // per prototype, so running the carrier sweep at 1 Hz is indistinguishable from 30 Hz.
+    private const float UpdateInterval = 1f;
+    private float _updateAccumulator;
+    private bool _enabled;
+
+    // #Misfits Add - Reusable scratch buffers so the per-tick sweep doesn't allocate.
+    // _tickBuffer replaces the per-carrier `new Dictionary(carrier.Diseases)` copy.
+    // _curesBuffer replaces `new List<DiseaseCure>()` in CheckCures.
+    private readonly List<(ProtoId<DiseasePrototype> Id, float AccumulatedTime)> _tickBuffer = new();
+    private readonly List<DiseaseCure> _curesBuffer = new();
+
     public override void Initialize()
     {
         base.Initialize();
+
+        // #Misfits Add - Gate the entire system behind a CVar. Defaults false because no
+        // in-game assets currently produce diseases.
+        Subs.CVar(_cfg, PerformanceCVars.DiseaseEnabled, v => _enabled = v, true);
 
         // When a mask/gas-mask with DiseaseProtection is equipped, mark it active
         SubscribeLocalEvent<DiseaseProtectionComponent, GotEquippedEvent>(OnProtectionEquipped);
@@ -57,13 +76,23 @@ public sealed class DiseaseSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // #Misfits Add - CVar kill switch. Skips the entire per-carrier sweep when disabled.
+        if (!_enabled)
+            return;
+
+        // #Misfits Add - Throttle: run the carrier sweep once per UpdateInterval seconds.
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+        var elapsed = _updateAccumulator;
+        _updateAccumulator = 0f;
+
         var query = EntityQueryEnumerator<DiseaseCarrierComponent>();
         while (query.MoveNext(out var uid, out var carrier))
         {
-            // Skip dead entities
-            if (TryComp<MobStateComponent>(uid, out var mobState) && _mobState.IsDead(uid, mobState))
-                continue;
-
+            // #Misfits Tweak - Hoisted the empty-carrier short-circuit above the MobState
+            // check and BEFORE any allocation. Uninfected carriers now cost a single
+            // dictionary count lookup + a deferred component remove.
             if (carrier.Diseases.Count == 0)
             {
                 // No active diseases — remove the marker if present
@@ -71,26 +100,37 @@ public sealed class DiseaseSystem : EntitySystem
                 continue;
             }
 
+            // Skip dead entities
+            if (TryComp<MobStateComponent>(uid, out var mobState) && _mobState.IsDead(uid, mobState))
+                continue;
+
             // Ensure marker component is present while sick
             EnsureComp<DiseasedComponent>(uid);
 
-            // Iterate over a snapshot to allow removal during loop
-            foreach (var (diseaseId, accumulatedTime) in new Dictionary<ProtoId<DiseasePrototype>, float>(carrier.Diseases))
+            // #Misfits Tweak - Snapshot into a reused buffer instead of allocating a new
+            // Dictionary every iteration. Mutations to carrier.Diseases during the loop
+            // are still safe because we iterate the buffer, not the live dictionary.
+            _tickBuffer.Clear();
+            foreach (var kv in carrier.Diseases)
+                _tickBuffer.Add((kv.Key, kv.Value));
+
+            foreach (var (diseaseId, accumulatedTime) in _tickBuffer)
             {
                 if (!_proto.TryIndex(diseaseId, out var disease))
                     continue;
 
-                // Advance the per-disease tick accumulator
+                // #Misfits Tweak - Use elapsed (time since last sweep) rather than
+                // frameTime, since the sweep is now throttled.
                 if (!carrier.Accumulators.TryGetValue(diseaseId, out var tickAcc))
                     tickAcc = 0f;
 
-                tickAcc += frameTime;
+                tickAcc += elapsed;
 
                 if (tickAcc < disease.TickTime)
                 {
                     carrier.Accumulators[diseaseId] = tickAcc;
                     // Still advance total accumulated time for JustWaitCure
-                    carrier.Diseases[diseaseId] = accumulatedTime + frameTime;
+                    carrier.Diseases[diseaseId] = accumulatedTime + elapsed;
                     Dirty(uid, carrier);
                     continue;
                 }
@@ -171,19 +211,20 @@ public sealed class DiseaseSystem : EntitySystem
     /// </summary>
     private bool CheckCures(EntityUid uid, DiseasePrototype disease, int stage)
     {
-        var relevantCures = new List<DiseaseCure>();
+        // #Misfits Tweak - Reuse a cached buffer so the cure check doesn't allocate per tick.
+        _curesBuffer.Clear();
         foreach (var cure in disease.Cures)
         {
             if (cure.Stages.Count > 0 && !cure.Stages.Contains(stage))
                 continue;
-            relevantCures.Add(cure);
+            _curesBuffer.Add(cure);
         }
 
-        if (relevantCures.Count == 0)
+        if (_curesBuffer.Count == 0)
             return false;
 
         var args = new DiseaseEffectArgs(uid, disease, EntityManager);
-        foreach (var cure in relevantCures)
+        foreach (var cure in _curesBuffer)
         {
             // #Misfits Fix - Server-only cures handled inline because their
             // dependencies (TemperatureComponent, BloodstreamComponent) are server-only.

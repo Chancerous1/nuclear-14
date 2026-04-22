@@ -61,4 +61,24 @@ public sealed class PerformanceCVars : CVars
     // #Misfits Add - CVar to disable all respiratory suffocation
     public static readonly CVarDef<bool> Suffocation =
         CVarDef.Create("misfits.suffocation", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Whether the Misfits disease system processes ticks. When false,
+    /// <c>DiseaseSystem.Update()</c> returns immediately — no per-carrier iteration,
+    /// no stage progression, no airborne spread. Defaults to false because no
+    /// in-game assets currently produce diseases; re-enable if disease content is added.
+    /// </summary>
+    // #Misfits Add - CVar to disable the disease tick system entirely
+    public static readonly CVarDef<bool> DiseaseEnabled =
+        CVarDef.Create("misfits.disease.enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// How many times per second the HTN planner evaluates NPC plans.
+    /// Upstream default is 5 Hz; higher values reduce combat response delay at
+    /// the cost of CPU. At 150+ pop on constrained VPS hardware, 5 Hz is the
+    /// safer baseline — raise only if NPC reaction time becomes a complaint.
+    /// </summary>
+    // #Misfits Add - CVar gate for HTN replan rate (was const 7f, reverted to 5f default)
+    public static readonly CVarDef<float> HTNReplanRate =
+        CVarDef.Create("misfits.htn_replan_rate", 5f, CVar.SERVERONLY);
 }

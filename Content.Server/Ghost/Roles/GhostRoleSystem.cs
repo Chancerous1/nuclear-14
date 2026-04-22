@@ -57,6 +57,14 @@ namespace Content.Server.Ghost.Roles
         private uint _nextRoleIdentifier;
         private bool _needsUpdateGhostRoleCount = true;
 
+        // #Misfits Add - Debounce GhostUpdateGhostRoleCountEvent broadcasts. Without this, every
+        // single ghost-role register/unregister (which can fire dozens per second during map init,
+        // migrations, or mass-spawn events) sends a network event to every connected player. At
+        // 150 pop this was a measurable chunk of per-tick network work. Coalesce bursts into at
+        // most one broadcast per second.
+        private float _ghostRoleCountDebounceAccumulator;
+        private const float GhostRoleCountDebounceInterval = 1.0f;
+
         private readonly Dictionary<uint, Entity<GhostRoleComponent>> _ghostRoles = new();
         private readonly Dictionary<uint, Entity<GhostRoleRaffleComponent>> _ghostRoleRaffles = new();
 
@@ -198,6 +206,14 @@ namespace Content.Server.Ghost.Roles
             if (!_needsUpdateGhostRoleCount)
                 return;
 
+            // #Misfits Tweak - Coalesce burst updates (mass-spawn, round start, map init) into
+            // at most one broadcast per GhostRoleCountDebounceInterval seconds. The flag stays
+            // set so the next tick past the debounce window actually fires the broadcast.
+            _ghostRoleCountDebounceAccumulator += (float)_timing.TickPeriod.TotalSeconds;
+            if (_ghostRoleCountDebounceAccumulator < GhostRoleCountDebounceInterval)
+                return;
+
+            _ghostRoleCountDebounceAccumulator = 0f;
             _needsUpdateGhostRoleCount = false;
             var response = new GhostUpdateGhostRoleCountEvent(GetGhostRoleCount());
             foreach (var player in _playerManager.Sessions)

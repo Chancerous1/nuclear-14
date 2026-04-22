@@ -131,9 +131,44 @@ public sealed partial class SalvageSystem
         QueueDel(ev.FromMapUid.Value);
     }
 
+    // #Misfits Add - Reused scratch buffers for the auto-FTL shuttle index.
+    // Built lazily at most once per UpdateRunner call when any expedition hits its
+    // FTL window; scales with (expeditions × shuttles) before, (shuttles) after.
+    private readonly Dictionary<EntityUid, List<(EntityUid Uid, ShuttleComponent Shuttle, TransformComponent Xform)>> _shuttlesByMap = new();
+    private bool _shuttleIndexBuilt;
+
+    // #Misfits Add - Snapshot every ShuttleComponent keyed by its map uid.
+    // Called at most once per UpdateRunner tick, and only when a shuttle FTL is actually needed.
+    private void BuildShuttleIndex()
+    {
+        foreach (var list in _shuttlesByMap.Values)
+            list.Clear();
+
+        var shuttleQuery = AllEntityQuery<ShuttleComponent, TransformComponent>();
+        while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
+        {
+            if (shuttleXform.MapUid is not { } mapUid)
+                continue;
+
+            if (!_shuttlesByMap.TryGetValue(mapUid, out var list))
+            {
+                list = new List<(EntityUid, ShuttleComponent, TransformComponent)>();
+                _shuttlesByMap[mapUid] = list;
+            }
+
+            list.Add((shuttleUid, shuttle, shuttleXform));
+        }
+
+        _shuttleIndexBuilt = true;
+    }
+
     // Runs the expedition
     private void UpdateRunner()
     {
+        // #Misfits Tweak - Reset lazy shuttle-index flag each tick; we only pay to build it
+        // if at least one expedition is actually in its FTL window.
+        _shuttleIndexBuilt = false;
+
         // Generic missions
         var query = EntityQueryEnumerator<SalvageExpeditionComponent>();
 
@@ -179,15 +214,22 @@ public sealed partial class SalvageSystem
                 }
 
                 ftlTime = MathF.Min(ftlTime, _shuttle.DefaultStartupTime);
-                var shuttleQuery = AllEntityQuery<ShuttleComponent, TransformComponent>();
 
-                if (TryComp<StationDataComponent>(comp.Station, out var data))
+                // #Misfits Tweak - Build the map→shuttles index at most once per tick
+                // (lazy), then index into it instead of re-enumerating all shuttles per
+                // expedition. Preserves original behaviour: FTL every shuttle on this
+                // expedition's map (that isn't already FTLing) to the station's first grid.
+                if (!_shuttleIndexBuilt)
+                    BuildShuttleIndex();
+
+                if (TryComp<StationDataComponent>(comp.Station, out var data)
+                    && _shuttlesByMap.TryGetValue(uid, out var shuttlesOnMap))
                 {
                     foreach (var member in data.Grids)
                     {
-                        while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
+                        foreach (var (shuttleUid, shuttle, _) in shuttlesOnMap)
                         {
-                            if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
+                            if (HasComp<FTLComponent>(shuttleUid))
                                 continue;
 
                             _shuttle.FTLToDock(shuttleUid, shuttle, member, ftlTime);

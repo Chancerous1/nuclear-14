@@ -302,6 +302,14 @@ namespace Content.Client.Administration.UI.Bwoink
                     _console.ExecuteCommand($"player:imm \"{_currentPlayer.Username}\" | player:entity | rejuvenate");
             };
 
+            // #Misfits Add - Logs button: opens admin logs panel pre-filtered to the selected player's username.
+            // Uses the extended "adminlogs" command which accepts an optional username argument.
+            Logs.OnPressed += _ =>
+            {
+                if (_currentPlayer is not null)
+                    _console.ExecuteCommand($"adminlogs \"{_currentPlayer.Username}\"");
+            };
+
             PopOut.OnPressed += _ =>
             {
                 uiController.PopOut();
@@ -492,6 +500,8 @@ namespace Content.Client.Administration.UI.Bwoink
             Bans.StyleBoxOverride = actionBox;
             Respawn.StyleBoxOverride = actionBox;
             Rejuv.StyleBoxOverride = actionBox;
+            // #Misfits Add - neutral flat style for Logs button, matches Notes/Bans.
+            Logs.StyleBoxOverride = actionBox;
 
             // Dark amber for Follow (caution intent)
             Follow.StyleBoxOverride = new StyleBoxFlat
@@ -898,6 +908,10 @@ namespace Content.Client.Administration.UI.Bwoink
             // #Misfits Add - Rejuv button visibility, requires Admin flag
             Rejuv.Visible = _adminManager.HasFlag(AdminFlags.Admin);
             Rejuv.Disabled = !Rejuv.Visible || disabled;
+
+            // #Misfits Add - Logs button visibility, requires Logs flag (same as adminlogs command).
+            Logs.Visible = _adminManager.HasFlag(AdminFlags.Logs);
+            Logs.Disabled = !Logs.Visible || disabled;
         }
 
         private string FormatTabTitle(ItemList.Item li, PlayerInfo? pl = default)
