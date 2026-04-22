@@ -147,7 +147,7 @@
               prototype: MaterialCloth1
               amount: 2
             - !type:DeleteEntity
-      
+
 - type: constructionGraph
   id: MisfitsFlagLE
   start: start
@@ -356,3 +356,180 @@
               prototype: MaterialCloth1
               amount: 3
             - !type:DeleteEntity {}
+
+# Banners aka big flags
+
+- type: constructionGraph
+  id: DecorationFlagOasis
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FlagOasis
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+
+    - node: FlagOasis
+      entity: N14DecorationFlagOasis
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:DeleteEntity
+
+- type: constructionGraph
+  id: DecorationFlagBrotherhoodWashington
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: flagbcoas
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+
+    - node: FlagBrotherhoodWashington
+      entity: N14DecorationFlagBrotherhoodWashington
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:DeleteEntity
+
+- type: constructionGraph
+  id: DecorationFlagEnclave
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FlagEnclave
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+
+    - node: FlagEnclave
+      entity: N14DecorationFlagEnclave
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:DeleteEntity
+
+- type: constructionGraph
+  id: DecorationFlagHighvalleyhills
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FlagHighvalleyhills
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+
+    - node: FlagHighvalleyhills
+      entity: N14DecorationFlagHighvalleyhills
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:DeleteEntity
+
+- type: constructionGraph
+  id: DecorationFlagVaultTecCityCoalition
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FlagVaultTecCityCoalition
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+
+    - node: FlagVaultTecCityCoalition
+      entity: N14DecorationFlagVaultTecCityCoalition
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:DeleteEntity
+
+- type: constructionGraph
+  id: DecorationFlagKhans
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FlagKhans
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+
+    - node: FlagKhans
+      entity: N14DecorationFlagKhans
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:DeleteEntity
+
+- type: constructionGraph
+  id: DecorationFlagChurch
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FlagChurch
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 3
+
+    - node: FlagChurch
+      entity: N14DecorationFlagChurch
+      edges:
+        - to: start
+          steps:
+            - tool: Cutting
+              doAfter: 3
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+            - !type:DeleteEntity

@@ -197,6 +197,8 @@
   objectType: Structure
   placementMode: SnapgridCenter
 
+# Banners aka big flags
+
 - type: construction
   name: Children of Atom flag
   id: MisfitsDecorationFlagChildrenOfAtom
@@ -209,5 +211,109 @@
   icon:
     sprite: _Misfits/Structures/Decoration/coa_banner_big.rsi
     state: banner
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: Oasis flag
+  id: N14DecorationFlagOasis
+  graph: DecorationFlagOasis
+  startNode: start
+  targetNode: FlagOasis
+# category: construction-category-decorations
+  description: A flag depicting a stylised pink flower on a green background. It's the symbol of the town of Oasis.  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Decoration/flags.rsi
+    state: oasisflag
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+#- type: construction
+#  name: Washington Brotherhood of Steel flag
+#  id: N14DecorationFlagBrotherhoodWashington
+#  graph: DecorationFlagBrotherhoodWashington
+#  startNode: start
+#  targetNode: FlagBrotherhoodWashington
+# category: construction-category-decorations
+#  description: A red and black flag with a sword surrounded in gears and wings.
+#  hide: false
+#  icon:
+#    sprite: _Nuclear14/Structures/Decoration/flags.rsi
+#    state: wbosflag
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+
+- type: construction
+  name: Enclave flag
+  id: N14DecorationFlagEnclave
+  graph: DecorationFlagEnclave
+  startNode: start
+  targetNode: FlagEnclave
+# category: construction-category-decorations
+  description: An Enclave flag atop a bearer.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Decoration/flags.rsi
+    state: enclaveflag
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: High Valley Hills flag
+  id: N14DecorationFlagHighvalleyhills
+  graph: DecorationFlagHighvalleyhills
+  startNode: start
+  targetNode: FlagHighvalleyhills
+# category: construction-category-decorations
+  description: A flag with two white stripes, blue border and a red centre with a white Vault-Tec logo, turned on its side and stretched out.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Decoration/flags.rsi
+    state: hvhflag
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: Vault-Tec City Coalition flag
+  id: N14DecorationFlagVaultTecCityCoalition
+  graph: DecorationFlagVaultTecCityCoalition
+  startNode: start
+  targetNode: FlagVaultTecCityCoalition
+# category: construction-category-decorations
+  description: A Vault-Tec City Coalition flag atop a bearer.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Decoration/flags.rsi
+    state: vtccflag
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: Khans flag
+  id: N14DecorationFlagKhans
+  graph: DecorationFlagKhans
+  startNode: start
+  targetNode: FlagKhans
+# category: construction-category-decorations
+  description: A flag worn and weathered from a long cherished history. A decorated smiling skull smiles mockingly upon those who challenge it.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Decoration/flags.rsi
+    state: khanflag
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: Church flag
+  id: N14DecorationFlagChurch
+  graph: DecorationFlagChurch
+  startNode: start
+  targetNode: FlagChurch
+# category: construction-category-decorations
+  description: A blood red flag featuring a symbol associated with nuclear radiation.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Decoration/flags.rsi
+    state: cotc
   objectType: Structure
   placementMode: SnapgridCenter
