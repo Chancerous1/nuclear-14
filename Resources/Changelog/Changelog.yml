@@ -3736,3 +3736,10 @@ Entries:
   id: 5761
   time: '2026-04-23T19:15:31.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/320
+- author: Cythisiax
+  changes:
+    - type: Fix
+      message: T2 BPs with MetalHelmet causing lathe refresh error cascade. Annoying.
+  id: 5762
+  time: '2026-04-23T21:33:45.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/321
