@@ -60,7 +60,45 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: blue scrap wall
+  name: sheet metal wall
+  id: N14WallScrapSlanted
+  graph: N14ScrapWall
+  startNode: start
+  targetNode: SheetScrapWall
+  category: construction-category-structures
+  description: Have some rust here and there.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrap.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: white sheet metal wall
+  id: N14WallScrapWhiteSlanted
+  graph: N14ScrapWall
+  startNode: start
+  targetNode: WhiteScrapWall
+  category: construction-category-structures
+  description: Have some rust here and there.
+  icon:
+    sprite: _Nuclear14/Structures/Walls/ms13/slanted/scrapwhite.rsi
+    state: full
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  hide: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: blue sheet metal wall
   id: N14WallScrapBlueSlanted
   graph: N14ScrapWall
   startNode: start
@@ -79,7 +117,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: red scrap wall
+  name: red sheet metal wall
   id: N14WallScrapRedSlanted
   graph: N14ScrapWall
   startNode: start

@@ -381,7 +381,7 @@
 - type: entity
   parent: N14BaseWallTallMetalWeak
   id: N14WallScrapTall
-  name: scrap wall
+  name: sheet metal wall
   suffix: tall
   components:
   - type: Sprite
@@ -395,7 +395,7 @@
 - type: entity
   parent: N14BaseWallTallMetalWeak
   id: N14WallScrapBlueTall
-  name: blue scrap wall
+  name: blue sheet metal wall
   suffix: tall
   components:
   - type: Sprite
@@ -409,7 +409,7 @@
 - type: entity
   parent: N14BaseWallTallMetalWeak
   id: N14WallScrapRedTall
-  name: red scrap wall
+  name: red sheet metal wall
   suffix: tall
   components:
   - type: Sprite
@@ -423,7 +423,7 @@
 - type: entity
   parent: N14BaseWallTallMetalWeak
   id: N14WallScrapWhiteTall
-  name: white scrap wall
+  name: white sheet metal wall
   suffix: tall
   components:
   - type: Sprite

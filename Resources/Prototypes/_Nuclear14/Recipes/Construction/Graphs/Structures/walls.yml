@@ -81,13 +81,31 @@
   graph:
     - node: start
       edges:
+        - to: SheetScrapWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 10
+              doAfter: 2
+  
+        - to: WhiteScrapWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 10
+              doAfter: 2
+
         - to: RedScrapWall
           completed:
             - !type:SnapToGrid
               southRotation: true
           steps:
-            - material: N14Scrap
-              amount: 2
+            - material: Steel
+              amount: 10
               doAfter: 2
 
         - to: BlueScrapWall
@@ -97,8 +115,8 @@
           conditions:
             - !type:EntityAnchored {}
           steps:
-            - material: N14Scrap
-              amount: 2
+            - material: Steel
+              amount: 10
               doAfter: 2
 
         - to: RoughScrapWall
@@ -109,8 +127,34 @@
             - !type:EntityAnchored {}
           steps:
             - material: N14Scrap
-              amount: 4
-              doAfter: 3
+              amount: 5
+              doAfter: 4
+
+    - node: SheetScrapWall
+      entity: N14WallScrapSlanted
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: Steel
+              amount: 7
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 10
+
+    - node: WhiteScrapWall
+      entity: N14WallScrapWhiteSlanted
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: Steel
+              amount: 7
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 10
 
     - node: BlueScrapWall
       entity: N14WallScrapBlueSlanted
@@ -118,8 +162,8 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: N14Scrap
-              amount: 1
+              prototype: Steel
+              amount: 7
             - !type:DeleteEntity # Forge-Change
           steps:
             - tool: Welding
@@ -131,8 +175,8 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: N14Scrap
-              amount: 1
+              prototype: Steel
+              amount: 7
             - !type:DeleteEntity # Forge-Change
           steps:
             - tool: Welding
