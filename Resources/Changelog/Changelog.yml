@@ -3683,3 +3683,18 @@ Entries:
   id: 5758
   time: '2026-04-22T20:12:55.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/317
+- author: cythisiax
+  changes:
+    - type: Add
+      message: Better ticket audit for staff. Separating Ahelp/Mhelp.
+    - type: Fix
+      message: >-
+        Slots opening on cryo erroneously in addition to automatic slot recovery
+        system.
+    - type: Fix
+      message: Silicon able to take battery out to circumvent charge.
+    - type: Fix
+      message: C-27 ID tags and doors respective to faction it is joined under.
+  id: 5759
+  time: '2026-04-23T01:05:25.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/319
