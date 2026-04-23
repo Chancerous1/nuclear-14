@@ -1,0 +1,14 @@
+﻿- type: entity
+  id: PelletShotgun20Beanbag
+  name: beanbag (20 gauge)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 10
+  - type: StaminaDamageOnCollide
+    damage: 40 # 3 hits to stun
