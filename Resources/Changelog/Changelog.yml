@@ -3845,3 +3845,32 @@ Entries:
   id: 5769
   time: '2026-04-24T18:41:33.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/326
+- author: Fox
+  changes:
+    - type: Add
+      message: Added crafting graphs for flags with 17+ variants
+    - type: Add
+      message: Added barricade crafting recipes including tank traps and razorwire
+    - type: Add
+      message: >-
+        Added table construction recipes with multiple wooden table variants
+        (school desks, end tables, round tables, standing tables)
+    - type: Add
+      message: >-
+        Added expanded wall construction recipes for tall walls and slanted
+        variants
+    - type: Tweak
+      message: Changes scrap wall variants to sheet metal because of scarcity of scrap
+    - type: Tweak
+      message: Optimized craft times (doAfter) and material requirements across recipes
+    - type: Tweak
+      message: Expanded recipe graphs for walls, tables, and structures
+    - type: Tweak
+      message: Updated flags to be fully deconstructable with complete resource output
+    - type: Fix
+      message: Fixed parsing errors in recipe definitions
+    - type: Fix
+      message: Corrected material requirements and craft time specifications
+  id: 5770
+  time: '2026-04-24T22:52:51.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/328
