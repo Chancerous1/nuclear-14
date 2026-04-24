@@ -232,7 +232,7 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: Steel
+              prototype: SheetSteel1
               amount: 7
             - !type:DeleteEntity
           steps:
@@ -245,7 +245,7 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: Steel
+              prototype: SheetSteel1
               amount: 7
             - !type:DeleteEntity
           steps:
@@ -258,7 +258,7 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: Steel
+              prototype: SheetSteel1
               amount: 7
             - !type:DeleteEntity # Forge-Change
           steps:
@@ -271,7 +271,7 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: Steel
+              prototype: SheetSteel1
               amount: 7
             - !type:DeleteEntity
           steps:
@@ -284,7 +284,7 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: Steel
+              prototype: SheetSteel1
               amount: 7
             - !type:DeleteEntity # Forge-Change
           steps:
@@ -297,7 +297,7 @@
         - to: start
           completed:
             - !type:GivePrototype
-              prototype: Steel
+              prototype: SheetSteel1
               amount: 7
             - !type:DeleteEntity
           steps:
