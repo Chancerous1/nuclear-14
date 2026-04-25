@@ -3874,3 +3874,54 @@ Entries:
   id: 5770
   time: '2026-04-24T22:52:51.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/328
+- author: Sirius
+  changes:
+    - type: Remove
+      message: >-
+        The Chem Dispenser has been stolen from the FoTA's new clinic by
+        Vault-Tec.
+    - type: Add
+      message: >-
+        FoTA gets a new Grinder, Hotplate, Electrolyzer to the FoTAs new clinic.
+        In addition to this, the FoTA can now once again enjoy the wonders of
+        teaching people with the restoration of their classroom, and the
+        inclusion of an operating room complete with a surgical duffel and
+        sterile gloves/masks. May or may not come with the actual tools to do
+        surgery. Definitely doesn't come with anything to sterilize with. 
+    - type: Tweak
+      message: >-
+        The FoTA base has been rearranged. The utility closet is now an actual
+        utility closet, with proper storage and a workbench. Furthermore, the
+        generator has been relocated to inside of the utility room. Flooring
+        makes more sense now as well.
+    - type: Remove
+      message: Removed the Vault's chemical crates. These are no longer needed.
+    - type: Add
+      message: >-
+        Gave the vault a Chemical Dispenser, a Chemical Vendor, and a free
+        ChemVend restock crate in addition to a second reagent grinder for
+        convienance.
+  id: 5771
+  time: '2026-04-25T04:44:28.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/337
+- author: cythisiax
+  changes:
+    - type: Add
+      message: Nightkin FEV Playable Species
+    - type: Remove
+      message: town doctor
+    - type: Fix
+      message: dispenser reagents not present
+    - type: Fix
+      message: tribal smoke signal
+    - type: Fix
+      message: unnatural regeneration
+    - type: Tweak
+      message: nuclearoption disabled 1/1/1
+    - type: Tweak
+      message: >-
+        completely disable camera rotation mechanic, no longer exploit bypassed
+        by different keybinds
+  id: 5772
+  time: '2026-04-25T07:29:02.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/336
