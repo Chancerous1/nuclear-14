@@ -3969,3 +3969,14 @@ Entries:
   id: 5776
   time: '2026-04-26T14:11:13.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/341
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: Head knight beret
+    - type: Add
+      message: Hellfire (Better colors APA)
+    - type: Fix
+      message: Enclave Combat Armor mk2
+  id: 5777
+  time: '2026-04-26T17:22:59.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/345
