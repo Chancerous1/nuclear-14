@@ -230,6 +230,7 @@
 - type: startingGear
   id: SuperMutantNCRRangerGear
   equipment:
+    shoes: ClothingSuperMutantGladiatorBoots # Placeholder untill we get NCR boots
     jumpsuit: ClothingSuperMutantJumpsuit
     outerClothing: ClothingSuperMutantRangerArmor
     ears: N14ClothingHeadsetNCR
@@ -274,6 +275,7 @@
 - type: startingGear
   id: SuperMutantNCRTrooperGear
   equipment:
+    shoes: ClothingSuperMutantGladiatorBoots # Placeholder untill we get NCR boots
     jumpsuit: ClothingSuperMutantJumpsuit
     outerClothing: ClothingSuperMutantTrooperArmor
     ears: N14ClothingHeadsetNCR
