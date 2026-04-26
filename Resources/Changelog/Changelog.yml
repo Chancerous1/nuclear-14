@@ -3938,3 +3938,12 @@ Entries:
   id: 5773
   time: '2026-04-25T23:32:23.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/338
+- author: Fox
+  changes:
+    - type: Fix
+      message: Supermutant NCR Ranger Access
+    - type: Fix
+      message: Gitignore
+  id: 5774
+  time: '2026-04-26T00:49:33.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/339
