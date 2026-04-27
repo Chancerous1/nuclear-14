@@ -210,7 +210,7 @@
   parent: [UnsensoredClothingUniformBase, AllowSuitStorageClothing]
   id: ClothingSuperMutantRangerShirt
   name: supermutant ranger shirt
-  description: An XXXXL shirt stuffed with cotton to make a protective layer.
+  description: An XXXXL shirt made to fit even the biggest of people.
   components:
   - type: Sprite
     sprite: _Misfits/Clothing/SuperMutant/ranger_shirt.rsi
