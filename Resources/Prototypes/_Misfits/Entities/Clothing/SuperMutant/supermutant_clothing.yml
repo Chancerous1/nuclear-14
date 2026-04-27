@@ -188,7 +188,7 @@
   parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: ClothingSuperMutantRangerArmor
   name: supermutant ranger armor
-  description: Heavy-duty scrap plate reinforced with raider leather, worn by the most cunning of supermutant rangers. Bulky enough to stop most small-arms fire.
+  description: An XXXXL shirt stuffed with cotton to make a protective layer.
   components:
   - type: Sprite
     sprite: _Misfits/Clothing/SuperMutant/ranger_armor.rsi
