@@ -4040,3 +4040,10 @@ Entries:
   id: 5783
   time: '2026-04-27T23:11:55.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/350
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: admins ignore full server (This surely will work)
+  id: 5784
+  time: '2026-04-27T23:43:43.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/355
