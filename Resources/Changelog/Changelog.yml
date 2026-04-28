@@ -4047,3 +4047,10 @@ Entries:
   id: 5784
   time: '2026-04-27T23:43:43.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/355
+- author: HungryCuban
+  changes:
+    - type: Add
+      message: Added Goliath fist equipped sprite.
+  id: 5785
+  time: '2026-04-27T23:59:29.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/353
