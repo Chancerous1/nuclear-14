@@ -23,6 +23,17 @@
   - Head
   - Mask
   - Accessories
+  allowedTraitCategories: # #Misfits Change: allow traits via same mechanism as loadouts
+  - Uncategorized
+  - Auditory
+  - Mental
+  - Speech
+  - TraitsSpeechUncategorized
+  - TraitsSpeechAccents
+  - TraitsSpeechLanguages
+  - Visual
+  - Language
+  - Pets
   jobWhitelistUnlock: SuperMutant # #Misfits Change: job whitelist for SuperMutant unlocks this species
   restrictedJobs: # #Misfits Change
   - SuperMutant
