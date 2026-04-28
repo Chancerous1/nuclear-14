@@ -1769,8 +1769,11 @@ namespace Content.Client.Lobby.UI
             var restricted = species.RestrictedCustomization;
 
             CTabContainer.SetTabVisible(Antags, !restricted);
-            CTabContainer.SetTabVisible(TraitsTab, !restricted);
             CTabContainer.SetTabVisible(MarkingsTab, !restricted);
+
+            // #Misfits Change: hide traits tab only if restricted AND no allowed categories
+            var showTraits = !restricted || species.AllowedTraitCategories is { Count: > 0 };
+            CTabContainer.SetTabVisible(TraitsTab, showTraits);
 
             // #Misfits Change: hide loadouts tab only if restricted AND no allowed categories
             var showLoadouts = !restricted || species.AllowedLoadoutCategories is { Count: > 0 };
@@ -2429,6 +2432,16 @@ namespace Content.Client.Lobby.UI
                     _sponsorMan, // Forge-Change
                     out _
                 );
+
+                // #Misfits Change: filter traits by species allowed categories
+                if (Profile != null)
+                {
+                    var currentSpecies = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
+                    if (currentSpecies.AllowedTraitCategories != null
+                        && !currentSpecies.AllowedTraitCategories.Contains(trait.Category))
+                        continue;
+                }
+
                 _traits.Add(trait, usable);
 
                 if (_traitPreferences.FindIndex(lps => lps.Trait.ID == trait.ID) is not (not -1 and var i))

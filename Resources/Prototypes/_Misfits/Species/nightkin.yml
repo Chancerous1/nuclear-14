@@ -22,6 +22,17 @@
   - Head
   - Mask
   - Accessories
+  allowedTraitCategories: # #Misfits Change: allow traits via same mechanism as loadouts
+  - Uncategorized
+  - Auditory
+  - Mental
+  - Speech
+  - TraitsSpeechUncategorized
+  - TraitsSpeechAccents
+  - TraitsSpeechLanguages
+  - Visual
+  - Language
+  - Pets
   # #Misfits Fix - Nightkin need their own whitelist entry under FEV Mutants.
   jobWhitelistUnlock: Nightkin
   restrictedJobs:
