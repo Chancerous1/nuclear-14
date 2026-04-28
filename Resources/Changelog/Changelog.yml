@@ -4110,3 +4110,10 @@ Entries:
   id: 5791
   time: '2026-04-28T17:15:16.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/361
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: GUI to see who gets to join the server while its full
+  id: 5792
+  time: '2026-04-28T18:00:26.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/362
