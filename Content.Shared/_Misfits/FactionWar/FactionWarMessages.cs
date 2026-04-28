@@ -152,8 +152,6 @@ public sealed class FactionWarPanelDataEvent : EntityEventArgs
     public List<FactionWarTargetInfo> CeasefireTargets = new();
     public string? StatusMessage;
 
-    /// <summary>War proposals where the player's faction is the target (needs a response).</summary>
-    public List<FactionWarProposalInfo> IncomingWarProposals = new();
     /// <summary>Ceasefire proposals where the player's faction needs to respond.</summary>
     public List<FactionWarCeasefireProposalInfo> IncomingCeasefireProposals = new();
 }
@@ -199,20 +197,6 @@ public sealed class FactionWarCommandResultEvent : EntityEventArgs
 }
 
 /// <summary>
-/// A pending war proposal (aggressor waiting for target consent).
-/// Included in <see cref="FactionWarPanelDataEvent"/> for the target faction's leader.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class FactionWarProposalInfo
-{
-    public string AggressorFaction       = string.Empty;
-    public string TargetFaction          = string.Empty;
-    public string CasusBelli             = string.Empty;
-    public string DeclarerCharacterName  = string.Empty;
-    public string DeclarerJobName        = string.Empty;
-}
-
-/// <summary>
 /// A pending ceasefire proposal (one faction waiting for the other's consent).
 /// Included in <see cref="FactionWarPanelDataEvent"/> for the non-requesting faction's leader.
 /// </summary>
@@ -224,22 +208,6 @@ public sealed class FactionWarCeasefireProposalInfo
     public string RequestingFaction       = string.Empty;
     public string RequesterCharacterName  = string.Empty;
     public string RequesterJobName        = string.Empty;
-}
-
-/// <summary>Client → server. Target faction's leader accepts a war proposal.</summary>
-[Serializable, NetSerializable]
-public sealed class FactionWarAcceptProposalEvent : EntityEventArgs
-{
-    public string AggressorFaction = string.Empty;
-    public string TargetFaction    = string.Empty;
-}
-
-/// <summary>Client → server. Target faction's leader rejects a war proposal.</summary>
-[Serializable, NetSerializable]
-public sealed class FactionWarRejectProposalEvent : EntityEventArgs
-{
-    public string AggressorFaction = string.Empty;
-    public string TargetFaction    = string.Empty;
 }
 
 /// <summary>Client → server. Other faction's leader accepts a ceasefire proposal.</summary>

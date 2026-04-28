@@ -31,12 +31,6 @@ public sealed partial class FactionWarWindow : FancyWindow
     /// <summary>Fired when the player clicks Propose Ceasefire. Args: targetFactionId.</summary>
     public event Action<string>? OnCeasefire;
 
-    /// <summary>Fired when the player accepts an incoming war proposal. Args: (aggressorFactionId, targetFactionId).</summary>
-    public event Action<string, string>? OnAcceptWarProposal;
-
-    /// <summary>Fired when the player rejects an incoming war proposal. Args: (aggressorFactionId, targetFactionId).</summary>
-    public event Action<string, string>? OnRejectWarProposal;
-
     /// <summary>Fired when the player accepts an incoming ceasefire proposal. Args: (aggressorFactionId, targetFactionId).</summary>
     public event Action<string, string>? OnAcceptCeasefireProposal;
 
@@ -51,7 +45,6 @@ public sealed partial class FactionWarWindow : FancyWindow
     /// <summary>Whether the declare war button is in the "confirm" state (second press fires).</summary>
     private bool _confirmPending;
 
-    private FactionWarProposalInfo? _pendingWarProposal;
     private FactionWarCeasefireProposalInfo? _pendingCeasefireProposal;
 
     // ── Constructor ────────────────────────────────────────────────────────
@@ -74,8 +67,6 @@ public sealed partial class FactionWarWindow : FancyWindow
         DeclareWarButton.OnPressed += _ => OnDeclareWarPressed();
         CeasefireButton.OnPressed  += _ => SubmitCeasefire();
 
-        AcceptWarProposalButton.OnPressed  += _ => SubmitAcceptWarProposal();
-        RejectWarProposalButton.OnPressed  += _ => SubmitRejectWarProposal();
         AcceptCeasefireProposalButton.OnPressed += _ => SubmitAcceptCeasefireProposal();
         RejectCeasefireProposalButton.OnPressed += _ => SubmitRejectCeasefireProposal();
 
@@ -95,7 +86,6 @@ public sealed partial class FactionWarWindow : FancyWindow
         IReadOnlyList<FactionWarEntry> activeWars,
         IReadOnlyList<(string Display, string Id)> eligibleTargets,
         IReadOnlyList<(string Display, string Id)> ceasefireTargets,
-        IReadOnlyList<FactionWarProposalInfo> incomingWarProposals,
         IReadOnlyList<FactionWarCeasefireProposalInfo> incomingCeasefireProposals)
     {
         // ── "Your Faction" label ──────────────────────────────────────────
@@ -157,17 +147,6 @@ public sealed partial class FactionWarWindow : FancyWindow
         }
 
         CeasefireButton.Disabled = ceasefireTargets.Count == 0 || myFactionId == null;
-
-        // ── Incoming War Proposal ─────────────────────────────────────────
-        _pendingWarProposal = incomingWarProposals.Count > 0 ? incomingWarProposals[0] : null;
-        IncomingWarProposalSection.Visible = _pendingWarProposal != null;
-        if (_pendingWarProposal != null)
-        {
-            var aggDisplay = FactionWarConfig.FactionDisplayName(_pendingWarProposal.AggressorFaction);
-            IncomingWarProposalLabel.Text = $"{aggDisplay} proposes war on you!";
-            IncomingWarCasusBelliLabel.Text = $"Casus Belli: \"{_pendingWarProposal.CasusBelli}\"";
-            IncomingWarProposerLabel.Text = $"Proposed by: {_pendingWarProposal.DeclarerCharacterName}, {_pendingWarProposal.DeclarerJobName}";
-        }
 
         // ── Incoming Ceasefire Proposal ───────────────────────────────────
         _pendingCeasefireProposal = incomingCeasefireProposals.Count > 0 ? incomingCeasefireProposals[0] : null;
@@ -251,20 +230,6 @@ public sealed partial class FactionWarWindow : FancyWindow
     private void ClearResult()
     {
         ResultLabel.SetMarkup(string.Empty);
-    }
-
-    private void SubmitAcceptWarProposal()
-    {
-        if (_pendingWarProposal == null)
-            return;
-        OnAcceptWarProposal?.Invoke(_pendingWarProposal.AggressorFaction, _pendingWarProposal.TargetFaction);
-    }
-
-    private void SubmitRejectWarProposal()
-    {
-        if (_pendingWarProposal == null)
-            return;
-        OnRejectWarProposal?.Invoke(_pendingWarProposal.AggressorFaction, _pendingWarProposal.TargetFaction);
     }
 
     private void SubmitAcceptCeasefireProposal()

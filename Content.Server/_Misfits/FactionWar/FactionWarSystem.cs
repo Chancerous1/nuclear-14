@@ -56,9 +56,6 @@ public sealed class FactionWarSystem : EntitySystem
     /// <summary>Cooldown after a war ends before the same faction can declare again.</summary>
     private static readonly TimeSpan WarCooldownAfterEnd = TimeSpan.FromMinutes(10);
 
-    /// <summary>How long a war proposal waits for target consent before expiring.</summary>
-    private static readonly TimeSpan WarProposalTimeout = TimeSpan.FromMinutes(10);
-
     /// <summary>How long a ceasefire proposal waits for the other side's consent before expiring.</summary>
     private static readonly TimeSpan CeasefireProposalTimeout = TimeSpan.FromMinutes(5);
 
@@ -79,9 +76,6 @@ public sealed class FactionWarSystem : EntitySystem
 
     /// <summary>Per-faction cooldown after a war ends. Key = faction ID, Value = earliest next war time.</summary>
     private readonly Dictionary<string, TimeSpan> _factionWarCooldowns = new();
-
-    /// <summary>War proposals awaiting the target faction's consent. Key = WarKey(aggressor, target).</summary>
-    private readonly Dictionary<string, WarProposal> _pendingWarProposals = new();
 
     /// <summary>Ceasefire proposals awaiting the other faction's consent. Key = WarKey(aggressor, target).</summary>
     private readonly Dictionary<string, CeasefireProposal> _pendingCeasefireProposals = new();
@@ -137,9 +131,7 @@ public sealed class FactionWarSystem : EntitySystem
         SubscribeNetworkEvent<FactionWarDeclareRequestEvent>(OnDeclareRequest);
         SubscribeNetworkEvent<FactionWarCeasefireRequestEvent>(OnCeasefireRequest);
 
-        // Proposal consent responses.
-        SubscribeNetworkEvent<FactionWarAcceptProposalEvent>(OnAcceptWarProposal);
-        SubscribeNetworkEvent<FactionWarRejectProposalEvent>(OnRejectWarProposal);
+        // Ceasefire proposal consent responses.
         SubscribeNetworkEvent<FactionWarAcceptCeasefireEvent>(OnAcceptCeasefireProposal);
         SubscribeNetworkEvent<FactionWarRejectCeasefireEvent>(OnRejectCeasefireProposal);
 
@@ -190,34 +182,6 @@ public sealed class FactionWarSystem : EntitySystem
         else
         {
             _participantResyncAccumulator = 0f;
-        }
-
-        // ── War proposal timeouts ─────────────────────────────────────
-        if (_pendingWarProposals.Count > 0)
-        {
-            List<string>? expiredWarKeys = null;
-            foreach (var (key, prop) in _pendingWarProposals)
-            {
-                if (now >= prop.ExpiresAt)
-                {
-                    expiredWarKeys ??= new List<string>();
-                    expiredWarKeys.Add(key);
-                }
-            }
-            if (expiredWarKeys != null)
-            {
-                foreach (var key in expiredWarKeys)
-                {
-                    var prop = _pendingWarProposals[key];
-                    _pendingWarProposals.Remove(key);
-                    _chat.DispatchServerAnnouncement(
-                        $"WAR PROPOSAL EXPIRED\n" +
-                        $"The war proposal from {FactionDisplayName(prop.AggressorFaction)} to" +
-                        $" {FactionDisplayName(prop.TargetFaction)} expired with no response.",
-                        Color.Gray);
-                }
-                SendPanelDataToAll();
-            }
         }
 
         // ── Ceasefire proposal timeouts ───────────────────────────────
@@ -363,28 +327,6 @@ public sealed class FactionWarSystem : EntitySystem
                     data.CeasefireTargets.Add(new FactionWarTargetInfo { Id = war.AggressorFaction, DisplayName = FactionDisplayName(war.AggressorFaction) });
             }
 
-            // Incoming war proposals: player's faction is the target.
-            foreach (var prop in _pendingWarProposals.Values)
-            {
-                if (prop.TargetFaction == data.MyFactionId)
-                {
-                    data.IncomingWarProposals.Add(new FactionWarProposalInfo
-                    {
-                        AggressorFaction = prop.AggressorFaction,
-                        TargetFaction = prop.TargetFaction,
-                        CasusBelli = prop.CasusBelli,
-                        DeclarerCharacterName = prop.DeclarerCharacterName,
-                        DeclarerJobName = prop.DeclarerJobName,
-                    });
-                }
-
-                // Outgoing status: player's faction sent the proposal.
-                if (prop.AggressorFaction == data.MyFactionId && data.StatusMessage == null)
-                {
-                    data.StatusMessage = $"Your war proposal to {FactionDisplayName(prop.TargetFaction)} is awaiting their leader's consent.";
-                }
-            }
-
             // Incoming ceasefire proposals: player's faction needs to respond (they are NOT the requester).
             foreach (var prop in _pendingCeasefireProposals.Values)
             {
@@ -486,13 +428,6 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
-        // Block duplicate outgoing proposals from the same faction.
-        if (_pendingWarProposals.Values.Any(p => p.AggressorFaction == myFactionId))
-        {
-            SendResult(player, false, "Your faction already has a pending war proposal. Wait for a response.");
-            return;
-        }
-
         if (!_minds.TryGetMind(playerEntity, out var mindId, out _))
         {
             SendResult(player, false, "You have no mind entity.");
@@ -512,37 +447,41 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
-        // Create a pending proposal — the target faction's leader must accept before the war starts.
-        var proposal = new WarProposal
+        var entry = new FactionWarEntry
         {
             AggressorFaction = myFactionId,
             TargetFaction = targetFactionId,
             CasusBelli = casusBelli,
             DeclarerCharacterName = Name(playerEntity),
             DeclarerJobName = _jobs.MindTryGetJobName(mindId),
-            ExpiresAt = now + WarProposalTimeout,
+            Phase = WarPhase.Pending,
         };
 
-        _pendingWarProposals[WarKey(myFactionId, targetFactionId)] = proposal;
+        _activeWars.Add(entry);
+
+        var warKey = WarKey(entry);
+        _warActivationTimes[warKey] = _gameTiming.CurTime + WarPrepDuration;
+
+        BroadcastWarState();
         SendPanelDataToAll();
 
         var aggressorDisplay = FactionDisplayName(myFactionId);
         var targetDisplay    = FactionDisplayName(targetFactionId);
 
         _chat.DispatchServerAnnouncement(
-            $"WAR PROPOSED\n" +
-            $"{aggressorDisplay} proposes war on {targetDisplay}!\n" +
+            $"WAR DECLARED\n" +
+            $"{aggressorDisplay} has declared war on {targetDisplay}!\n" +
             $"Casus Belli: \"{casusBelli}\"\n" +
-            $"{proposal.DeclarerCharacterName}, {proposal.DeclarerJobName}\n\n" +
-            $"{targetDisplay}'s leader must accept or reject via (/war). Expires in 10 minutes.",
+            $"{entry.DeclarerCharacterName}, {entry.DeclarerJobName}\n\n" +
+            $"War begins in 5 minutes. Use (/warjoin) to choose a side.",
             Color.OrangeRed);
 
         _chat.SendAdminAnnouncement(
-            $"[FactionWar] {player.Name} ({proposal.DeclarerCharacterName}) proposed war:" +
+            $"[FactionWar] {player.Name} ({entry.DeclarerCharacterName}) declared war:" +
             $" {aggressorDisplay} vs {targetDisplay}. Casus: {casusBelli}");
 
         SendResult(player, true,
-            $"War proposed to {targetDisplay}. Awaiting their leader's consent via (/war).");
+            $"War declared on {targetDisplay}. War begins in 5 minutes. /warjoin is open.");
     }
 
     // ── GUI: Ceasefire ─────────────────────────────────────────────────────
@@ -639,171 +578,6 @@ public sealed class FactionWarSystem : EntitySystem
 
         SendResult(player, true,
             $"Ceasefire proposed. Waiting for {otherDisplay}'s leader to respond via (/war).");
-    }
-
-    // ── GUI: Accept / Reject war proposal ─────────────────────────────────
-
-    private void OnAcceptWarProposal(FactionWarAcceptProposalEvent msg, EntitySessionEventArgs args)
-    {
-        var player = args.SenderSession;
-
-        if (player.Status != SessionStatus.InGame ||
-            player.AttachedEntity is not { } playerEntity)
-        {
-            SendResult(player, false, "You must be in-game to accept a war proposal.");
-            return;
-        }
-
-        var proposalKey = WarKey(msg.AggressorFaction, msg.TargetFaction);
-
-        if (!_pendingWarProposals.TryGetValue(proposalKey, out var proposal))
-        {
-            SendResult(player, false, "That war proposal no longer exists.");
-            return;
-        }
-
-        if (!TryGetWarFaction(playerEntity, out var myFactionId) || myFactionId != proposal.TargetFaction)
-        {
-            SendResult(player, false, "You are not a member of the faction this proposal is directed at.");
-            return;
-        }
-
-        if (!_minds.TryGetMind(playerEntity, out var mindId, out _))
-        {
-            SendResult(player, false, "You have no mind entity.");
-            return;
-        }
-
-        var myWeight = GetJobWeight(mindId);
-        var topWeight = GetFactionTopWeight(myFactionId);
-        if (myWeight < topWeight)
-        {
-            var myJob = _jobs.MindTryGetJobName(mindId);
-            var topHolder = GetFactionTopJobHolder(myFactionId);
-            SendResult(player, false,
-                $"Only the highest-ranking member online can accept a war proposal. " +
-                $"Your rank: {myJob} (weight {myWeight}). " +
-                $"Outranked by: {topHolder} (weight {topWeight}).");
-            return;
-        }
-
-        // Re-check war eligibility in case state changed since the proposal was made.
-        if (IsFactionInWar(proposal.AggressorFaction))
-        {
-            _pendingWarProposals.Remove(proposalKey);
-            SendResult(player, false, $"{FactionDisplayName(proposal.AggressorFaction)} is now in another war. Proposal cancelled.");
-            SendPanelDataToAll();
-            return;
-        }
-        if (IsFactionInWar(myFactionId))
-        {
-            _pendingWarProposals.Remove(proposalKey);
-            SendResult(player, false, "Your faction is now in another war. Proposal cancelled.");
-            SendPanelDataToAll();
-            return;
-        }
-
-        _pendingWarProposals.Remove(proposalKey);
-
-        var entry = new FactionWarEntry
-        {
-            AggressorFaction = proposal.AggressorFaction,
-            TargetFaction = proposal.TargetFaction,
-            CasusBelli = proposal.CasusBelli,
-            DeclarerCharacterName = proposal.DeclarerCharacterName,
-            DeclarerJobName = proposal.DeclarerJobName,
-            Phase = WarPhase.Pending,
-        };
-
-        _activeWars.Add(entry);
-        _warActivationTimes[WarKey(entry)] = _gameTiming.CurTime + WarPrepDuration;
-
-        BroadcastWarState();
-        SendPanelDataToAll();
-
-        var aggressorDisplay = FactionDisplayName(proposal.AggressorFaction);
-        var targetDisplay = FactionDisplayName(proposal.TargetFaction);
-        var accepterName = Name(playerEntity);
-        var accepterJob = _jobs.MindTryGetJobName(mindId);
-
-        _chat.DispatchServerAnnouncement(
-            $"WAR DECLARED\n" +
-            $"{aggressorDisplay} has declared war on {targetDisplay}!\n" +
-            $"Casus Belli: \"{proposal.CasusBelli}\"\n" +
-            $"Declared by {proposal.DeclarerCharacterName}, {proposal.DeclarerJobName}\n" +
-            $"Accepted by {accepterName}, {accepterJob}\n\n" +
-            $"War begins in 5 minutes. Use (/warjoin) to choose a side.",
-            Color.OrangeRed);
-
-        _chat.SendAdminAnnouncement(
-            $"[FactionWar] {player.Name} ({accepterName}) accepted war proposal: {aggressorDisplay} vs {targetDisplay}");
-
-        SendResult(player, true,
-            $"War proposal accepted. {aggressorDisplay} vs {targetDisplay} begins in 5 minutes.");
-    }
-
-    private void OnRejectWarProposal(FactionWarRejectProposalEvent msg, EntitySessionEventArgs args)
-    {
-        var player = args.SenderSession;
-
-        if (player.Status != SessionStatus.InGame ||
-            player.AttachedEntity is not { } playerEntity)
-        {
-            SendResult(player, false, "You must be in-game to reject a war proposal.");
-            return;
-        }
-
-        var proposalKey = WarKey(msg.AggressorFaction, msg.TargetFaction);
-
-        if (!_pendingWarProposals.TryGetValue(proposalKey, out var proposal))
-        {
-            SendResult(player, false, "That war proposal no longer exists.");
-            return;
-        }
-
-        if (!TryGetWarFaction(playerEntity, out var myFactionId) || myFactionId != proposal.TargetFaction)
-        {
-            SendResult(player, false, "You are not a member of the faction this proposal is directed at.");
-            return;
-        }
-
-        if (!_minds.TryGetMind(playerEntity, out var mindId, out _))
-        {
-            SendResult(player, false, "You have no mind entity.");
-            return;
-        }
-
-        var myWeight = GetJobWeight(mindId);
-        var topWeight = GetFactionTopWeight(myFactionId);
-        if (myWeight < topWeight)
-        {
-            var myJob = _jobs.MindTryGetJobName(mindId);
-            var topHolder = GetFactionTopJobHolder(myFactionId);
-            SendResult(player, false,
-                $"Only the highest-ranking member online can reject a war proposal. " +
-                $"Your rank: {myJob} (weight {myWeight}). " +
-                $"Outranked by: {topHolder} (weight {topWeight}).");
-            return;
-        }
-
-        _pendingWarProposals.Remove(proposalKey);
-        SendPanelDataToAll();
-
-        var aggressorDisplay = FactionDisplayName(proposal.AggressorFaction);
-        var targetDisplay = FactionDisplayName(proposal.TargetFaction);
-        var charName = Name(playerEntity);
-        var jobName = _jobs.MindTryGetJobName(mindId);
-
-        _chat.DispatchServerAnnouncement(
-            $"WAR PROPOSAL REJECTED\n" +
-            $"{targetDisplay} has rejected the war proposal from {aggressorDisplay}.\n" +
-            $"Rejected by {charName}, {jobName}",
-            Color.SteelBlue);
-
-        _chat.SendAdminAnnouncement(
-            $"[FactionWar] {player.Name} ({charName}) rejected war proposal: {aggressorDisplay} vs {targetDisplay}");
-
-        SendResult(player, true, $"War proposal from {aggressorDisplay} rejected.");
     }
 
     // ── GUI: Accept / Reject ceasefire proposal ────────────────────────────
@@ -1483,7 +1257,6 @@ public sealed class FactionWarSystem : EntitySystem
         _warActivationTimes.Clear();
         _warParticipants.Clear();
         _factionWarCooldowns.Clear();
-        _pendingWarProposals.Clear();
         _pendingCeasefireProposals.Clear();
         _panelOpenSessions.Clear();
         _participantResyncAccumulator = 0f;
@@ -1784,16 +1557,6 @@ public sealed class FactionWarSystem : EntitySystem
         $"{aggressor}|{target}";
 
     // ── Inner proposal types (server-only, not serialized) ─────────────────
-
-    private sealed class WarProposal
-    {
-        public string AggressorFaction = string.Empty;
-        public string TargetFaction = string.Empty;
-        public string CasusBelli = string.Empty;
-        public string DeclarerCharacterName = string.Empty;
-        public string DeclarerJobName = string.Empty;
-        public TimeSpan ExpiresAt;
-    }
 
     private sealed class CeasefireProposal
     {
