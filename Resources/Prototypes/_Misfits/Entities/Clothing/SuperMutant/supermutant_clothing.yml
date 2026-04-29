@@ -202,7 +202,27 @@
       coefficients:
         Blunt: 0.80
         Slash: 0.80
-        Piercing: 0.85
+        Piercing: 0.
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingSuperMutantRangerHat
+  name: supermutant ranger hat
+  description: An XXXXL ranger hat made to fit even the biggest of people.
+  components:
+  - type: Sprite
+    sprite: _Misfits\Clothing\SuperMutant\ranger_hat.rsi
+  - type: Clothing
+    sprite: _Misfits\Clothing\SuperMutant\ranger_hat.rsi
+  - type: Tag
+    tags:
+    - SuperMutantWearable
+  - type: Armor # #Misfits Add - 50% physical damage resistance (head protection)
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
 
 # #Misfits Add - Ranger armor for the playable Supermutant Ranger job variant.
 # Tagged SuperMutantWearable so only supermutants can equip it in outerClothing slot.
