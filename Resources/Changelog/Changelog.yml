@@ -4141,3 +4141,12 @@ Entries:
   id: 5794
   time: '2026-04-28T20:17:06.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/365
+- author: Bradysgaming
+  changes:
+    - type: Fix
+      message: >-
+        Fixed Powder ganger outfit not properly showing up, along with using the
+        proper icon now
+  id: 5795
+  time: '2026-04-29T00:49:01.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/367
