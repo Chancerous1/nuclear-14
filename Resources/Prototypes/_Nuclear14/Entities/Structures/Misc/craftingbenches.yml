@@ -31,10 +31,9 @@
     interfaces:
       enum.LatheUiKey.Key:
         type: LatheBoundUserInterface
-  # Misfit Remove: There is no need for all the benches to have this...
-  #- type: ExtensionCableReceiver
-  #- type: ApcPowerReceiver
-  #  needsPower: false
+  - type: ExtensionCableReceiver
+  - type: ApcPowerReceiver
+    needsPower: false
   - type: Tag
     tags:
     - N14Workbench
@@ -302,6 +301,7 @@
       - RawMaterial
       - Ingot
       - RawLeather # move it to the tanning machine
+      - Cotton # move it to like idk a clothing machine someday
   - type: Lathe
     idleState: icon
     runningState: icon # change this
@@ -426,16 +426,19 @@
     #Misc
     - N14FlashlightLantern
     - N14GlowstickRed
-    - N14CleanGauze1
     - DoorElectronics
     - CapacitorStockPart
     - MicroManipulatorStockPart
     - MatterBinStockPart
+    - N14JunkComponentSensorModule #Misfits Add: For Modular Mines
     # Explosives - Misfits Add
     - N14LandMine        # Anti-Personnel Mine
     - LandMineKick       # Concussion Mine (non-lethal)
     - LandMineExplosive  # Explosive Mine (~4 tile radius)
     - LandMineModular    # Modular Mine (empty casing, add payload)
+    - N14ChemicalPayload
+    - N14ExplosivePayload
+    - N14FlashPayload
     # #Misfits Add: Expose vanilla centrifuge machine board so players can rebuild MachineCentrifuge via machine frame.
     - CentrifugeMachineCircuitboard
     # #Misfits Add: Electrolyzer machine board so players can make electrolyzers via machine frame.
@@ -641,6 +644,7 @@
     - N14ChemicalSyringeAntidoteEmpty
     - N14PsychoSyringe
     - N14RadAwayPhialEmpty
+    - N14CleanGauze1
     # Misc
     - N14LightTube
     - N14LedLightTube
@@ -651,6 +655,8 @@
     - N14Flare
     - N14Matchbox
     - N14JunkComponentScrew
+    - N14JunkComponentGearSmall
+    - N14JunkComponentGearLarge
     - FloorTileItemMetalIndustrial
     - FloorTileItemMetalMS13
     - FloorTileItemMetalGrate
