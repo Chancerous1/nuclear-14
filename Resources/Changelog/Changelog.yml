@@ -4338,3 +4338,10 @@ Entries:
   id: 5811
   time: '2026-04-30T20:28:41.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/386
+- author: Dpellowski
+  changes:
+    - type: Tweak
+      message: Ratslayer scope removal - Scopes will be talked about in the future
+  id: 5812
+  time: '2026-04-30T21:47:01.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/392
