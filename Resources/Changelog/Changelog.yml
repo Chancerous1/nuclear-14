@@ -4321,3 +4321,20 @@ Entries:
   id: 5810
   time: '2026-04-30T20:28:30.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/388
+- author: qevie
+  changes:
+    - type: Add
+      message: NCR Military Police! Its time to bring law to the NCR!
+    - type: Add
+      message: NCRMP Specialists! Enforce justice in the base!
+    - type: Add
+      message: >-
+        NCRMP Staff Sergeants! Teach your lessers, and follow NCR law to the
+        letter!
+    - type: Add
+      message: >-
+        NCRMP First Lieutenants! Lead the forces of justice, and make sure the
+        NCR knows to not overstep!
+  id: 5811
+  time: '2026-04-30T20:28:41.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/386
