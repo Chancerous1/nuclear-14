@@ -1006,6 +1006,9 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Construction
+    graph: UniqueWeapons
+    node: ButcheredServiceRifle
   - type: Gun
     minAngle: 26
     maxAngle: 50

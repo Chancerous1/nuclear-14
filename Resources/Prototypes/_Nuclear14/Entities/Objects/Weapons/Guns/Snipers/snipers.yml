@@ -311,6 +311,12 @@
   id: N14WeaponSniper556VarmintRifle
   description: A pre-war low-power bolt action rifle, originally designed to hunt small animals. This gun also works fine on anything human-sized. Uses 5.56 ammo.
   components:
+  - type: Tag
+    tags:
+    - VarmintRifle
+  - type: Construction
+    graph: UniqueWeapons
+    node: IncompleteRatslayer
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/varmint.rsi
   - type: Sprite
@@ -648,8 +654,14 @@
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/ratslayer.rsi
+    slots:
+    - Back
+    - suitStorage
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/ratslayer.rsi
+  - type: Construction
+    graph: UniqueWeapons
+    node: Ratslayer
   - type: Gun
     minAngle: 18
     maxAngle: 80
@@ -663,6 +675,15 @@
       collection: N14SniperVarmintGunshot
   - type: StaticPrice
     price: 500
+  - type: Scope
+    useInHand: true
+    requireWielding: true
+    zoomLevels:
+    - name: 4x
+      zoom: 1.0
+      offset: 15
+      allowMovement: true
+      doAfter: 0.8
 
 - type: entity
   name: M1 carbine
