@@ -4310,3 +4310,14 @@ Entries:
   id: 5809
   time: '2026-04-30T20:24:52.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/389
+- author: HungryCuban
+  changes:
+    - type: Add
+      message: >-
+        Adds a scope action to numerous sniper rifles. 50 cal rifles, 308
+        rifles.
+    - type: Add
+      message: 'Adds a scope action to marksman rifles. '
+  id: 5810
+  time: '2026-04-30T20:28:30.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/388
