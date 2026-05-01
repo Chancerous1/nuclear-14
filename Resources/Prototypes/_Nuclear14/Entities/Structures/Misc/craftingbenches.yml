@@ -24,7 +24,6 @@
     # Misfit Remove: Fix the offset issue with construction benches
     #offset: 0.5, 0
   - type: Lathe
-    requirePower: false
   - type: MaterialStorage
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
