@@ -32,9 +32,9 @@
     interfaces:
       enum.LatheUiKey.Key:
         type: LatheBoundUserInterface
-  #- type: ExtensionCableReceiver
-  #- type: ApcPowerReceiver
-  #  needsPower: false
+  - type: ExtensionCableReceiver
+  - type: ApcPowerReceiver
+    needsPower: false
   - type: Anchorable
   - type: Rotatable
   - type: Tag
@@ -446,7 +446,6 @@
     # #Misfits Add: Electrolyzer machine board so players can make electrolyzers via machine frame.
     - ElectrolysisUnitMachineCircuitboard
     requirePower: true
-  - type: ExtensionCableReceiver
   - type: ApcPowerReceiver
     needsPower: true
     powerLoad: 250
