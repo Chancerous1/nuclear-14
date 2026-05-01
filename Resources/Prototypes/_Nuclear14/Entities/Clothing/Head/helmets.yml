@@ -873,7 +873,7 @@
   - type: Sprite
     sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutNCRmilitarypolicehelmet.rsi
   - type: Clothing
-    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutNCRmilitarypolicehelmet.
+    sprite: _Nuclear14/Clothing/Head/FalloutHelmets/falloutNCRmilitarypolicehelmet.rsi
   - type: Armor
     modifiers:
       coefficients:
