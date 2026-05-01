@@ -29,7 +29,7 @@
         - Wastelander
         availableJobs:
           Wastelander: [ -1, -1 ]
-          SuperMutant: [ 0, 1 ] # #Misfits Change /Fix/: make the FEV Mutant role available for mid-round joins.
+          SuperMutant: [ 0, 3 ] # #Misfits Change /Fix/: make the FEV Mutant role available for mid-round joins.
           SuperMutantGladiator: [ 0, 1 ] # #Misfits Add: Gladiator variant latejoin slot.
           SuperMutantNCRRanger: [ 0, 1 ] # #Misfits Add: NCR Ranger variant latejoin slot.
           SuperMutantNCRTrooper: [ 0, 1 ] # #Misfits Add: NCR Trooper variant latejoin slot.
@@ -134,12 +134,12 @@
           FollowerVolunteer: [ 2, 2 ] # #Misfits Change - Followers job replaced by ranked hierarchy
           FollowerDoctor: [ 1, 1 ]   # #Misfits Add - Doctor rank slot
           FollowerHead: [ 0, 1 ]     # #Misfits Add - Head rank slot (0 min so server doesn't require one)
-          SyntheticMrHandy: [ 1, 2 ]
-          SyntheticProtectron: [ 1, 2 ]
-          SyntheticMrGutsy: [ 1, 2 ]
-          SyntheticAssaultron: [ 1, 2 ]
-          SyntheticSentryBot: [ 1, 2 ] # #Misfits Add: sentry bot late join slots
-          SyntheticRobobrain: [ 1, 2 ] # #Misfits Add: robobrain late join slots
+          SyntheticMrHandy: [ 1, 3 ]
+          SyntheticProtectron: [ 1, 3 ]
+          SyntheticMrGutsy: [ 1, 3 ]
+          SyntheticAssaultron: [ 1, 3 ]
+          SyntheticSentryBot: [ 1, 3 ] # #Misfits Add: sentry bot late join slots
+          SyntheticRobobrain: [ 1, 3 ] # #Misfits Add: robobrain late join slots
           # #Misfits Add - Enclave faction activation: whitelist-only roles. Spawns at Vault bunker (~-92.5, 50.5).
           EnclaveReformer: [ 1, 0 ]      # admin-only leader (The Reformer); 0 active latejoin slots
           EnclaveCommander: [ 1, 1 ]
