@@ -164,7 +164,6 @@ loadout-name-N14ClothingEyesGlasses = glasses
 loadout-name-N14ClothingEyesGlassesWelding = welding glasses
 loadout-name-N14ClothingEyesSunGlasses = sunglasses
 loadout-name-N14ClothingDrylanderGoggles = drylander goggles
-loadout-name-ClothingEyesGlassesChemist = chemist glasses
 
 # Hands
 loadout-name-N14LoadoutHandsGlovesDriver = driver gloves

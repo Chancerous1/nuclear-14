@@ -777,8 +777,9 @@
         - BoSMidSerf
         - CaesarLegionSlave
         - NCRPisoner
-        - VaultDweller   
-        - Overseer
+        - VaultDoctor
+        - VaultSecurity
+        - VaultEngineer
   items:
     - N14ClothingShoesJamrock
 
