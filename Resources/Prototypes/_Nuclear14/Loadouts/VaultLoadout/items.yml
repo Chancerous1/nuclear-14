@@ -80,6 +80,6 @@
       group: N14LoadoutEyes
     - !type:CharacterJobRequirement
        jobs:
-    - VaultEngineer
+       - VaultEngineer
   items:
     - ClothingMaskGasMiner

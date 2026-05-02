@@ -83,7 +83,7 @@ loadout-name-ClothingOuterDenimJacketVault = denim jacket
 loadout-name-N14LoadoutOuterCoatLeatherJacket = leather jacket
 loadout-name-N14LoadoutOuterCoatLeatherJacketVault = leather jacket
 loadout-name-ClothingOuterCoatGentleVault = gentle coat
-loadout-name-ClothingOuterCoatDetectiveVault = detective coat
+loadout-name-ClothingOuterCoatInspector = detective coat
 loadout-name-N14ClothingOuterJacketBomberVault = bomber jacket 
 loadout-name-N14LoadoutOuterCoatLeatherDuster = leather duster
 loadout-name-N14LoadoutOuterCoatBattlecoat = battlecoat
@@ -164,6 +164,7 @@ loadout-name-N14ClothingEyesGlasses = glasses
 loadout-name-N14ClothingEyesGlassesWelding = welding glasses
 loadout-name-N14ClothingEyesSunGlasses = sunglasses
 loadout-name-N14ClothingDrylanderGoggles = drylander goggles
+loadout-name-ClothingEyesGlassesChemist = chemist glasses
 
 # Hands
 loadout-name-N14LoadoutHandsGlovesDriver = driver gloves
