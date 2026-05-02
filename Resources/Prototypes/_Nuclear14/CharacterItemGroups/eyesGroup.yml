@@ -17,3 +17,5 @@
       id: ClothingEyesGlassesHipsterVault
     - type: loadout
       id: ClothingMaskGasMinerVault
+    - type: loadout
+      id: ClothingEyesGlassesChemist
