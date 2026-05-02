@@ -531,6 +531,8 @@
       pillBuffer: { }
   - type: DumpableSolution
     solution: buffer
+  - type: Anchorable
+  - type: Rotatable
 
 - type: entity
   parent: BaseStructure
