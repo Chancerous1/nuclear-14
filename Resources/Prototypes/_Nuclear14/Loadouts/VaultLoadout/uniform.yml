@@ -118,8 +118,6 @@
   items:
   - N14ClothingUniformJumpsuitPreWarLumberjack
 
-  ClothingUniformJumpsuitOliveSweater
-
 - type: loadout
   id: ClothingUniformJumpsuitOliveSweaterVault
   category: Uniform
