@@ -89,8 +89,8 @@
   - NCRCadet             # NCR Recruit             | _Misfits/Roles/Jobs/NCR/ncr_recruit.yml
   # Special
   - NCRPisoner           # NCR Prisoner            | _Misfits/Roles/Jobs/NCR/ncr_prisoner.yml
-  # Legacy jobs kept outside the visible ladder for compatibility:
-  # - NCRMPinvestigator  # NCR MP Investigator     | _Misfits/Roles/Jobs/NCR/ncr_mp_investigator.yml
+  # Special roles outside the visible ladder:
+  - NCRMPinvestigator  # NCR MP Investigator     | _Misfits/Roles/Jobs/NCR/ncr_mp_investigator.yml
   # - NCRRanger
   # - NCRRangerVeteran
 
@@ -106,6 +106,16 @@
   - NCRPatrolRanger  # Patrol Ranger             | _Misfits/Roles/Jobs/Rangers/ranger_recruit.yml
   - NCRRangerRecruit # Ranger Recruit            | _Misfits/Roles/Jobs/Rangers/ncr_ranger_recruit.yml
   #- NCRRanger       # NCR Desert Ranger (whitelist-only, outside the ladder) | _Misfits/Roles/Jobs/Rangers/ncr_ranger.yml  # #Misfits Removed - separate whitelist role, not part of station ladder
+
+- type: department
+  id: MilitaryPolice
+  description: department-NCRMilitaryPolice-description
+  color: "#662727"
+  uiCategory: MajorFaction
+  roles:
+  - NCRMilitaryPoliceRecruit
+  - NCRMilitaryPoliceSergeant
+  - NCRMilitaryPoliceCaptain
 
 - type: department
   id: Tribe
@@ -155,7 +165,7 @@
   - TownMayor
   - TownSheriff
   - TownDeputy
-  - TownDoctor
+  # - TownDoctor # #Misfits Tweak - disabled; Followers of the Apocalypse replaces town medical coverage.
   - TownShopkeeper
   - TownShopkeeperHelper # Forge-Add
   - WastelandChaplain # Forge-Change

@@ -52,7 +52,7 @@ namespace Content.Server.Database
                 .AsSingleQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
 
-            if (prefs is null)
+            if (prefs is null || prefs.Profiles.Count == 0)
                 return null;
 
             var maxSlot = prefs.Profiles.Max(p => p.Slot) + 1;
@@ -91,7 +91,7 @@ namespace Content.Server.Database
                 throw new NotImplementedException();
             }
 
-            var oldProfile = db.DbContext.Profile
+            var existingProfile = db.DbContext.Profile
                 .Include(p => p.Preference)
                 .Where(p => p.Preference.UserId == userId.UserId)
                 .Include(p => p.Jobs)
@@ -101,9 +101,15 @@ namespace Content.Server.Database
                 .AsSplitQuery()
                 .SingleOrDefault(h => h.Slot == slot);
 
-            var newProfile = ConvertProfiles(humanoid, slot, oldProfile);
-            if (oldProfile == null)
+            if (existingProfile != null)
             {
+                // Update the existing tracked entity in-place so EF Core diffs the changes correctly.
+                ConvertProfiles(humanoid, slot, existingProfile);
+            }
+            else
+            {
+                // New slot — create and attach to the preference row.
+                var newProfile = ConvertProfiles(humanoid, slot);
                 var prefs = await db.DbContext
                     .Preference
                     .Include(p => p.Profiles)
@@ -307,11 +313,29 @@ namespace Content.Server.Database
             profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
 
             profile.Jobs.Clear();
-            profile.Jobs.AddRange(
-                humanoid.JobPriorities
-                    .Where(j => j.Value != JobPriority.Never)
-                    .Select(j => new Job { JobName = j.Key, Priority = (DbJobPriority) j.Value })
-            );
+
+            // Enforce single high-priority job constraint
+            var jobsToAdd = new List<Job>();
+            bool foundHighPriority = false;
+
+            foreach (var (jobId, priority) in humanoid.JobPriorities
+                .Where(j => j.Value != JobPriority.Never))
+            {
+                var actualPriority = priority;
+
+                // Only allow one High-priority job; demote others to Medium
+                if (priority == JobPriority.High)
+                {
+                    if (foundHighPriority)
+                        actualPriority = JobPriority.Medium;
+                    else
+                        foundHighPriority = true;
+                }
+
+                jobsToAdd.Add(new Job { JobName = jobId, Priority = (DbJobPriority) actualPriority });
+            }
+
+            profile.Jobs.AddRange(jobsToAdd);
 
             profile.Antags.Clear();
             profile.Antags.AddRange(
@@ -1063,6 +1087,21 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             var entry = await db.DbContext.Whitelist.SingleAsync(w => w.UserId == player);
             db.DbContext.Whitelist.Remove(entry);
             await db.DbContext.SaveChangesAsync();
+        }
+
+        // #Misfits Change - Get all whitelisted players joined with player records for CKEY display
+        public async Task<List<PlayerRecord>> GetAllWhitelistedPlayersAsync(CancellationToken cancel)
+        {
+            await using var db = await GetDb();
+
+            var records = await (
+                from w in db.DbContext.Whitelist
+                join p in db.DbContext.Player on w.UserId equals p.UserId
+                orderby p.LastSeenUserName
+                select p
+            ).ToListAsync(cancel);
+
+            return records.Select(r => MakePlayerRecord(r)!).ToList();
         }
 
         public async Task<DateTimeOffset?> GetLastReadRules(NetUserId player)
@@ -2187,6 +2226,61 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .Where(m => m.TicketId == ticketId && m.TicketType == ticketType && m.PlayerId == playerId)
                 .OrderBy(m => m.SentAt)
                 .ToListAsync(cancel);
+        }
+
+        #endregion
+
+        // #Misfits Add - Supporter management
+
+        #region Supporter
+
+        public async Task<List<Supporter>> GetAllSupportersAsync(CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.Supporter.ToListAsync(cancel);
+        }
+
+        public async Task UpsertSupporterAsync(Guid userId, string username, string? title, string? nameColor)
+        {
+            await using var db = await GetDb();
+
+            var existing = await db.DbContext.Supporter
+                .Where(s => s.UserId == userId)
+                .SingleOrDefaultAsync();
+
+            if (existing != null)
+            {
+                existing.Username = username;
+                existing.Title = title;
+                existing.NameColor = nameColor;
+            }
+            else
+            {
+                db.DbContext.Supporter.Add(new Supporter
+                {
+                    UserId = userId,
+                    Username = username,
+                    Title = title,
+                    NameColor = nameColor,
+                });
+            }
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveSupporterAsync(Guid userId)
+        {
+            await using var db = await GetDb();
+
+            var existing = await db.DbContext.Supporter
+                .Where(s => s.UserId == userId)
+                .SingleOrDefaultAsync();
+
+            if (existing != null)
+            {
+                db.DbContext.Supporter.Remove(existing);
+                await db.DbContext.SaveChangesAsync();
+            }
         }
 
         #endregion

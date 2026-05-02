@@ -57,7 +57,7 @@ undecided-loadout-category-soldier-point-description =
 
 undecided-loadout-category-soldier-morale-name = Morale Booster Kit
 undecided-loadout-category-soldier-morale-description =
-    Includes 1 NCR plate armor, 1 plate mask, 1 NCR belt, 1 NCR spear flag,
+    Includes 1 NCR plate armor, 1 plate mask, 1 NCR belt, 1 NCR spear flag, bugle,
     1 pair of black biker gloves, 1 hatchet, 1 9mm pistol, 2 9mm pistol magazines,
     1 Psycho, 1 C ration MRE, 1 stimpak, 1 Rad-X pill, 1 gauze pack, and 1 flare.
 
@@ -124,8 +124,8 @@ undecided-loadout-category-ws-grenadier-description =
 
 undecided-loadout-category-ws-sniper-name = Specialist Sniper Kit
 undecided-loadout-category-ws-sniper-description =
-    Includes 1 NCR belt, 1 recon beret, 1 NCR cloak, 1 NCR .50 rifle,
-    1 box of .50 ammo, 1 .45 pistol, 2 .45 pistol magazines,
+    Includes 1 NCR belt, 1 recon beret, 1 NCR cloak, 1 .308 sniper rifle,
+    1 mag of .308, 1 .45 pistol, 2 .45 pistol magazines,
     1 C ration MRE, 1 stimpak, 1 RadAway blood bag, 1 gauze pack, and 1 flare.
 
 undecided-loadout-category-ws-stealth-name = Specialist Infiltrator Kit
@@ -262,15 +262,15 @@ undecided-loadout-category-mbos-init-bal-description =
 undecided-loadout-category-mbos-kni-las-name = Laser Kit
 undecided-loadout-category-mbos-kni-las-description =
     A cache containing belongings of a Brotherhood chapter member.
-    Includes 1 AER-9, 3 microfusion cells, 1 12.7mm pistol,
+    Includes 1 crude laser rifle, 3 microfusion cells, 1 12.7mm pistol,
     2 12.7mm pistol magazines, 1 roll of gauze, 1 stimpak,
     and 1 K ration MRE.
 
 #Misfits Tweak: Removed rank prefix so the kit name is role-neutral.
-undecided-loadout-category-mbos-kni-bal-name = Assault Carbine Kit
+undecided-loadout-category-mbos-kni-bal-name = Carbine Kit
 undecided-loadout-category-mbos-kni-bal-description =
     A cache containing belongings of a Brotherhood chapter member.
-    Includes 1 assault carbine, 3 5.56 magazines, 1 AEP-7, 2 energy
+    Includes 1 old carbine, 3 5.56 magazines, 1 AEP-7, 2 energy
     cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
 
 #Misfits Tweak: Removed rank prefix so the kit name is role-neutral.
@@ -314,18 +314,18 @@ undecided-loadout-category-mbos-pal-bal-description =
     cells, 1 roll of gauze, 1 stimpak, and 1 K ration MRE.
 
 #Misfits Change /Tweak/: Replaced Wattz 2000 sniper with Bozar GRA across all ranks.
-undecided-loadout-category-mbos-pal-sni-name = Bozar Kit
+undecided-loadout-category-mbos-pal-sni-name = Advanced Laser Kit
 undecided-loadout-category-mbos-pal-sni-description =
     A cache containing belongings of a Brotherhood chapter member.
-    Includes 1 Bozar GRA, 3 5.56 magazines (30-round),
+    Includes 1 AER-9, 3 microfusion cells,
     1 12.7mm pistol, 2 12.7mm pistol magazines, 1 roll of gauze,
     1 stimpak, and 1 K ration MRE.
 
 #Misfits Tweak: Removed rank prefix so the kit name is role-neutral.
-undecided-loadout-category-mbos-pal-pla-name = Advanced Laser Kit
+undecided-loadout-category-mbos-pal-pla-name = Automatic Laser Kit
 undecided-loadout-category-mbos-pal-pla-description =
     A cache containing belongings of a Brotherhood chapter member.
-    Includes 1 prototype AER-14 laser rifle, 3 advanced power cells, 1 12.7mm pistol,
+    Includes 1 Automatic AER-9, 3 microfusion cells, 1 12.7mm pistol,
     2 12.7mm pistol magazines, 1 roll of gauze, 1 stimpak,
     and 1 K ration MRE.
 
@@ -450,7 +450,7 @@ undecided-loadout-category-Tribal-pain-bringer-description =
 # Town Guard Kits
 
 undecided-loadout-category-town-cere-name = Ceremonial Kit
-undecided-loadout-category-town-cere-description = 
+undecided-loadout-category-town-cere-description =
     Sometimes you have to look fancy and not worry about protection.
     Includes 1 guard hat, 1 guard greatcoat, 1 .308 battle rifle,
     3 .308 clips, 1 .44 magnum, 2 .44 speedloaders,

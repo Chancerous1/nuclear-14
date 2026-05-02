@@ -1,5 +1,6 @@
 using Content.Shared.Clothing.Loadouts.Prototypes; // #Misfits Change
 using Content.Shared.Roles; // #Misfits Change
+using Content.Shared.Traits; // #Misfits Change
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -227,6 +228,13 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<ProtoId<LoadoutCategoryPrototype>>? AllowedLoadoutCategories; // #Misfits Change
+
+    /// <summary>
+    ///     If set, only traits in these categories will be shown.
+    ///     Null means all categories are allowed.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<TraitCategoryPrototype>>? AllowedTraitCategories; // #Misfits Change
 }
 
 public enum SpeciesNaming : byte

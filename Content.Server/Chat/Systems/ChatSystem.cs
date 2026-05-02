@@ -40,6 +40,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Server.Shuttles.Components;
+using Content.Server._Misfits.Supporter; // #Misfits Add - Supporter chat integration
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics.Joints;
 
@@ -477,6 +478,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         name = FormattedMessage.EscapeText(name);
+
         // The chat message wrapped in a "x says y" string
         var wrappedMessage = WrapPublicMessage(source, name, message, language: language, speechOverride: speech);
         // The chat message obfuscated via language obfuscation
@@ -966,6 +968,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("message", message),
             ("language", languageDisplay));
     }
+
 
     /// <summary>
     ///     Returns list of players and ranges for all players withing some range. Also returns observers with a range of -1.

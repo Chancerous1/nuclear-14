@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Content.Server._NC.Sponsor; // Forge-Change
+using Content.Server._Misfits.Supporter; // #Misfits Add - Supporter chat integration
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
@@ -49,6 +50,7 @@ namespace Content.Server.Chat.Managers
         [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
         [Dependency] private readonly IChatSanitizationManager _sanitizer = default!;
         [Dependency] private readonly SponsorManager _sponsors = default!; // Forge-Change
+        [Dependency] private readonly ISupporterManager _supporterManager = default!; // #Misfits Add
 
         /// <summary>
         /// The maximum length a player-sent message can be sent
@@ -278,6 +280,27 @@ namespace Content.Server.Chat.Managers
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
             }
 
+            // #Nuclear14 - Supporter OOC name color and title prefix.
+            if (_supporterManager.TryGetSupporter(player.UserId, out var supporterData))
+            {
+                var colorHex = string.IsNullOrWhiteSpace(supporterData.NameColor) ? "#FFD700" : supporterData.NameColor;
+                if (!string.IsNullOrWhiteSpace(supporterData.Title))
+                {
+                    wrappedMessage = Loc.GetString("chat-manager-send-ooc-supporter-wrap-message",
+                        ("supporterColor", colorHex),
+                        ("supporterTitle", FormattedMessage.EscapeText(supporterData.Title)),
+                        ("playerName", player.Name),
+                        ("message", FormattedMessage.EscapeText(message)));
+                }
+                else
+                {
+                    wrappedMessage = Loc.GetString("chat-manager-send-ooc-supporter-notitle-wrap-message",
+                        ("supporterColor", colorHex),
+                        ("playerName", player.Name),
+                        ("message", FormattedMessage.EscapeText(message)));
+                }
+            }
+
             //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
             ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
             _mommiLink.SendOOCMessage(player.Name, message);
@@ -292,7 +315,9 @@ namespace Content.Server.Chat.Managers
                 return;
             }
 
-            var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+            var clients = _adminManager.ActiveAdmins
+                .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminchat) == true)
+                .Select(p => p.Channel);
             var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
                                             ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
                                             ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));

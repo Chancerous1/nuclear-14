@@ -34,12 +34,14 @@ using Robust.Server;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._NC.Sponsor; // Forge-Change
 using Content.Server._NC.TTS; // Forge-Change
+using Content.Server._Misfits.Supporter; // #Misfits Add - Supporter manager
 
 namespace Content.Server.Entry
 {
@@ -169,6 +171,8 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<IBanManager>().Initialize();
                 IoCManager.Resolve<IConnectionManager>().PostInit();
                 IoCManager.Resolve<SponsorManager>().Initialize(); // Forge-Change
+                IoCManager.Resolve<ISupporterManager>().Initialize(); // #Misfits Add
+                IoCManager.Resolve<IConsoleHost>().ExecuteCommand("populationadjust 121");
             }
         }
 

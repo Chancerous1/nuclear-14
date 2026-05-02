@@ -8,6 +8,7 @@ using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Robust.Shared.GameObjects;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -55,6 +56,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly ILocalizationManager _loc = default!;
+        [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -205,6 +207,15 @@ namespace Content.Server.Connection
             }
 
             var modernHwid = e.UserData.ModernHWIds;
+            bool? whitelistStatus = null;
+
+            async Task<bool> GetWhitelistStatus()
+            {
+                if (whitelistStatus == null)
+                    whitelistStatus = await _db.GetWhitelistStatusAsync(userId);
+
+                return whitelistStatus.Value;
+            }
 
             var bans = await _db.GetServerBansAsync(addr, userId, hwId, modernHwid, includeUnbanned: false);
             if (bans.Count > 0)
@@ -231,7 +242,7 @@ namespace Content.Server.Connection
                 var record = await _db.GetPlayerRecordByUserId(userId);
                 var validAccountAge = record != null &&
                                       record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromHours(minHoursAge)) <= 0;
-                var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await _db.GetWhitelistStatusAsync(userId);
+                var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await GetWhitelistStatus();
 
                 // Use the custom reason if it exists & they don't have the minimum account age
                 if (customReason != string.Empty && !validAccountAge && !bypassAllowed)
@@ -247,7 +258,7 @@ namespace Content.Server.Connection
                 }
 
                 var minOverallHours = _cfg.GetCVar(CCVars.PanicBunkerMinOverallHours);
-                var overallTime = ( await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
+                var overallTime = (await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
                 var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalHours > minOverallHours;
 
                 // Use the custom reason if it exists & they don't have the minimum time
@@ -271,30 +282,38 @@ namespace Content.Server.Connection
 
             if (_cfg.GetCVar(CCVars.BabyJailEnabled) && adminData == null)
             {
-                var result = await IsInvalidConnectionDueToBabyJail(userId, e);
+                var result = await IsInvalidConnectionDueToBabyJail(userId, e, await GetWhitelistStatus());
 
                 if (result.IsInvalid)
                     return (ConnectionDenyReason.BabyJail, result.Reason, null);
             }
 
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                            ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+            var ticker = _entitySystemManager.GetEntitySystem<GameTicker>();
+            var wasInGame = ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
-            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
+            // Admins always bypass the player cap, regardless of cvar setting
+            var adminBypass = adminData != null;
             // #Misfits Add - Whitelisted players use an expanded cap (soft max + reserved slots) so they
             // aren't pop-capped or queued behind regular players. Admins already bypass entirely via adminBypass.
             var softMax = _cfg.GetCVar(CCVars.SoftMaxPlayers);
-            var isWhitelistedPlayer = adminData == null && await _db.GetWhitelistStatusAsync(userId);
+            var isWhitelistedPlayer = adminData == null && await GetWhitelistStatus();
             var effectiveCap = isWhitelistedPlayer
                 ? softMax + _cfg.GetCVar(CCVars.WhitelistReservedSlots)
                 : softMax;
-            if ((_plyMgr.PlayerCount >= effectiveCap && !adminBypass) && !wasInGame)
+
+            _sawmill.Debug($"Connection check for {e.UserName}: adminData={adminData != null}, adminBypass={adminBypass}, playerCount={_plyMgr.PlayerCount}, effectiveCap={effectiveCap}, isWhitelisted={isWhitelistedPlayer}, wasInGame={wasInGame}");
+
+            if ((_plyMgr.PlayerCount >= effectiveCap && !adminBypass && !isWhitelistedPlayer) && !wasInGame)
             {
+                _sawmill.Info($"Connection DENIED for {e.UserName}: Server full (cap check)");
+                _sawmill.Debug($"Cap denial details: user={e.UserName} userId={userId} adminPresent={(adminData != null)} adminTitle={(adminData?.Title ?? "<null>")} playerCount={_plyMgr.PlayerCount} effectiveCap={effectiveCap} isWhitelisted={isWhitelistedPlayer} wasInGame={wasInGame}");
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
-            // DeltaV - Replace existing softwhitelist implementation
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && adminData is null)//if (_cfg.GetCVar(CCVars.WhitelistEnabled) && adminData is null)
+            _sawmill.Debug($"Connection passed cap check for {e.UserName}");
+
+            // Whitelist handling (only when whitelist is enabled and the player is not an admin)
+            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && adminData is null)
             {
                 if (_whitelists is null)
                 {
@@ -311,11 +330,11 @@ namespace Content.Server.Connection
                         continue;
                     }
 
-                    var whitelistStatus = await IsWhitelisted(whitelist, e.UserData, _sawmill);
-                    if (!whitelistStatus.isWhitelisted)
+                    var whitelistCheck = await IsWhitelisted(whitelist, e.UserData, _sawmill);
+                    if (!whitelistCheck.isWhitelisted)
                     {
                         // Not whitelisted.
-                        return (ConnectionDenyReason.Whitelist, Loc.GetString("whitelist-fail-prefix", ("msg", whitelistStatus.denyMessage!)), null);
+                        return (ConnectionDenyReason.Whitelist, Loc.GetString("whitelist-fail-prefix", ("msg", whitelistCheck.denyMessage!)), null);
                     }
 
                     // Whitelisted, don't check any more.
@@ -323,36 +342,14 @@ namespace Content.Server.Connection
                 }
             }
 
-            // DeltaV - Soft whitelist improvements
-            // TODO: replace this with a whitelist config prototype with a connected whitelisted players condition
-            if (false)
-            {
-                var connectedPlayers = _plyMgr.PlayerCount;
-                var connectedWhitelist = _connectedWhitelistedPlayers.Count;
-
-                var slots = 25;
-
-                var noSlotsOpen = slots > 0 && slots < connectedPlayers - connectedWhitelist;
-
-                if (noSlotsOpen && await _db.GetWhitelistStatusAsync(userId) == false
-                                     && adminData is null)
-                {
-                    var msg = Loc.GetString("whitelist-not-whitelisted-peri");
-
-                    if (slots > 0)
-                        msg += "\n" + Loc.GetString("whitelist-playercount-invalid", ("min", slots), ("max", _cfg.GetCVar(CCVars.SoftMaxPlayers)));
-
-                    return (ConnectionDenyReason.Whitelist, msg, null);
-                }
-            }
-
+            _sawmill.Info($"Connection APPROVED for {e.UserName}");
             return null;
         }
 
-        private async Task<(bool IsInvalid, string Reason)> IsInvalidConnectionDueToBabyJail(NetUserId userId, NetConnectingArgs e)
+        private async Task<(bool IsInvalid, string Reason)> IsInvalidConnectionDueToBabyJail(NetUserId userId, NetConnectingArgs e, bool isWhitelisted)
         {
             // If you're whitelisted then bypass this whole thing
-            if (await _db.GetWhitelistStatusAsync(userId))
+            if (isWhitelisted)
                 return (false, "");
 
             // Initial cvar retrieval
@@ -388,7 +385,7 @@ namespace Content.Server.Connection
                 return (true, locAccountReason);
             }
 
-            var overallTime = ( await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
+            var overallTime = (await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
             var isTotalPlaytimeInvalid = overallTime != null && overallTime.TimeSpent.TotalHours >= maxAccountAgeHours;
 
             if (isTotalPlaytimeInvalid)
@@ -471,8 +468,8 @@ namespace Content.Server.Connection
             // #Misfits Add - Whitelisted players skip the join queue; ConnectionManager already caps them
             // at SoftMaxPlayers + WhitelistReservedSlots so this doesn't grant unlimited access.
             var isWhitelisted = await _db.GetWhitelistStatusAsync(userId);
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+            var ticker = _entitySystemManager.GetEntitySystem<GameTicker>();
+            var wasInGame = ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                 status == PlayerGameStatus.JoinedGame;
             return isAdmin || isSponsor || isWhitelisted || wasInGame; // Forge-Change
         }
