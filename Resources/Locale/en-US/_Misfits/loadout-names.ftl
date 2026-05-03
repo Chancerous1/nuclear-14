@@ -194,6 +194,7 @@ loadout-name-N14LoadoutBeltUtility = utility belt
 
 # Masks
 loadout-name-ClothingMaskGasMinerVault = miner gas mask
+loadout-name-ClothingMaskFox = fox mask
 loadout-name-ClothingMaskBear = bear mask
 loadout-name-ClothingMaskBat = bat mask
 loadout-name-ClothingMaskBee = bee mask
