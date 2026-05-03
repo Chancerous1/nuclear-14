@@ -22,7 +22,7 @@
     sprite: _Nuclear14/Structures/Misc/workbenches.rsi
     state: workbench
     # Misfit Remove: Fix the offset issue with construction benches
-    #offset: 0.5, 0
+    offset: 0.5, 0
   - type: Lathe
   - type: MaterialStorage
   - type: ActivatableUI
@@ -535,6 +535,7 @@
 - type: entity
   parent: BaseStructure
   id: N14WorkbenchChemistrysetFrame
+  categories: [ HideSpawnMenu ]
   description: A chemistry set for crafting drugs and compounds. This one is still being built!
   name: chemical set frame
   components:
