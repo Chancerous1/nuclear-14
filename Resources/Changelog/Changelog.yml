@@ -4520,3 +4520,22 @@ Entries:
   id: 5829
   time: '2026-05-03T22:47:53.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/412
+- author: HungryCuban
+  changes:
+    - type: Add
+      message: Added C27 natural welding eye protection
+    - type: Tweak
+      message: >-
+        Change C27 scream to a more silicon one (todo: add custom emotes for
+        them)
+    - type: Tweak
+      message: >-
+        C27 Blueprints cost increased, Mainly steel consumption the Heavy armor
+        increased to 220 steel and Medium stay cheap at 15 steel
+    - type: Fix
+      message: Fixed C27 not being targeted by mobs
+    - type: Fix
+      message: Fixed C27 Wastelander infinite sloths
+  id: 5830
+  time: '2026-05-03T22:50:40.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/414
