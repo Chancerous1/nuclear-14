@@ -4478,3 +4478,10 @@ Entries:
   id: 5825
   time: '2026-05-03T17:14:33.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/415
+- author: Fox
+  changes:
+    - type: Fix
+      message: Seed extractors
+  id: 5826
+  time: '2026-05-03T17:15:00.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/410
