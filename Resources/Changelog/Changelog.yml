@@ -4513,3 +4513,10 @@ Entries:
   id: 5828
   time: '2026-05-03T22:47:10.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/409
+- author: AthenaAI
+  changes:
+    - type: Add
+      message: Fixed some github shenanigans.
+  id: 5829
+  time: '2026-05-03T22:47:53.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/412
