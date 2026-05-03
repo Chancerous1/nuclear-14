@@ -4548,3 +4548,32 @@ Entries:
   id: 5831
   time: '2026-05-03T22:52:05.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/416
+- author: Sirius
+  changes:
+    - type: Add
+      message: >-
+        Vault-tec has provided Vault 14 with a pneumatic delivery system which
+        can transport chems from the Chemistry Lab to the Medical Treatment
+        facilities.
+    - type: Add
+      message: >-
+        Vault-tec's engineers have been hard at work on updating the safety
+        measures to protect their valued chemists. Now the chemistry lab has a
+        shower and sink to help rinse any nasty chemicals off of you!
+    - type: Add
+      message: >-
+        Storage has been severely limited for Chemists. Vault-tec's engineers
+        have fixed this by stripping some of the redundant, useless machinery
+        from behind the chemistry lab and replacing it with a storage shelf and
+        some additional PPE
+    - type: Add
+      message: >-
+        The Vault has been equipped with a non-functioning, decorative
+        cryogenics research lab. 
+    - type: Remove
+      message: >-
+        The chemist's breakroom reagent grinder has been replaced, and some of
+        the furniture shifted to provide a more comfortable space to relax.
+  id: 5832
+  time: '2026-05-03T23:06:32.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/418
