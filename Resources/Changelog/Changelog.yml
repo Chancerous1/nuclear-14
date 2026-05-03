@@ -4485,3 +4485,12 @@ Entries:
   id: 5826
   time: '2026-05-03T17:15:00.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/410
+- author: qevie
+  changes:
+    - type: Fix
+      message: fixed NCRMP spelling errors
+    - type: Tweak
+      message: renamed NCRMP dogtags
+  id: 5827
+  time: '2026-05-03T22:46:04.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/405
