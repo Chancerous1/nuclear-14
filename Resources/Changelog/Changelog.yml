@@ -4494,3 +4494,22 @@ Entries:
   id: 5827
   time: '2026-05-03T22:46:04.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/405
+- author: 3Ra3G
+  changes:
+    - type: Add
+      message: All sort of striped scarfs available for everyone
+    - type: Add
+      message: Coats,items, pre-war uniforms for the Vault
+    - type: Remove
+      message: Deleted Nitrile gloves because they already existed
+    - type: Tweak
+      message: Vault Pamphlet available for all Vault roles
+    - type: Tweak
+      message: Changed detective's coat to a slim coat
+    - type: Fix
+      message: Categorized some items that were uncategorized before
+    - type: Fix
+      message: Fox mask and bee mask
+  id: 5828
+  time: '2026-05-03T22:47:10.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/409
